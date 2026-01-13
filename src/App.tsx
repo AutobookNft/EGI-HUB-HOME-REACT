@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
-import { useUIStore } from '@/stores/useUIStore';
 
 const queryClient = new QueryClient({
     defaultOptions: {

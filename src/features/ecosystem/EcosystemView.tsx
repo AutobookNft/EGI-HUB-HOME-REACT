@@ -6,10 +6,6 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { Loader } from '@/components/ui/Loader';
 import { useEcosystemData } from './useEcosystemData';
 
-interface EcosystemViewProps {
-    view?: string;
-}
-
 export const EcosystemView = () => {
     console.log(`📺 [EcosystemView] Rendering`);
     const { data: ecosystem, loading: isLoading } = useEcosystemData();

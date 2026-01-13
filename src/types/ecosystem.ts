@@ -17,8 +17,8 @@ export interface OrbitalConfig {
 
 export interface EcosystemData {
     core: EcosystemNode;
-    [key: string]: EcosystemNode;
     orbitalConfig?: OrbitalConfig[];
+    [key: string]: EcosystemNode | OrbitalConfig[] | undefined;
 }
 
 // API Response types
