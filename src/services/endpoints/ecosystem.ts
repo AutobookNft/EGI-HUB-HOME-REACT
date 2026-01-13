@@ -12,7 +12,7 @@ export const ecosystemAPI = {
         const response = await fetch(`${baseURL}/ecosystem?view=${view}&t=${Date.now()}`);
         if (!response.ok) throw new Error('Failed to fetch ecosystem');
         const data = await response.json();
-        return data;
+        return data;    
     },
 
     // Get live system metrics (tenants, status, etc)

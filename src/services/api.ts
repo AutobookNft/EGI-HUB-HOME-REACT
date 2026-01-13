@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Base API instance
 export const api = axios.create({
-    baseURL: 'http://localhost:8010/api', // FORCED LOCALHOST FIX
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8010/api',
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
