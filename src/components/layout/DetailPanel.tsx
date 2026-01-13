@@ -10,7 +10,8 @@ export const DetailPanel = () => {
     if (!ecosystem || !selectedNodeId) return null;
 
     const nodeData = ecosystem[selectedNodeId];
-    if (!nodeData) return null;
+    // Type guard: ensure it's an EcosystemNode, not OrbitalConfig[]
+    if (!nodeData || Array.isArray(nodeData)) return null;
 
     return (
         <AnimatePresence>

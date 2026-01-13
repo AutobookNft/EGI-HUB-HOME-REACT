@@ -60,7 +60,8 @@ export const useEcosystemData = () => {
         (window as any).handleNodeClick = (nodeId: string) => {
             if (!data) return;
             const node = data[nodeId];
-            if (!node) return;
+            // Type guard: ensure it's an EcosystemNode, not OrbitalConfig[]
+            if (!node || Array.isArray(node)) return;
 
             // 1. Internal Route (e.g. /projects) -> Direct Navigate
             if (node.route && node.route.startsWith('/')) {
