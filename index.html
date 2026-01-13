@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts (come originale) -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+
+  <!-- Import map per Three.js CDN (come originale) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js"
+    }
+  }
+  </script>
+
+  <title>HUB-EGI | Ecosystem Control</title>
+</head>
+
+<body>
+  <!-- Engine 3D originale (carica per primo) -->
+  <!-- DISABLED: Static data conflicts with dynamic API data -->
+  <!-- <script type="module" src="/ecosystem_data.js"></script> -->
+  <script type="module" src="/engine.js?v=click_fix_7"></script>
+
+  <!-- React UI overlay -->
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
