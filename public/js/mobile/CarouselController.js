@@ -209,10 +209,15 @@ export class CarouselController {
         
         if (frontPrism && frontPrism.id) {
             console.log(`📱 Opening Detail for: ${frontPrism.id}`);
+            
             if (window.openDetailPanel) {
                 window.openDetailPanel(frontPrism.id);
+            } else if (window.useUIStore) {
+                // React Zustand Store Access
+                console.log('🔗 Triggering React UI via useUIStore');
+                window.useUIStore.getState().openDetailPanel(frontPrism.id);
             } else {
-                console.error('❌ window.openDetailPanel not found!');
+                console.error('❌ No method found to open detail panel (openDetailPanel or useUIStore missing)');
             }
         }
     }
