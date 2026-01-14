@@ -51,22 +51,10 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     const height = radius * 2.5;
     const depth = radius * 0.8;
     
-    // 1. MAGMA CORE (High-segment box for smooth look)
-    // More segments = smoother appearance with lighting
-    const coreGeo = new THREE.BoxGeometry(width * 0.5, height * 0.5, depth * 0.5, 4, 4, 4);
-    const coreMat = new THREE.ShaderMaterial({
-        uniforms: {
-            uColor: { value: new THREE.Color(data.color) },
-            uTime: commonUniforms.uTime
-        },
-        vertexShader: magmaVShader,
-        fragmentShader: magmaFShader
-    });
-    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    coreMesh.renderOrder = 0; 
-    root.add(coreMesh);
-
-    // 2. INTERNAL LABEL (Billboard Plane)
+    // ❌ MAGMA CORE REMOVED - Creates visual confusion during rotation
+    // Keeping only glass shell + label for clean look
+    
+    // 1. INTERNAL LABEL (Billboard Plane)
     const textTex = createTextTexture(data.label, data.tagline);
     const labelGeo = new THREE.PlaneGeometry(width * 1.8, height * 0.6); 
     const labelMat = new THREE.MeshBasicMaterial({ 
@@ -81,19 +69,19 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     labelMesh.renderOrder = 999;
     root.add(labelMesh);
 
-    // 3. GLASS SHELL (High-segment box for smooth appearance)
+    // 2. GLASS SHELL (High-segment box for smooth appearance)
     const glassGeo = new THREE.BoxGeometry(width, height, depth, 6, 6, 6);
     const glassMat = createGlassMaterial(data.color);
     
-    // ⭐ Make glass MORE OPAQUE
-    glassMat.opacity = 0.4; // Increased from default (~0.15)
+    // ⭐ MOBILE: Much MORE OPAQUE than desktop spheres
+    glassMat.opacity = 0.6; // Increased from 0.35 (default) to 0.6
     glassMat.transparent = true;
     
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
     glassMesh.renderOrder = 2;
     root.add(glassMesh);
 
-    // 4. HIT BOX (invisible, for click detection)
+    // 3. HIT BOX (invisible, for click detection)
     const hitMesh = new THREE.Mesh(
         new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 1.5),
         new THREE.MeshBasicMaterial({ visible: false })
@@ -101,5 +89,4 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     hitMesh.userData = { id: id };
     root.add(hitMesh);
 
-    return { root, coreMesh, hitMesh, labelMesh, glassMesh };
-}
+    return { root, hitMesh, labelMesh, glassMesh };

@@ -147,7 +147,7 @@ function constructEcosystem(newData, newOrbitConfig) {
         }
         
         // Enable touch swipe
-        carouselController.enableSwipe(canvas);
+        carouselController.enableSwipe(renderer.domElement);
         
         return; // Skip desktop logic
     }
