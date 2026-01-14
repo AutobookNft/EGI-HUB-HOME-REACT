@@ -55,6 +55,10 @@ export class CarouselController {
      * Update prism positions based on current rotation
      */
     updatePrismPositions() {
+        // Calculate min/max distances once for this frame
+        const minDist = this.camera.position.length() - this.radius;
+        const maxDist = this.camera.position.length() + this.radius;
+
         this.prisms.forEach((prism) => {
             // Calculate angle for this prism
             const angle = prism.baseAngle + this.currentRotation;
@@ -71,23 +75,29 @@ export class CarouselController {
             // Calculate ACTUAL distance from camera (3D vector)
             const distanceFromCamera = prism.node.root.position.distanceTo(this.camera.position);
             
-            // Find min/max distances for normalization
-            const minDist = this.camera.position.length() - this.radius; // Closest possible
-            const maxDist = this.camera.position.length() + this.radius; // Farthest possible
-            
             // Scale based on DISTANCE (closer = LARGER)
             const scaleFactor = THREE.MathUtils.mapLinear(
                 distanceFromCamera,
-                minDist,       // Closest to camera
-                maxDist,       // Farthest from camera
-                2.0,           // LARGE (close)
-                0.5            // SMALL (far)
+                minDist, maxDist,
+                2.0, 0.5
             );
-            
             prism.node.root.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
+            // 👁️ LABEL VISIBILITY LOGIC
+            // Fade out label if prism is farther back
+            const normalizedDist = (distanceFromCamera - minDist) / (maxDist - minDist);
+            
+            // Visible ONLY when very close to front (0.0 to 0.3 range)
+            let labelOpacity = 1.0 - (normalizedDist * 3.0); 
+            labelOpacity = Math.max(0, Math.min(1, labelOpacity));
+            
+            if (prism.node.labelMesh) {
+                prism.node.labelMesh.material.opacity = labelOpacity;
+                prism.node.labelMesh.visible = labelOpacity > 0.01;
+            }
         });
     }
-    
+
     /**
      * Enable touch swipe controls
      * @param {HTMLCanvasElement} canvas - Renderer canvas
@@ -106,18 +116,15 @@ export class CarouselController {
             if (!this.isSwiping) return;
             
             const deltaX = e.touches[0].clientX - this.touchStartX;
-            // 🐢 SLOWER SENSITIVITY: Reduced factor from 1.5 to 0.8
+            // 🐢 SLOWER SENSITIVITY: Reduced factor to 0.8
             const rotationDelta = (deltaX / window.innerWidth) * Math.PI * 0.8; 
             
-            // Direct control - update currentRotation immediately for responsiveness
-            // No targetRotation lag
             this.currentRotation = this.touchStartRotation + rotationDelta;
         });
         
         // Touch end - strict stop
         canvas.addEventListener('touchend', () => {
             this.isSwiping = false;
-            // NO INERTIA: movement stops dead when finger lifts
         });
         
         console.log('👆 Touch swipe controls enabled (Strict control, No inertia)');
@@ -128,9 +135,6 @@ export class CarouselController {
      * @param {number} deltaTime - Time since last frame
      */
     update(deltaTime) {
-        // No inertia physics anymore, just update positions
-        
-        // Update positions & visuals
         this.updatePrismPositions();
         
         // Animate magma cores (if they have uniforms)
@@ -166,16 +170,14 @@ export class CarouselController {
         // Find nearest prism
         const targetAngle = Math.round(this.currentRotation / this.angleStep) * this.angleStep;
         
-        // Use GSAP if available, otherwise direct
         if (window.gsap) {
             window.gsap.to(this, {
-                currentRotation: targetAngle, // Changed from targetRotation to currentRotation
+                currentRotation: targetAngle,
                 duration: 0.3,
                 ease: "power2.out"
             });
         } else {
-            this.currentRotation = targetAngle; // Changed from targetRotation to currentRotation
+            this.currentRotation = targetAngle;
         }
     }
 }
-```
