@@ -67,6 +67,16 @@ export const useEcosystemData = () => {
             const nodes = (window as any).nodes;
             const sphereMesh = nodes?.[nodeId]?.glassMesh || nodes?.[nodeId]?.coreMesh;
 
+            // 🔍 DEBUG: Log nodes structure
+            console.log('🔍 [Debug] Node lookup:', {
+                nodeId,
+                nodeExists: !!nodes?.[nodeId],
+                nodeKeys: nodes ? Object.keys(nodes) : [],
+                hasGlassMesh: !!nodes?.[nodeId]?.glassMesh,
+                hasCoreMesh: !!nodes?.[nodeId]?.coreMesh,
+                nodeStructure: nodes?.[nodeId] ? Object.keys(nodes[nodeId]) : []
+            });
+
             // 1. Internal Route (e.g. /projects) -> Direct Navigate
             if (node.route && node.route.startsWith('/')) {
                 console.log(`🚀 [Sphere Click] Navigating: ${node.route}`);

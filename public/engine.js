@@ -103,6 +103,7 @@ systemGroup.position.y = SYSTEM_CONFIG.scene.yOffset;
 scene.add(systemGroup);
 
 let nodes = {}; // Exposed for animation loop
+window.nodes = nodes; // ⭐ Expose to React for hyperspace effect
 
 function constructEcosystem(newData, newOrbitConfig) {
     // 1. Clear existing group
@@ -110,6 +111,7 @@ function constructEcosystem(newData, newOrbitConfig) {
         systemGroup.remove(systemGroup.children[0]); 
     }
     nodes = {};
+    window.nodes = nodes; // ⭐ Update window reference
 
     if (!newData || !newData.core) {
         console.error("ConstructEcosystem: Invalid Data", newData);
