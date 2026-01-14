@@ -43,12 +43,6 @@ function createTechHUDTexture(color) {
     ctx.fillStyle = colorStyle;
     ctx.fillRect(0, canvas.height*0.3, 6, canvas.height*0.4); // Left bar
     ctx.fillRect(canvas.width-6, canvas.height*0.3, 6, canvas.height*0.4); // Right bar
-
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.anisotropy = 16;
-    return tex;
-}
-
 // HELPER: Create Text Texture (same as SphereNode)
 function createTextTexture(text, subtext) {
     const canvas = document.createElement('canvas');
@@ -87,6 +81,7 @@ function createTextTexture(text, subtext) {
 /**
  * Create a Prism Node (Mobile version of SphereNode)
  * Uses RoundedBoxGeometry for premium look
+ * DECORATION: Clean glowing edges only (Hardware style)
  */
 export function createPrismNode(id, data, radius, commonUniforms) {
     const root = new THREE.Group();
@@ -94,54 +89,42 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     // Prism dimensions (MONOLITH STYLE - Large & Thin)
     // Target: ~70% screen width when frontal
     const width = radius * 2.2;  
-    const height = radius * 4.5; // Even taller to reduce top gap
+    const height = radius * 4.5; 
     const depth = radius * 0.1;  
-    const cornerRadius = width * 0.05; // Smooth corners
+    const cornerRadius = width * 0.05; 
     
-    // 1. INNER WIREFRAME CORE (The "Brain/Data" inside)
-    // Slightly smaller than glass
-    const innerGeo = new RoundedBoxGeometry(width * 0.85, height * 0.85, depth * 0.8, 2, cornerRadius);
-    const innerMat = new THREE.MeshBasicMaterial({
-        color: data.color,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.15, // Faint holographic structure
-        side: THREE.DoubleSide
-    });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    root.add(innerMesh);
-
-    // 2. GLASS SHELL
+    // 1. GLASS SHELL (RoundedBoxGeometry)
     const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, cornerRadius);
     const glassMat = createGlassMaterial(data.color);
     
-    // ⭐ MOBILE: Opaque glass
-    glassMat.opacity = 0.85; 
+    // ⭐ MOBILE: Elegant Opaque Glass
+    glassMat.opacity = 0.9; // Solid presence
     glassMat.transparent = true;
     glassMat.side = THREE.FrontSide; 
+    // Emissive glow for "active" look
+    glassMat.emissive = new THREE.Color(data.color);
+    glassMat.emissiveIntensity = 0.15; 
     
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
     glassMesh.renderOrder = 1;
     root.add(glassMesh);
-    
-    // 3. TECH HUD OVERLAY (Brackets & Details)
-    // Placed slightly in front of glass
-    const hudTex = createTechHUDTexture(data.color);
-    const hudGeo = new THREE.PlaneGeometry(width * 1.05, height * 1.02);
-    const hudMat = new THREE.MeshBasicMaterial({
-        map: hudTex,
-        transparent: true,
-        opacity: 0.9,
-        side: THREE.FrontSide,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending // Glow effect
-    });
-    const hudMesh = new THREE.Mesh(hudGeo, hudMat);
-    hudMesh.position.z = depth * 0.5 + 0.5; // Just on surface
-    hudMesh.renderOrder = 2;
-    root.add(hudMesh);
 
-    // 4. EXTERNAL LABEL (Floating freely)
+    // 2. ELEGANT EDGES (The "Adornment")
+    // Creates a clean, high-tech outline around the rounded shape
+    const edgesGeo = new THREE.EdgesGeometry(glassGeo); // Automatically finds sharp edges (might need adjusting for rounded box)
+    // For RoundedBox, EdgesGeometry might show internal triangles if angle threshold is low.
+    // Better strategy for RoundedBox: Create a slightly larger wireframe or specific edges? 
+    // Actually, RoundedBoxGeometry is well structured. Let's try standard edges first with high threshold.
+    
+    const edgesMat = new THREE.LineBasicMaterial({ 
+        color: 0xffffff, 
+        transparent: true, 
+        opacity: 0.3 // Subtle
+    });
+    const edgesMesh = new THREE.LineSegments(edgesGeo, edgesMat);
+    root.add(edgesMesh);
+
+    // 3. EXTERNAL LABEL (Floating freely)
     const textTex = createTextTexture(data.label, data.tagline);
     const labelGeo = new THREE.PlaneGeometry(width * 1.5, height * 0.5); 
     const labelMat = new THREE.MeshBasicMaterial({ 
@@ -153,12 +136,12 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     });
     const labelMesh = new THREE.Mesh(labelGeo, labelMat);
     
-    // Move label further out
-    labelMesh.position.z = depth * 0.5 + 5; 
+    // Move label out
+    labelMesh.position.z = depth * 0.5 + 4; 
     labelMesh.renderOrder = 3; 
     root.add(labelMesh);
 
-    // 5. HIT BOX
+    // 4. HIT BOX
     const hitMesh = new THREE.Mesh(
         new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 2),
         new THREE.MeshBasicMaterial({ visible: false })
@@ -166,5 +149,5 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     hitMesh.userData = { id: id };
     root.add(hitMesh);
 
-    return { root, hitMesh, labelMesh, glassMesh, innerMesh };
+    return { root, hitMesh, labelMesh, glassMesh };
 }
