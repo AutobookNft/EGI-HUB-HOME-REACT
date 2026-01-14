@@ -29,7 +29,7 @@ export class CarouselController {
         
         // Create carousel group
         this.carouselGroup = new THREE.Group();
-        this.carouselGroup.position.y = 0; // Center vertically
+        this.carouselGroup.position.y = 25; // Move up significantly to reduce top gap
         this.scene.add(this.carouselGroup);
         
         console.log('📱 CarouselController initialized');

@@ -40,25 +40,25 @@ function createTextTexture(text, subtext) {
 
 /**
  * Create a Prism Node (Mobile version of SphereNode)
- * Uses high-segment BoxGeometry for smooth appearance
- * Maintains same PBR materials (magma core + glass shell)
+ * Uses RoundedBoxGeometry for premium look
  */
 export function createPrismNode(id, data, radius, commonUniforms) {
     const root = new THREE.Group();
     
     // Prism dimensions (MONOLITH STYLE - Large & Thin)
     // Target: ~70% screen width when frontal
-    const width = radius * 2.2;  // Much wider
-    const height = radius * 4.0; // Much taller
-    const depth = radius * 0.1;  // Very thin slab
+    const width = radius * 2.2;  
+    const height = radius * 4.5; // Even taller to reduce top gap
+    const depth = radius * 0.1;  
+    const cornerRadius = width * 0.05; // Smooth corners
     
-    // 1. GLASS SHELL (High-segment box for smooth appearance)
-    // Using 4 segments to simulate roundness via lighting
-    const glassGeo = new THREE.BoxGeometry(width, height, depth, 4, 4, 4);
+    // 1. GLASS SHELL (RoundedBoxGeometry)
+    // segments: 4, radius: cornerRadius
+    const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, cornerRadius);
     const glassMat = createGlassMaterial(data.color);
     
     // ⭐ MOBILE: Opaque glass
-    glassMat.opacity = 0.8; // Slightly more opaque for better presence
+    glassMat.opacity = 0.8; 
     glassMat.transparent = true;
     glassMat.side = THREE.FrontSide; 
     
