@@ -10,7 +10,9 @@
  */
 
 import * as THREE from 'three';
-import { gsap } from 'gsap';
+
+// GSAP loaded globally from CDN (index.html)
+const gsap = window.gsap;
 
 export class HyperspaceEffect {
     constructor(scene, camera, renderer) {
