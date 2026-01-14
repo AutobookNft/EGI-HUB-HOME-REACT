@@ -1,6 +1,5 @@
 
 import * as THREE from 'three';
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { magmaVShader, magmaFShader } from '../shaders/MagmaShader.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
@@ -41,7 +40,7 @@ function createTextTexture(text, subtext) {
 
 /**
  * Create a Prism Node (Mobile version of SphereNode)
- * Uses RoundedBoxGeometry for smooth edges
+ * Uses high-segment BoxGeometry for smooth appearance
  * Maintains same PBR materials (magma core + glass shell)
  */
 export function createPrismNode(id, data, radius, commonUniforms) {
@@ -51,10 +50,10 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     const width = radius * 1.5;
     const height = radius * 2.5;
     const depth = radius * 0.8;
-    const bevelRadius = radius * 0.15; // Rounded edge radius
     
-    // 1. MAGMA CORE (Rounded box shape)
-    const coreGeo = new RoundedBoxGeometry(width * 0.5, height * 0.5, depth * 0.5, 3, bevelRadius * 0.5);
+    // 1. MAGMA CORE (High-segment box for smooth look)
+    // More segments = smoother appearance with lighting
+    const coreGeo = new THREE.BoxGeometry(width * 0.5, height * 0.5, depth * 0.5, 4, 4, 4);
     const coreMat = new THREE.ShaderMaterial({
         uniforms: {
             uColor: { value: new THREE.Color(data.color) },
@@ -82,8 +81,8 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     labelMesh.renderOrder = 999;
     root.add(labelMesh);
 
-    // 3. GLASS SHELL (Rounded box with smooth edges)
-    const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, bevelRadius);
+    // 3. GLASS SHELL (High-segment box for smooth appearance)
+    const glassGeo = new THREE.BoxGeometry(width, height, depth, 6, 6, 6);
     const glassMat = createGlassMaterial(data.color);
     
     // ⭐ Make glass MORE OPAQUE
