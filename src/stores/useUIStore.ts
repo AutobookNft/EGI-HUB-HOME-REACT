@@ -52,4 +52,8 @@ if (typeof window !== 'undefined') {
     window.addEventListener('popstate', () => {
         useUIStore.setState({ currentPath: window.location.pathname });
     });
+
+    // ⭐ Expose to window for HyperspaceEffect internal navigation
+    (window as any).useUIStore = useUIStore;
 }
+

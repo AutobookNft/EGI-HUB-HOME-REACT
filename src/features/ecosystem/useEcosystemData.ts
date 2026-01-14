@@ -66,36 +66,26 @@ export const useEcosystemData = () => {
             // Get sphere mesh for hyperspace effect
             const nodes = (window as any).nodes;
             const sphereMesh = nodes?.[nodeId]?.glassMesh || nodes?.[nodeId]?.coreMesh;
+            const hyperspaceEffect = (window as any).hyperspaceEffect;
 
-            // 🔍 DEBUG: Log nodes structure
-            console.log('🔍 [Debug] Node lookup:', {
-                nodeId,
-                nodeExists: !!nodes?.[nodeId],
-                nodeKeys: nodes ? Object.keys(nodes) : [],
-                hasGlassMesh: !!nodes?.[nodeId]?.glassMesh,
-                hasCoreMesh: !!nodes?.[nodeId]?.coreMesh,
-                nodeStructure: nodes?.[nodeId] ? Object.keys(nodes[nodeId]) : []
-            });
+            // ⭐ Hyperspace whitelist: internal routes that should trigger effect
+            const hyperspaceInternalRoutes = ['/ambiente', '/oracode', '/corporate'];
 
-            // 1. Internal Route (e.g. /projects) -> Direct Navigate
+            // 1. Internal Route -> Check if should trigger hyperspace
             if (node.route && node.route.startsWith('/')) {
-                console.log(`🚀 [Sphere Click] Navigating: ${node.route}`);
-                useUIStore.getState().navigate(node.route);
+                if (hyperspaceInternalRoutes.includes(node.route) && hyperspaceEffect && sphereMesh) {
+                    console.log(`✨ [Hyperspace Internal] Warping to: ${node.route}`);
+                    // Trigger hyperspace, then navigate internally
+                    hyperspaceEffect.warpToSphere(sphereMesh, node.route, true);
+                } else {
+                    console.log(`🚀 [Direct Navigate] ${node.route}`);
+                    useUIStore.getState().navigate(node.route);
+                }
                 return;
             }
 
             // 2. External Route -> Hyperspace Warp Animation
             if (node.route && node.route !== '#' && node.route !== '') {
-                // Check if hyperspaceEffect is available
-                const hyperspaceEffect = (window as any).hyperspaceEffect;
-
-                // 🔍 DEBUG: Log all conditions
-                console.log('🔍 [Debug] Hyperspace check:', {
-                    hyperspaceEffect: !!hyperspaceEffect,
-                    sphereMesh: !!sphereMesh,
-                    route: node.route,
-                    startsWithHttp: node.route.startsWith('http')
-                });
 
                 if (hyperspaceEffect && sphereMesh && node.route.startsWith('http')) {
                     // ⭐ Trigger Star Wars-style hyperspace transition

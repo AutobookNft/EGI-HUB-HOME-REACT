@@ -79,14 +79,15 @@ export class HyperspaceEffect {
     /**
      * Main hyperspace warp effect
      * @param {THREE.Mesh} targetSphere - The sphere mesh to warp into
-     * @param {string} targetURL - Destination URL
+     * @param {string} targetURL - Destination URL or path
+     * @param {boolean} isInternal - If true, use React Router instead of window.location
      * @returns {Promise} Resolves when transition completes
      */
-    async warpToSphere(targetSphere, targetURL) {
+    async warpToSphere(targetSphere, targetURL, isInternal = false) {
         if (this.isWarping) return;
         this.isWarping = true;
         
-        console.log(`🚀 Initiating hyperspace jump to: ${targetURL}`);
+        console.log(`🚀 Initiating hyperspace jump to: ${targetURL} (internal: ${isInternal})`);
         
         const startPos = this.camera.position.clone();
         const targetPos = targetSphere.position.clone();
@@ -130,8 +131,22 @@ export class HyperspaceEffect {
             // 4. After 1s, trigger fade to white and navigate
             setTimeout(() => {
                 this.fadeToWhite(() => {
-                    window.location.href = targetURL;
+                    if (isInternal) {
+                        // Use React Router navigation (no page reload)
+                        if (window.useUIStore) {
+                            window.useUIStore.getState().navigate(targetURL);
+                        }
+                    } else {
+                        // External navigation (page reload)
+                        window.location.href = targetURL;
+                    }
                     resolve();
+                    
+                    // Reset after navigation
+                    setTimeout(() => {
+                        this.isWarping = false;
+                        this.resetStarField();
+                    }, 500);
                 });
             }, 1000);
         });
