@@ -63,6 +63,10 @@ export const useEcosystemData = () => {
             // Type guard: ensure it's an EcosystemNode, not OrbitalConfig[]
             if (!node || Array.isArray(node)) return;
 
+            // Get sphere mesh for hyperspace effect
+            const nodes = (window as any).nodes;
+            const sphereMesh = nodes?.[nodeId]?.glassMesh || nodes?.[nodeId]?.coreMesh;
+
             // 1. Internal Route (e.g. /projects) -> Direct Navigate
             if (node.route && node.route.startsWith('/')) {
                 console.log(`🚀 [Sphere Click] Navigating: ${node.route}`);
@@ -70,19 +74,20 @@ export const useEcosystemData = () => {
                 return;
             }
 
-            // 2. External Route -> Open in New Tab (only if explicitly separate app)
-            // But User wants 'Projects' to be direct.
-            // If it's a documentation node or has no route, open panel.
-
-            // Standard behavior: 
-            // - If route exists and is NOT '#', assume navigation
-            // - BUT user hates panel. So prioritize link.
-
+            // 2. External Route -> Hyperspace Warp Animation
             if (node.route && node.route !== '#' && node.route !== '') {
-                // Check if it's an absolute URL
-                if (node.route.startsWith('http')) {
+                // Check if hyperspaceEffect is available
+                const hyperspaceEffect = (window as any).hyperspaceEffect;
+
+                if (hyperspaceEffect && sphereMesh && node.route.startsWith('http')) {
+                    // ⭐ Trigger Star Wars-style hyperspace transition
+                    console.log(`✨ [Hyperspace] Warping to: ${node.route}`);
+                    hyperspaceEffect.warpToSphere(sphereMesh, node.route);
+                } else if (node.route.startsWith('http')) {
+                    // Fallback: instant navigation
                     window.open(node.route, '_blank');
                 } else {
+                    // Internal SPA navigation
                     useUIStore.getState().navigate(node.route);
                 }
             } else {

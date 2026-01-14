@@ -56,19 +56,50 @@ export function createSphereNode(id, data, radius, commonUniforms) {
     root.add(coreMesh);
 
     // 2. INTERNAL LABEL (Billboard Plane)
-    const textTex = createTextTexture(data.label, data.tagline);
-    // SCALE UP: Make it larger to be visible outside magma but inside glass
-    const labelGeo = new THREE.PlaneGeometry(radius * 2.5, radius * 1.25); 
-    const labelMat = new THREE.MeshBasicMaterial({ 
-        map: textTex, 
-        transparent: true, 
-        side: THREE.DoubleSide,
-        depthTest: false, // FORCE VISIBILITY on top of magma
-        depthWrite: false
-    });
-    const labelMesh = new THREE.Mesh(labelGeo, labelMat);
-    labelMesh.renderOrder = 999; // EXTREME PRIORITY (Post-Process like)
-    root.add(labelMesh);
+    // Check if font is loaded before creating TextGeometry
+    if (!globalFont) {
+        console.warn("Font not loaded yet for TextGeometry. Falling back to CanvasTexture.");
+        const textTex = createTextTexture(data.label, data.tagline);
+        const labelGeo = new THREE.PlaneGeometry(radius * 2.5, radius * 1.25); 
+        const labelMat = new THREE.MeshBasicMaterial({ 
+            map: textTex, 
+            transparent: true, 
+            side: THREE.DoubleSide,
+            depthTest: false, // FORCE VISIBILITY on top of magma
+            depthWrite: false
+        });
+        const labelMesh = new THREE.Mesh(labelGeo, labelMat);
+        labelMesh.renderOrder = 999; // EXTREME PRIORITY (Post-Process like)
+        root.add(labelMesh);
+    } else {
+        const textGeometry = new TextGeometry(data.label, {
+            font: globalFont,
+            size: radius * 0.5, // Adjust size relative to sphere radius
+            height: radius * 0.05, // Small height for 3D effect
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: radius * 0.01,
+            bevelSize: radius * 0.01,
+            bevelSegments: 3
+        });
+        textGeometry.computeBoundingBox();
+        const textWidth = textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x;
+        textGeometry.translate(-textWidth / 2, 0, 0); // Center the text
+
+        // ⭐ BLACK text for contrast against reflections
+        const textMaterial = new THREE.MeshBasicMaterial({
+            color: 0x000000,  // Black instead of white
+            transparent: true,
+            opacity: 1.0,
+            side: THREE.DoubleSide,
+            depthTest: false, // FORCE VISIBILITY on top of magma
+            depthWrite: false
+        });
+        const labelMesh = new THREE.Mesh(textGeometry, textMaterial);
+        labelMesh.position.z = radius * 0.6; // Position slightly in front of the core
+        labelMesh.renderOrder = 999; // EXTREME PRIORITY (Post-Process like)
+        root.add(labelMesh);
+    }
 
     // 3. GLASS SHELL
     const glassGeo = new THREE.IcosahedronGeometry(radius, 4);

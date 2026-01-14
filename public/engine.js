@@ -198,6 +198,18 @@ const dustMat = new THREE.PointsMaterial({
 const dust = new THREE.Points(dustGeo, dustMat);
 scene.add(dust);
 
+// --- HYPERSPACE EFFECT SYSTEM ---
+// ⭐ Initialize hyperspace navigation effect (Star Wars-style star trails)
+let hyperspaceEffect = null;
+if (typeof HyperspaceEffect !== 'undefined') {
+    hyperspaceEffect = new window.HyperspaceEffect(scene, camera, renderer);
+    window.hyperspaceEffect = hyperspaceEffect; // ⭐ Expose to React
+    console.log('✨ Hyperspace navigation system initialized');
+} else {
+    console.warn('HyperspaceEffect.js not loaded - navigation will be instant');
+}
+
+
 // --- INTERACTION ---
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
