@@ -37,9 +37,9 @@ if (!data || !orbitConfig) {
 
 // --- ENGINE CORE ---
 const scene = new THREE.Scene();
-const isMobile = window.innerWidth < 768;
+// NOTE: isMobile defined after imports (line ~89)
 // FIX: Drastically pull back camera to fit large spheres in portrait
-const camZ = isMobile ? 650 : SYSTEM_CONFIG.camera.pos[2]; 
+const camZ = (window.innerWidth < 768) ? 650 : SYSTEM_CONFIG.camera.pos[2]; 
 
 const camera = new THREE.PerspectiveCamera(SYSTEM_CONFIG.camera.fov, window.innerWidth / window.innerHeight, 0.1, 2000);
 camera.position.set(SYSTEM_CONFIG.camera.pos[0], SYSTEM_CONFIG.camera.pos[1], camZ);
@@ -79,9 +79,15 @@ controls.maxDistance = 600;
 // --- IMPORT NODES ---
 import { createSphereNode } from './js/nodes/SphereNode.js';
 import { createCubeNode } from './js/nodes/CubeNode.js';
+import { createPrismNode } from './js/nodes/PrismNode.js';
 import { HyperspaceEffect } from './js/effects/HyperspaceEffect.js';
+import { CarouselController } from './js/mobile/CarouselController.js';
 
 console.log("ENGINE: Nodes loaded. Using CUBES by default (as per user request).");
+
+// 📱 MOBILE DETECTION
+const isMobile = window.innerWidth < 768;
+console.log(`📱 Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}`);
 
 // CONFIG: Switch between SPHERE and CUBE
 const USE_CUBES = false; // User requested to restore spheres 
@@ -104,6 +110,7 @@ scene.add(systemGroup);
 
 let nodes = {}; // Exposed for animation loop
 window.nodes = nodes; // ⭐ Expose to React for hyperspace effect
+let carouselController = null; // Mobile carousel instance
 
 function constructEcosystem(newData, newOrbitConfig) {
     // 1. Clear existing group
@@ -118,6 +125,38 @@ function constructEcosystem(newData, newOrbitConfig) {
         return;
     }
 
+    // ========================================
+    // 📱 MOBILE: Cylindrical Carousel
+    // ========================================
+    if (isMobile) {
+        console.log('📱 Building MOBILE carousel layout');
+        
+        // Create carousel controller
+        carouselController = new CarouselController(scene, camera, renderer);
+        
+        // Add 5 prisms to carousel (skip core, use only orbit nodes)
+        if (newOrbitConfig && Array.isArray(newOrbitConfig)) {
+            newOrbitConfig.forEach((cfg, index) => {
+                const d = newData[cfg.id];
+                if (!d) return;
+                
+                const prismNode = createPrismNode(cfg.id, d, 30, commonUniforms);
+                carouselController.addPrism(prismNode, index);
+                nodes[cfg.id] = prismNode; // Store for click detection
+            });
+        }
+        
+        // Enable touch swipe
+        carouselController.enableSwipe(canvas);
+        
+        return; // Skip desktop logic
+    }
+
+    // ========================================
+    // 🖥️ DESKTOP: Orbital Sphere System
+    // ========================================
+    console.log('🖥️ Building DESKTOP orbital layout');
+    
     // 2. CORE SYSTEM
     // SCALE UP: 24 -> 50 (Compensate for Camera Z)
     const coreNode = createComplexNode('core', newData.core, 50);
@@ -252,6 +291,11 @@ function animate() {
     controls.update();
     TWEEN.update();
     commonUniforms.uTime.value = time;
+
+    // 📱 Update mobile carousel
+    if (isMobile && carouselController) {
+        carouselController.update(delta);
+    }
 
     Object.values(nodes).forEach(n => {
         // 1. Magma Core / Inner Cube
