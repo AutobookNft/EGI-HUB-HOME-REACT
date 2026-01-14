@@ -21,48 +21,53 @@ function createTextTexture(text, subtext) {
     ctx.shadowColor = "rgba(0,0,0,0.8)";
     ctx.shadowBlur = 15;
     
-    // WORD WRAP LOGIC - Aggressive Split
-    const words = text.toUpperCase().split(' ');
-    // Force one word per line for maximum size/verticality if possible
+    // WORD WRAP LOGIC - MERGE TITLE & SUBTEXT for "Wall of Text" effect
+    // User wants multi-lines even for "AMBIENTE". We promote subtext to main block.
+    let fullText = text.toUpperCase();
+    if (subtext) {
+        // limit subtext length to 2-3 words to avoid distinct paragraphs
+        const cleanSub = subtext.replace(/[^a-zA-Z0-9 ]/g, " "); // Remove distinct punctuation? No, keep it.
+        fullText += " " + subtext.toUpperCase();
+    }
+    
+    // Split on spaces for strict stacking
+    const words = fullText.split(/\s+/).filter(w => w.length > 0);
     const lines = words; 
     
-    // Dynamic font sizing based on longest word to fit width
+    // Dynamic font sizing
     let longestWord = "";
     lines.forEach(l => { if(l.length > longestWord.length) longestWord = l; });
     
     // Calculate font size to fit 900px width
-    ctx.font = `bold 300px "Rajdhani"`; // Test size
+    // Slight reduction for stability, ensuring margin
+    ctx.font = `bold 300px "Rajdhani"`; 
     const measure = ctx.measureText(longestWord).width;
     let fontSize = 300;
-    if (measure > 900) {
-        fontSize = Math.floor(300 * (900 / measure));
+    if (measure > 850) {
+        fontSize = Math.floor(300 * (850 / measure));
     }
     
     ctx.font = `bold ${fontSize}px "Rajdhani"`;
     
     // Draw Text Lines (Centered Vertically)
-    const lineHeight = fontSize * 0.85; // Tight spacing
+    const lineHeight = fontSize * 0.85; 
     const totalHeight = lines.length * lineHeight;
     let startY = (canvas.height / 2) - (totalHeight / 2);
-    
-    // If we have subtext, shift up slightly
-    if (subtext) startY -= 150;
 
     lines.forEach((line, index) => {
+        // Alternate colors? Title White, Subtext slightly gray?
+        // Let's keep it simple: White.
+        // Maybe make title (first word/line) slightly brighter/bigger if we separate them?
+        // User wants "Multi-line". Uniformity is Monolith style.
+        
+        ctx.fillStyle = index === 0 ? '#ffffff' : 'rgba(255, 255, 255, 0.8)';
         ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight) + (lineHeight/2));
     });
     
-    // Subtext (Below main block)
-    if(subtext) {
-        ctx.font = '80px "Share Tech Mono"';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        const subY = startY + totalHeight + 100;
-        ctx.fillText(subtext.substring(0, 40).toUpperCase(), canvas.width / 2, subY);
-        
-        // Decorative line between title and subtext
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-        ctx.fillRect((canvas.width/2)-150, subY - 80, 300, 6);
-    }
+    // DECORATIVE: Top/Bottom Bars 
+    const barY = startY + totalHeight + 50;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.fillRect((canvas.width/2)-100, barY, 200, 5);
     
     const tex = new THREE.CanvasTexture(canvas);
     tex.anisotropy = 16;
