@@ -65,9 +65,8 @@ export class CarouselController {
             
             prism.node.root.position.set(x, 0, z);
             
-            // Billboard rotation: always face camera
-            // Prism rotates opposite to its position angle
-            prism.node.root.rotation.y = -angle;
+            // ⭐ Billboard rotation: always face camera
+            prism.node.root.lookAt(this.camera.position);
             
             // Scale based on distance from front (Z depth)
             // Front prism (z < 0) is larger, back prisms smaller
