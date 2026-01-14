@@ -21,37 +21,35 @@ function createTextTexture(text, subtext) {
     ctx.shadowColor = "rgba(0,0,0,0.8)";
     ctx.shadowBlur = 15;
     
-    // WORD WRAP LOGIC
+    // WORD WRAP LOGIC - Aggressive Split
     const words = text.toUpperCase().split(' ');
-    const lines = [];
-    let currentLine = words[0];
+    // Force one word per line for maximum size/verticality if possible
+    const lines = words; 
     
-    // Dynamic font sizing? Let's fix it for now but handle long words
-    ctx.font = `bold ${mainFontStartSize}px "Rajdhani"`;
-    const maxWidth = 900; // Padding
+    // Dynamic font sizing based on longest word to fit width
+    let longestWord = "";
+    lines.forEach(l => { if(l.length > longestWord.length) longestWord = l; });
     
-    for (let i = 1; i < words.length; i++) {
-        const word = words[i];
-        const width = ctx.measureText(currentLine + " " + word).width;
-        if (width < maxWidth) {
-            currentLine += " " + word;
-        } else {
-            lines.push(currentLine);
-            currentLine = word;
-        }
+    // Calculate font size to fit 900px width
+    ctx.font = `bold 300px "Rajdhani"`; // Test size
+    const measure = ctx.measureText(longestWord).width;
+    let fontSize = 300;
+    if (measure > 900) {
+        fontSize = Math.floor(300 * (900 / measure));
     }
-    lines.push(currentLine);
+    
+    ctx.font = `bold ${fontSize}px "Rajdhani"`;
     
     // Draw Text Lines (Centered Vertically)
-    const lineHeight = mainFontStartSize * 0.9;
+    const lineHeight = fontSize * 0.85; // Tight spacing
     const totalHeight = lines.length * lineHeight;
     let startY = (canvas.height / 2) - (totalHeight / 2);
     
     // If we have subtext, shift up slightly
-    if (subtext) startY -= 100;
+    if (subtext) startY -= 150;
 
     lines.forEach((line, index) => {
-        ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
+        ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight) + (lineHeight/2));
     });
     
     // Subtext (Below main block)
@@ -89,13 +87,17 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, cornerRadius);
     const glassMat = createGlassMaterial(data.color);
     
-    // ⭐ MOBILE: Glossy Physical Glass
-    glassMat.opacity = 0.5; // Transparent to see core
-    glassMat.transmission = 1.0; 
-    glassMat.metalness = 0.2;
-    glassMat.roughness = 0.0; 
+    // ⭐ MOBILE: Glossy Physical Glass - VIBRANT & SOLID
+    glassMat.opacity = 0.92; // High opacity for solid color
+    glassMat.transmission = 0.1; // Low transmission to keep color saturation
+    glassMat.metalness = 0.3; // Shiny
+    glassMat.roughness = 0.0; // Polish
     glassMat.clearcoat = 1.0;
     glassMat.side = THREE.FrontSide;
+    
+    // Strong Emissive for "Inner Light" look
+    glassMat.emissive = new THREE.Color(data.color);
+    glassMat.emissiveIntensity = 0.4; // Glows from within
     
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
     glassMesh.renderOrder = 2; 
