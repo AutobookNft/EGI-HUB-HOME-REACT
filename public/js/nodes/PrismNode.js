@@ -46,10 +46,11 @@ function createTextTexture(text, subtext) {
 export function createPrismNode(id, data, radius, commonUniforms) {
     const root = new THREE.Group();
     
-    // Prism dimensions (taller and thinner - Monolith style)
-    const width = radius * 1.2;  // Slightly narrower
-    const height = radius * 2.2; // Taller
-    const depth = radius * 0.2;  // ⭐ MUCH THINNER (Glass slab)
+    // Prism dimensions (MONOLITH STYLE - Large & Thin)
+    // Target: ~70% screen width when frontal
+    const width = radius * 2.2;  // Much wider
+    const height = radius * 4.0; // Much taller
+    const depth = radius * 0.1;  // Very thin slab
     
     // 1. GLASS SHELL (High-segment box for smooth appearance)
     // Using 4 segments to simulate roundness via lighting
@@ -57,29 +58,29 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     const glassMat = createGlassMaterial(data.color);
     
     // ⭐ MOBILE: Opaque glass
-    glassMat.opacity = 0.7; 
+    glassMat.opacity = 0.8; // Slightly more opaque for better presence
     glassMat.transparent = true;
-    glassMat.side = THREE.FrontSide; // Only render front face to avoid internal confusion
+    glassMat.side = THREE.FrontSide; 
     
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
     glassMesh.renderOrder = 1;
     root.add(glassMesh);
 
-    // 2. EXTERNAL LABEL (Floating slightly in front)
+    // 2. EXTERNAL LABEL (Floating freely)
     const textTex = createTextTexture(data.label, data.tagline);
-    const labelGeo = new THREE.PlaneGeometry(width * 1.8, height * 0.6); 
+    const labelGeo = new THREE.PlaneGeometry(width * 1.5, height * 0.5); 
     const labelMat = new THREE.MeshBasicMaterial({ 
         map: textTex, 
         transparent: true, 
-        side: THREE.FrontSide, // Only visible from front
+        side: THREE.FrontSide, 
         depthTest: true,
         depthWrite: false
     });
     const labelMesh = new THREE.Mesh(labelGeo, labelMat);
     
-    // ⭐ Move label OUTSIDE the glass (prevent intersection/doubling)
-    labelMesh.position.z = depth * 0.5 + 2; 
-    labelMesh.renderOrder = 2; // Render after glass
+    // ⭐ Move label OUTSIDE
+    labelMesh.position.z = depth * 0.5 + 4; // More clearance
+    labelMesh.renderOrder = 2; 
     root.add(labelMesh);
 
     // 3. HIT BOX

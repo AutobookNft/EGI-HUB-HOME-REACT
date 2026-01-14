@@ -76,6 +76,14 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.maxDistance = 600;
 
+// 🔒 LOCK VERTICAL ROTATION ON MOBILE
+if (isMobile) {
+    controls.minPolarAngle = Math.PI / 2; // Lock to horizon
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.enableZoom = false; // Disable zoom too
+    controls.enableRotate = false; // Disable camera rotation entirely, we use swipe for carousel
+}
+
 // --- IMPORT NODES ---
 import { createSphereNode } from './js/nodes/SphereNode.js';
 import { createCubeNode } from './js/nodes/CubeNode.js';
