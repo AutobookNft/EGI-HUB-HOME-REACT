@@ -3,44 +3,69 @@ import { RoundedBoxGeometry } from '../geometries/RoundedBoxGeometry.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
 
-// HELPER: Create Vertical Text Texture (Optimized for Monoliths)
+// HELPER: Create Vertical Text Texture (Multi-line / Wrapped)
 function createTextTexture(text, subtext) {
     const canvas = document.createElement('canvas');
     canvas.width = 1024;
-    canvas.height = 2048; // Vertical aspect ratio to match Prism face
+    canvas.height = 2048; // Vertical aspect ratio
     const ctx = canvas.getContext('2d');
     
     // Clear
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Standard Horizontal Text (Stacked)
+    // Text Config
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    
-    // Title - Large & Readable
-    ctx.font = 'bold 140px "Rajdhani"'; // Slightly smaller to fit width
+    const mainFontStartSize = 250; // Start BIG
     ctx.fillStyle = '#ffffff'; 
     ctx.shadowColor = "rgba(0,0,0,0.8)";
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 15;
     
-    // Break layout into lines if needed or just center
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    // WORD WRAP LOGIC
+    const words = text.toUpperCase().split(' ');
+    const lines = [];
+    let currentLine = words[0];
     
-    ctx.fillText(text.toUpperCase(), centerX, centerY - 50);
+    // Dynamic font sizing? Let's fix it for now but handle long words
+    ctx.font = `bold ${mainFontStartSize}px "Rajdhani"`;
+    const maxWidth = 900; // Padding
     
-    // Subtext
+    for (let i = 1; i < words.length; i++) {
+        const word = words[i];
+        const width = ctx.measureText(currentLine + " " + word).width;
+        if (width < maxWidth) {
+            currentLine += " " + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    
+    // Draw Text Lines (Centered Vertically)
+    const lineHeight = mainFontStartSize * 0.9;
+    const totalHeight = lines.length * lineHeight;
+    let startY = (canvas.height / 2) - (totalHeight / 2);
+    
+    // If we have subtext, shift up slightly
+    if (subtext) startY -= 100;
+
+    lines.forEach((line, index) => {
+        ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
+    });
+    
+    // Subtext (Below main block)
     if(subtext) {
         ctx.font = '80px "Share Tech Mono"';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.fillText(subtext.substring(0, 30).toUpperCase(), centerX, centerY + 80);
+        const subY = startY + totalHeight + 100;
+        ctx.fillText(subtext.substring(0, 40).toUpperCase(), canvas.width / 2, subY);
+        
+        // Decorative line between title and subtext
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.fillRect((canvas.width/2)-150, subY - 80, 300, 6);
     }
     
-    // DECORATIVE: Top/Bottom Bars on Texture to frame it
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.fillRect(centerX - 100, centerY - 150, 200, 5); // Line above
-    ctx.fillRect(centerX - 100, centerY + 180, 200, 5); // Line below
-
     const tex = new THREE.CanvasTexture(canvas);
     tex.anisotropy = 16;
     return tex;
