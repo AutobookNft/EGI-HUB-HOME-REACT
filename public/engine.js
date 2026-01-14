@@ -16,6 +16,10 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import TWEEN from '@tweenjs/tween.js';
 
+// 📱 MOBILE DETECTION (Must be defined first)
+const isMobile = window.innerWidth < 768;
+console.log(`📱 Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}`);
+
 // --- CONFIGURATION ---
 const SYSTEM_CONFIG = {
     camera: { fov: 45, pos: [0, 50, 850] }, // GOD VIEW: See entire system
@@ -37,9 +41,8 @@ if (!data || !orbitConfig) {
 
 // --- ENGINE CORE ---
 const scene = new THREE.Scene();
-// NOTE: isMobile defined after imports (line ~89)
 // FIX: Drastically pull back camera to fit large spheres in portrait
-const camZ = (window.innerWidth < 768) ? 650 : SYSTEM_CONFIG.camera.pos[2]; 
+const camZ = isMobile ? 650 : SYSTEM_CONFIG.camera.pos[2]; 
 
 const camera = new THREE.PerspectiveCamera(SYSTEM_CONFIG.camera.fov, window.innerWidth / window.innerHeight, 0.1, 2000);
 camera.position.set(SYSTEM_CONFIG.camera.pos[0], SYSTEM_CONFIG.camera.pos[1], camZ);
@@ -93,9 +96,7 @@ import { CarouselController } from './js/mobile/CarouselController.js';
 
 console.log("ENGINE: Nodes loaded. Using CUBES by default (as per user request).");
 
-// 📱 MOBILE DETECTION
-const isMobile = window.innerWidth < 768;
-console.log(`📱 Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}`);
+// 📱 MOBILE DETECTION (Moved to top of file)
 
 // CONFIG: Switch between SPHERE and CUBE
 const USE_CUBES = false; // User requested to restore spheres 
