@@ -135,9 +135,20 @@ export class CarouselController {
             this.currentRotation = this.touchStartRotation + rotationDelta;
         });
         
-        // Touch end - strict stop
-        canvas.addEventListener('touchend', () => {
+        // Touch end - strict stop & Detect Tap
+        canvas.addEventListener('touchend', (e) => {
             this.isSwiping = false;
+            
+            // TAP DETECTION
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaX = Math.abs(touchEndX - this.touchStartX);
+            const deltaTime = Date.now() - this.touchStartTime;
+            
+            // If movement is minimal and quick -> IT'S A CLICK/TAP
+            if (deltaX < 10 && deltaTime < 300) {
+                console.log('👆 Tap detected on Carousel');
+                this.handleTap();
+            }
         });
         
         console.log('👆 Touch swipe controls enabled (Strict control, No inertia)');
@@ -174,6 +185,36 @@ export class CarouselController {
         });
         
         return frontPrism;
+    }
+    
+    handleTap() {
+        // Find the prism closest to the camera (closest to angle 0 or PI*2)
+        // Since we rotate the GROUP, we check the global Z position of children world position?
+        // Simpler: Check the rotation angle modulo 2PI.
+        // Even simpler: The one with largest Z value (closest to camera).
+        
+        let frontPrism = null;
+        let maxZ = -Infinity; // Looking for largest Z (closest to camera at pos.z > 0)
+        
+        this.prisms.forEach(prism => {
+            // Get World Position
+            const vector = new THREE.Vector3();
+            prism.node.root.getWorldPosition(vector);
+            
+            if (vector.z > maxZ) {
+                maxZ = vector.z;
+                frontPrism = prism;
+            }
+        });
+        
+        if (frontPrism && frontPrism.id) {
+            console.log(`📱 Opening Detail for: ${frontPrism.id}`);
+            if (window.openDetailPanel) {
+                window.openDetailPanel(frontPrism.id);
+            } else {
+                console.error('❌ window.openDetailPanel not found!');
+            }
+        }
     }
     
     /**
