@@ -68,14 +68,20 @@ export class CarouselController {
             // ⭐ Billboard rotation: always face camera
             prism.node.root.lookAt(this.camera.position);
             
-            // Scale based on distance from front (Z depth)
-            // Front prism (z < 0, closer to camera) should be MUCH LARGER
+            // Calculate ACTUAL distance from camera (3D vector)
+            const distanceFromCamera = prism.node.root.position.distanceTo(this.camera.position);
+            
+            // Find min/max distances for normalization
+            const minDist = this.camera.position.length() - this.radius; // Closest possible
+            const maxDist = this.camera.position.length() + this.radius; // Farthest possible
+            
+            // Scale based on DISTANCE (closer = LARGER)
             const scaleFactor = THREE.MathUtils.mapLinear(
-                z,
-                -this.radius,  // Front (closer)
-                this.radius,   // Back (farther)
-                2.0,           // MUCH Larger (front)
-                0.5            // MUCH Smaller (back)
+                distanceFromCamera,
+                minDist,       // Closest to camera
+                maxDist,       // Farthest from camera
+                2.0,           // LARGE (close)
+                0.5            // SMALL (far)
             );
             
             prism.node.root.scale.set(scaleFactor, scaleFactor, scaleFactor);
