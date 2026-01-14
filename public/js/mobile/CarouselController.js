@@ -98,7 +98,7 @@ export class CarouselController {
             this.touchStartX = e.touches[0].clientX;
             this.touchStartRotation = this.currentRotation;
             this.isSwiping = true;
-            this.velocity = 0; // Stop inertia
+            // No velocity needed, strict 1:1 control
         });
         
         // Touch move
@@ -106,19 +106,21 @@ export class CarouselController {
             if (!this.isSwiping) return;
             
             const deltaX = e.touches[0].clientX - this.touchStartX;
-            const rotationDelta = (deltaX / window.innerWidth) * Math.PI * 1.5; // Sensitivity
+            // 🐢 SLOWER SENSITIVITY: Reduced factor from 1.5 to 0.8
+            const rotationDelta = (deltaX / window.innerWidth) * Math.PI * 0.8; 
             
-            this.targetRotation = this.touchStartRotation + rotationDelta;
-            this.velocity = rotationDelta * 0.1; // Track velocity for inertia
+            // Direct control - update currentRotation immediately for responsiveness
+            // No targetRotation lag
+            this.currentRotation = this.touchStartRotation + rotationDelta;
         });
         
-        // Touch end - apply inertia
+        // Touch end - strict stop
         canvas.addEventListener('touchend', () => {
             this.isSwiping = false;
-            // Velocity will decay naturally in update loop
+            // NO INERTIA: movement stops dead when finger lifts
         });
         
-        console.log('👆 Touch swipe controls enabled');
+        console.log('👆 Touch swipe controls enabled (Strict control, No inertia)');
     }
     
     /**
@@ -126,20 +128,9 @@ export class CarouselController {
      * @param {number} deltaTime - Time since last frame
      */
     update(deltaTime) {
-        // Smooth interpolation towards target rotation
-        if (!this.isSwiping) {
-            // Apply inertia (velocity decay)
-            this.velocity *= 0.95; // Damping
-            this.targetRotation += this.velocity;
-            
-            // Interpolate current rotation towards target
-            this.currentRotation += (this.targetRotation - this.currentRotation) * 0.1;
-        } else {
-            // Direct follow during swipe
-            this.currentRotation = this.targetRotation;
-        }
+        // No inertia physics anymore, just update positions
         
-        // Update positions
+        // Update positions & visuals
         this.updatePrismPositions();
         
         // Animate magma cores (if they have uniforms)
@@ -178,12 +169,13 @@ export class CarouselController {
         // Use GSAP if available, otherwise direct
         if (window.gsap) {
             window.gsap.to(this, {
-                targetRotation: targetAngle,
+                currentRotation: targetAngle, // Changed from targetRotation to currentRotation
                 duration: 0.3,
                 ease: "power2.out"
             });
         } else {
-            this.targetRotation = targetAngle;
+            this.currentRotation = targetAngle; // Changed from targetRotation to currentRotation
         }
     }
 }
+```
