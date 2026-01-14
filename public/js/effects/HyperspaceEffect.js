@@ -10,6 +10,7 @@
  */
 
 import * as THREE from 'three';
+import { gsap } from 'gsap';
 
 export class HyperspaceEffect {
     constructor(scene, camera, renderer) {
