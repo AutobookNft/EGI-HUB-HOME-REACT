@@ -1,5 +1,6 @@
 
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { magmaVShader, magmaFShader } from '../shaders/MagmaShader.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
@@ -40,7 +41,7 @@ function createTextTexture(text, subtext) {
 
 /**
  * Create a Prism Node (Mobile version of SphereNode)
- * Uses BoxGeometry instead of IcosahedronGeometry
+ * Uses RoundedBoxGeometry for smooth edges
  * Maintains same PBR materials (magma core + glass shell)
  */
 export function createPrismNode(id, data, radius, commonUniforms) {
@@ -50,9 +51,10 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     const width = radius * 1.5;
     const height = radius * 2.5;
     const depth = radius * 0.8;
+    const bevelRadius = radius * 0.15; // Rounded edge radius
     
-    // 1. MAGMA CORE (Box shape)
-    const coreGeo = new THREE.BoxGeometry(width * 0.5, height * 0.5, depth * 0.5);
+    // 1. MAGMA CORE (Rounded box shape)
+    const coreGeo = new RoundedBoxGeometry(width * 0.5, height * 0.5, depth * 0.5, 3, bevelRadius * 0.5);
     const coreMat = new THREE.ShaderMaterial({
         uniforms: {
             uColor: { value: new THREE.Color(data.color) },
@@ -80,40 +82,19 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     labelMesh.renderOrder = 999;
     root.add(labelMesh);
 
-    // 3. GLASS SHELL (Box shape with rounded edges)
-    const glassGeo = new THREE.BoxGeometry(width, height, depth, 2, 2, 2);
+    // 3. GLASS SHELL (Rounded box with smooth edges)
+    const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, bevelRadius);
     const glassMat = createGlassMaterial(data.color);
+    
+    // ⭐ Make glass MORE OPAQUE
+    glassMat.opacity = 0.4; // Increased from default (~0.15)
+    glassMat.transparent = true;
+    
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
     glassMesh.renderOrder = 2;
     root.add(glassMesh);
 
-    // 4. EDGE HIGHLIGHTS (vertical lines at prism edges)
-    const edgeMat = new THREE.MeshStandardMaterial({ 
-        color: 0xffffff, 
-        metalness: 0.9, 
-        roughness: 0.1,
-        transparent: true,
-        opacity: 0.7,
-        emissive: 0xffffff,
-        emissiveIntensity: 0.3
-    });
-    
-    // 4 vertical edges
-    const edgeGeo = new THREE.CylinderGeometry(0.15, 0.15, height * 1.1, 8);
-    const offsets = [
-        [-width * 0.5, 0, -depth * 0.5],
-        [width * 0.5, 0, -depth * 0.5],
-        [-width * 0.5, 0, depth * 0.5],
-        [width * 0.5, 0, depth * 0.5]
-    ];
-    
-    offsets.forEach(([x, y, z]) => {
-        const edge = new THREE.Mesh(edgeGeo, edgeMat);
-        edge.position.set(x, y, z);
-        root.add(edge);
-    });
-
-    // 5. HIT BOX (invisible, for click detection)
+    // 4. HIT BOX (invisible, for click detection)
     const hitMesh = new THREE.Mesh(
         new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 1.5),
         new THREE.MeshBasicMaterial({ visible: false })
