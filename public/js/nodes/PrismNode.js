@@ -90,3 +90,4 @@ export function createPrismNode(id, data, radius, commonUniforms) {
     root.add(hitMesh);
 
     return { root, hitMesh, labelMesh, glassMesh };
+}
