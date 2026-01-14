@@ -1,6 +1,6 @@
 
 import * as THREE from 'three';
-import { magmaVShader, magmaFShader } from '../shaders/MagmaShader.js';
+import { RoundedBoxGeometry } from '../geometries/RoundedBoxGeometry.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
 // HELPER: Create Text Texture (same as SphereNode)
