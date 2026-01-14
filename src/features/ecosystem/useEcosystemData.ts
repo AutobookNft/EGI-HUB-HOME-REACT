@@ -79,12 +79,21 @@ export const useEcosystemData = () => {
                 // Check if hyperspaceEffect is available
                 const hyperspaceEffect = (window as any).hyperspaceEffect;
 
+                // 🔍 DEBUG: Log all conditions
+                console.log('🔍 [Debug] Hyperspace check:', {
+                    hyperspaceEffect: !!hyperspaceEffect,
+                    sphereMesh: !!sphereMesh,
+                    route: node.route,
+                    startsWithHttp: node.route.startsWith('http')
+                });
+
                 if (hyperspaceEffect && sphereMesh && node.route.startsWith('http')) {
                     // ⭐ Trigger Star Wars-style hyperspace transition
                     console.log(`✨ [Hyperspace] Warping to: ${node.route}`);
                     hyperspaceEffect.warpToSphere(sphereMesh, node.route);
                 } else if (node.route.startsWith('http')) {
                     // Fallback: instant navigation
+                    console.warn('⚠️ Hyperspace fallback to window.open');
                     window.open(node.route, '_blank');
                 } else {
                     // Internal SPA navigation
