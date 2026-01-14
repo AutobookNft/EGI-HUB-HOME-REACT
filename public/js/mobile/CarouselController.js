@@ -36,6 +36,19 @@ export class CarouselController {
     }
     
     /**
+     * Clean up resources and remove from scene
+     */
+    dispose() {
+        if (this.carouselGroup) {
+            this.scene.remove(this.carouselGroup);
+            // Optional: dispose geometries/materials if needed
+            this.carouselGroup.clear();
+        }
+        this.prisms = [];
+        console.log('🗑️ CarouselController disposed');
+    }
+    
+    /**
      * Add a prism to the carousel
      * @param {Object} prismNode - Prism created by createPrismNode()
      * @param {number} index - Position index (0-4)

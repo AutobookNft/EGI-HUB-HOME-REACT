@@ -131,6 +131,12 @@ function constructEcosystem(newData, newOrbitConfig) {
     if (isMobile) {
         console.log('📱 Building MOBILE carousel layout');
         
+        // 🗑️ CLEANUP: Destroy previous carousel if exists (prevent duplicates)
+        if (carouselController) {
+            carouselController.dispose();
+            carouselController = null;
+        }
+        
         // Create carousel controller
         carouselController = new CarouselController(scene, camera, renderer);
         
