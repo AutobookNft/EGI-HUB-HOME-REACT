@@ -69,15 +69,16 @@ export class CarouselController {
             prism.node.root.lookAt(this.camera.position);
             
             // Scale based on distance from front (Z depth)
-            // Front prism (z < 0) is larger, back prisms smaller
+            // Front prism (z < 0, closer to camera) should be MUCH LARGER
             const scaleFactor = THREE.MathUtils.mapLinear(
                 z,
-                -this.radius,  // Front
-                this.radius,   // Back
-                1.2,           // Larger
-                0.8            // Smaller
+                -this.radius,  // Front (closer)
+                this.radius,   // Back (farther)
+                2.0,           // MUCH Larger (front)
+                0.5            // MUCH Smaller (back)
             );
-            prism.node.root.scale.setScalar(scaleFactor);
+            
+            prism.node.root.scale.set(scaleFactor, scaleFactor, scaleFactor);
         });
     }
     
