@@ -46,44 +46,45 @@ function createTextTexture(text, subtext) {
 export function createPrismNode(id, data, radius, commonUniforms) {
     const root = new THREE.Group();
     
-    // Prism dimensions (taller and thinner than sphere)
-    const width = radius * 1.5;
-    const height = radius * 2.5;
-    const depth = radius * 0.8;
+    // Prism dimensions (taller and thinner - Monolith style)
+    const width = radius * 1.2;  // Slightly narrower
+    const height = radius * 2.2; // Taller
+    const depth = radius * 0.2;  // ⭐ MUCH THINNER (Glass slab)
     
-    // ❌ MAGMA CORE REMOVED - Creates visual confusion during rotation
-    // Keeping only glass shell + label for clean look
+    // 1. GLASS SHELL (High-segment box for smooth appearance)
+    // Using 4 segments to simulate roundness via lighting
+    const glassGeo = new THREE.BoxGeometry(width, height, depth, 4, 4, 4);
+    const glassMat = createGlassMaterial(data.color);
     
-    // 1. INTERNAL LABEL (Billboard Plane)
+    // ⭐ MOBILE: Opaque glass
+    glassMat.opacity = 0.7; 
+    glassMat.transparent = true;
+    glassMat.side = THREE.FrontSide; // Only render front face to avoid internal confusion
+    
+    const glassMesh = new THREE.Mesh(glassGeo, glassMat);
+    glassMesh.renderOrder = 1;
+    root.add(glassMesh);
+
+    // 2. EXTERNAL LABEL (Floating slightly in front)
     const textTex = createTextTexture(data.label, data.tagline);
     const labelGeo = new THREE.PlaneGeometry(width * 1.8, height * 0.6); 
     const labelMat = new THREE.MeshBasicMaterial({ 
         map: textTex, 
         transparent: true, 
-        side: THREE.DoubleSide,
-        depthTest: false,
+        side: THREE.FrontSide, // Only visible from front
+        depthTest: true,
         depthWrite: false
     });
     const labelMesh = new THREE.Mesh(labelGeo, labelMat);
-    labelMesh.position.z = depth * 0.3; // Slightly forward
-    labelMesh.renderOrder = 999;
+    
+    // ⭐ Move label OUTSIDE the glass (prevent intersection/doubling)
+    labelMesh.position.z = depth * 0.5 + 2; 
+    labelMesh.renderOrder = 2; // Render after glass
     root.add(labelMesh);
 
-    // 2. GLASS SHELL (High-segment box for smooth appearance)
-    const glassGeo = new THREE.BoxGeometry(width, height, depth, 6, 6, 6);
-    const glassMat = createGlassMaterial(data.color);
-    
-    // ⭐ MOBILE: Much MORE OPAQUE than desktop spheres
-    glassMat.opacity = 0.6; // Increased from 0.35 (default) to 0.6
-    glassMat.transparent = true;
-    
-    const glassMesh = new THREE.Mesh(glassGeo, glassMat);
-    glassMesh.renderOrder = 2;
-    root.add(glassMesh);
-
-    // 3. HIT BOX (invisible, for click detection)
+    // 3. HIT BOX
     const hitMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 1.5),
+        new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 2),
         new THREE.MeshBasicMaterial({ visible: false })
     );
     hitMesh.userData = { id: id };
