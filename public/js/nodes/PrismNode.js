@@ -3,34 +3,45 @@ import { RoundedBoxGeometry } from '../geometries/RoundedBoxGeometry.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
 
-// HELPER: Create Text Texture (same as SphereNode)
+// HELPER: Create Vertical Text Texture (Optimized for Monoliths)
 function createTextTexture(text, subtext) {
     const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 2048; // Vertical aspect ratio
     const ctx = canvas.getContext('2d');
-    canvas.width = 2048; 
-    canvas.height = 1024;
-    // Clear background for transparency
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    console.log(`Generating Texture for PRISM: ${text}`);
     
-    // Title - ⭐ BLACK text for better contrast
-    ctx.font = 'bold 180px "Rajdhani"'; 
-    ctx.fillStyle = '#000000';  // Black instead of white
+    // Clear
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 1. Title - Vertical Orientation or Stacked?
+    // Let's do STACKED and ROTATED for style
+    ctx.translate(canvas.width/2, canvas.height/2);
+    ctx.rotate(-Math.PI/2); // Read from bottom-up or just normal stacked? 
+    // User said "sfruttando altezza". Let's keep it horizontal but LARGE and stacked, 
+    // OR actually rotate 90deg to read sideways like a book spine?
+    // Let's try Standard Horizontal but Filling the Vertical space with multiple lines if possible,
+    // OR just rotated 90 degrees which is very "Prism/Monolith" styled.
+    
+    // Let's try ROTATED 90 degrees text (Sideways) -> Common in tall banners.
+    // Text reads bottom to top.
+    
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.shadowColor = "rgba(255, 255, 255, 0.8)";  // White shadow for depth
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
     
-    ctx.fillText(text.toUpperCase(), canvas.width / 2, canvas.height / 2);
+    // Text styling
+    ctx.font = 'bold 160px "Rajdhani"'; 
+    ctx.fillStyle = '#ffffff';  // White for max contrast on glass
+    ctx.shadowColor = "rgba(0,0,0,0.8)";
+    ctx.shadowBlur = 10;
     
-    // Subtext - also black
+    // Draw Text (Rotated)
+    ctx.fillText(text.toUpperCase(), 0, -50);
+    
+    // Subtext
     if(subtext) {
-        ctx.font = '100px "Share Tech Mono"';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';  // Black subtext
-        ctx.shadowBlur = 4;
-        ctx.fillText(subtext.substring(0, 30).toUpperCase(), canvas.width / 2, canvas.height / 2 + 140);
+        ctx.font = '80px "Share Tech Mono"';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillText(subtext.substring(0, 20).toUpperCase(), 0, 80);
     }
 
     const tex = new THREE.CanvasTexture(canvas);
@@ -41,67 +52,88 @@ function createTextTexture(text, subtext) {
 /**
  * Create a Prism Node (Mobile version of SphereNode)
  * Uses RoundedBoxGeometry for premium look
- * DECORATION: Clean glowing edges only (Hardware style)
+ * DECORATION: Internal Bezel + Glossy Glass + Vertical Text
  */
 export function createPrismNode(id, data, radius, commonUniforms) {
     const root = new THREE.Group();
     
     // Prism dimensions (MONOLITH STYLE - Large & Thin)
-    // Target: ~70% screen width when frontal
-    const width = radius * 2.2;  
-    const height = radius * 4.5; 
-    const depth = radius * 0.1;  
-    const cornerRadius = width * 0.05; 
+    const width = radius * 2.5;  // Wider
+    const height = radius * 5.0; // Taller
+    const depth = radius * 0.15; // Slightly thicker for glass refractions
+    const cornerRadius = width * 0.04; 
     
-    // 1. GLASS SHELL (RoundedBoxGeometry)
+    // 1. GLASS SHELL
     const glassGeo = new RoundedBoxGeometry(width, height, depth, 4, cornerRadius);
     const glassMat = createGlassMaterial(data.color);
     
-    // ⭐ MOBILE: Elegant Opaque Glass
-    glassMat.opacity = 0.9; // Solid presence
-    glassMat.transparent = true;
-    glassMat.side = THREE.FrontSide; 
-    // Emissive glow for "active" look
-    glassMat.emissive = new THREE.Color(data.color);
-    glassMat.emissiveIntensity = 0.15; 
+    // ⭐ MOBILE: Glossy Physical Glass
+    glassMat.opacity = 0.6; // More transparent to show internal structure
+    glassMat.transmission = 1.0; // Real refraction
+    glassMat.metalness = 0.2;
+    glassMat.roughness = 0.0; // Polish
+    glassMat.clearcoat = 1.0;
+    glassMat.side = THREE.FrontSide;
     
     const glassMesh = new THREE.Mesh(glassGeo, glassMat);
-    glassMesh.renderOrder = 1;
+    glassMesh.renderOrder = 2; // Render after inner
     root.add(glassMesh);
 
-    // 2. ELEGANT EDGES (The "Adornment")
-    // Creates a clean, high-tech outline around the rounded shape
-    const edgesGeo = new THREE.EdgesGeometry(glassGeo); // Automatically finds sharp edges (might need adjusting for rounded box)
-    // For RoundedBox, EdgesGeometry might show internal triangles if angle threshold is low.
-    // Better strategy for RoundedBox: Create a slightly larger wireframe or specific edges? 
-    // Actually, RoundedBoxGeometry is well structured. Let's try standard edges first with high threshold.
+    // 2. INTERNAL FRAME / BEZEL (The "Technological Core")
+    // A simplified RoundedBox inside, slightly smaller
+    const innerWidth = width * 0.9;
+    const innerHeight = height * 0.95;
+    const innerDepth = depth * 0.5;
     
-    const edgesMat = new THREE.LineBasicMaterial({ 
-        color: 0xffffff, 
-        transparent: true, 
-        opacity: 0.3 // Subtle
+    // We create a visible "Border" texture or just a wireframe of the inner box?
+    // User liked "Cornice". Let's create a thicker wireframe or edge geometry.
+    const innerGeo = new RoundedBoxGeometry(innerWidth, innerHeight, innerDepth, 2, cornerRadius);
+    const innerEdges = new THREE.EdgesGeometry(innerGeo);
+    const innerMat = new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.5,
+        linewidth: 2
     });
-    const edgesMesh = new THREE.LineSegments(edgesGeo, edgesMat);
-    root.add(edgesMesh);
+    const bezelMesh = new THREE.LineSegments(innerEdges, innerMat);
+    bezelMesh.renderOrder = 1; // Inside glass
+    root.add(bezelMesh);
+    
+    // 3. INTERNAL GLOW COLUMN (Center of power)
+    // A thin cylinder/box in the very center to give "energy"
+    const coreGeo = new THREE.BoxGeometry(width * 0.05, height * 0.8, depth * 0.4);
+    const coreMat = new THREE.MeshBasicMaterial({
+        color: data.color,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending // Glow
+    });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    root.add(coreMesh);
 
-    // 3. EXTERNAL LABEL (Floating freely)
+    // 4. VERTICAL LABEL (Sideways on the prism)
     const textTex = createTextTexture(data.label, data.tagline);
-    const labelGeo = new THREE.PlaneGeometry(width * 1.5, height * 0.5); 
+    // Texture is 1024x2048 (Vertical).
+    // Plane should match ratio.
+    const labelGeo = new THREE.PlaneGeometry(height * 0.4, width * 0.8); // Swapped for rotation? No, texture is rotated inside.
+    // Wait, if texture is rotated 90deg in canvas, width/height ratio changes.
+    // Canvas: 1024w x 2048h. Text is drawn rotated. 
+    // Actually simpler: Keep canvas horizontal 2048x1024, draw horizontal text, 
+    // BUT rotate the MESH 90 degrees?
+    // Let's try the canvas rotation method above first, mapping to a vertical plane.
+    const labelPlaneGeo = new THREE.PlaneGeometry(width, height); 
     const labelMat = new THREE.MeshBasicMaterial({ 
         map: textTex, 
         transparent: true, 
-        side: THREE.FrontSide, 
-        depthTest: true,
+        side: THREE.FrontSide,
         depthWrite: false
     });
-    const labelMesh = new THREE.Mesh(labelGeo, labelMat);
-    
-    // Move label out
-    labelMesh.position.z = depth * 0.5 + 4; 
-    labelMesh.renderOrder = 3; 
+    const labelMesh = new THREE.Mesh(labelPlaneGeo, labelMat);
+    labelMesh.position.z = depth * 0.5 + 2; 
+    labelMesh.renderOrder = 3;
     root.add(labelMesh);
 
-    // 4. HIT BOX
+    // 5. HIT BOX
     const hitMesh = new THREE.Mesh(
         new THREE.BoxGeometry(width * 1.5, height * 1.5, depth * 2),
         new THREE.MeshBasicMaterial({ visible: false })
