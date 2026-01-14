@@ -2,47 +2,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from '../geometries/RoundedBoxGeometry.js';
 import { createGlassMaterial } from '../utils/Materials.js';
 
-// HELPER: Create Tech HUD Texture (Corners + Scanlines)
-function createTechHUDTexture(color) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 1024;
-    const ctx = canvas.getContext('2d');
-    
-    // Clear
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const c = new THREE.Color(color);
-    const colorStyle = `rgba(${c.r*255}, ${c.g*255}, ${c.b*255}, 0.8)`;
-    const faintStyle = `rgba(${c.r*255}, ${c.g*255}, ${c.b*255}, 0.15)`;
-    
-    // 1. CORNER BRACKETS (Tech Look)
-    ctx.lineWidth = 12;
-    ctx.strokeStyle = '#ffffff'; // White highlights
-    ctx.lineCap = 'square';
-    
-    const len = 80;
-    const pad = 20;
-    
-    // Top Left
-    ctx.beginPath(); ctx.moveTo(pad, pad+len); ctx.lineTo(pad, pad); ctx.lineTo(pad+len, pad); ctx.stroke();
-    // Top Right
-    ctx.beginPath(); ctx.moveTo(canvas.width-pad-len, pad); ctx.lineTo(canvas.width-pad, pad); ctx.lineTo(canvas.width-pad, pad+len); ctx.stroke();
-    // Bottom Left
-    ctx.beginPath(); ctx.moveTo(pad, canvas.height-pad-len); ctx.lineTo(pad, canvas.height-pad); ctx.lineTo(pad+len, canvas.height-pad); ctx.stroke();
-    // Bottom Right
-    ctx.beginPath(); ctx.moveTo(canvas.width-pad-len, canvas.height-pad); ctx.lineTo(canvas.width-pad, canvas.height-pad); ctx.lineTo(canvas.width-pad, canvas.height-pad-len); ctx.stroke();
 
-    // 2. SCANLINES
-    ctx.fillStyle = faintStyle;
-    for(let i=0; i<canvas.height; i+=20) {
-        ctx.fillRect(40, i, canvas.width-80, 2);
-    }
-    
-    // 3. VERTICAL SIDE BARS
-    ctx.fillStyle = colorStyle;
-    ctx.fillRect(0, canvas.height*0.3, 6, canvas.height*0.4); // Left bar
-    ctx.fillRect(canvas.width-6, canvas.height*0.3, 6, canvas.height*0.4); // Right bar
 // HELPER: Create Text Texture (same as SphereNode)
 function createTextTexture(text, subtext) {
     const canvas = document.createElement('canvas');
