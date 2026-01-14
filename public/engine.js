@@ -79,6 +79,7 @@ controls.maxDistance = 600;
 // --- IMPORT NODES ---
 import { createSphereNode } from './js/nodes/SphereNode.js';
 import { createCubeNode } from './js/nodes/CubeNode.js';
+import { HyperspaceEffect } from './js/effects/HyperspaceEffect.js';
 
 console.log("ENGINE: Nodes loaded. Using CUBES by default (as per user request).");
 
@@ -201,13 +202,9 @@ scene.add(dust);
 // --- HYPERSPACE EFFECT SYSTEM ---
 // ⭐ Initialize hyperspace navigation effect (Star Wars-style star trails)
 let hyperspaceEffect = null;
-if (typeof HyperspaceEffect !== 'undefined') {
-    hyperspaceEffect = new window.HyperspaceEffect(scene, camera, renderer);
-    window.hyperspaceEffect = hyperspaceEffect; // ⭐ Expose to React
-    console.log('✨ Hyperspace navigation system initialized');
-} else {
-    console.warn('HyperspaceEffect.js not loaded - navigation will be instant');
-}
+hyperspaceEffect = new HyperspaceEffect(scene, camera, renderer);
+window.hyperspaceEffect = hyperspaceEffect; // ⭐ Expose to React
+console.log('✨ Hyperspace navigation system initialized');
 
 
 // --- INTERACTION ---

@@ -9,7 +9,9 @@
  * - Smooth navigation to new page
  */
 
-class HyperspaceEffect {
+import * as THREE from 'three';
+
+export class HyperspaceEffect {
     constructor(scene, camera, renderer) {
         this.scene = scene;
         this.camera = camera;
@@ -210,9 +212,4 @@ class HyperspaceEffect {
             this.scene.remove(this.starField);
         }
     }
-}
-
-// Make available globally
-if (typeof window !== 'undefined') {
-    window.HyperspaceEffect = HyperspaceEffect;
 }
