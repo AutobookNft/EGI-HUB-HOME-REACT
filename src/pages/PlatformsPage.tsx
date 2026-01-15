@@ -4,7 +4,6 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { MissionControl } from '@/components/layout/MissionControl';
 import { DetailPanel } from '@/components/layout/DetailPanel';
 import { BottomBar } from '@/components/layout/BottomBar';
-import { platformsData, platformsOrbitConfig } from '@/data/platformsData';
 
 declare global {
     interface Window {
