@@ -2,10 +2,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useUIStore } from '@/stores/useUIStore';
 import { useEcosystemData } from '@/features/ecosystem/useEcosystemData';
+import { useI18n } from '@/i18n';
 
 export const DetailPanel = () => {
     const { detailPanelOpen, selectedNodeId, closeDetailPanel } = useUIStore();
     const { data: ecosystem } = useEcosystemData();
+    const { t } = useI18n();
 
     if (!ecosystem || !selectedNodeId) return null;
 
@@ -31,7 +33,7 @@ export const DetailPanel = () => {
                     <button
                         onClick={closeDetailPanel}
                         className="absolute top-4 right-4 p-2 text-text-muted hover:text-white transition-colors"
-                        aria-label="Close panel"
+                        aria-label={t('general.close_panel')}
                     >
                         <X size={24} />
                     </button>
@@ -133,7 +135,7 @@ export const DetailPanel = () => {
                                 }
                             }}
                         >
-                            APRI PROGETTO
+                            {t('general.open_project')}
                         </motion.button>
                     )}
                 </motion.div>

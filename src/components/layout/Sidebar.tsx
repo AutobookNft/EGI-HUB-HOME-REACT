@@ -1,5 +1,6 @@
 import { Brain, Globe, Info, Home } from 'lucide-react';
 import { useUIStore } from '@/stores/useUIStore';
+import { useI18n } from '@/i18n';
 
 // Online app URLs (sslip.io - IP: 13.53.205.215)
 const APPS = {
@@ -12,6 +13,7 @@ const APPS = {
 export const Sidebar = () => {
     const navigate = useUIStore((state) => state.navigate);
     const currentPath = useUIStore((state) => state.currentPath);
+    const { t } = useI18n();
 
     const isActive = (path: string) => currentPath === path;
 
@@ -20,37 +22,37 @@ export const Sidebar = () => {
             {/* Navigation Buttons */}
             <NavButton
                 icon={<Home />}
-                label="HUB"
+                label={t('nav.hub.label')}
                 onClick={() => navigate('/')}
                 active={isActive('/')}
-                title="EGI-HUB Control Center"
+                title={t('nav.hub.title')}
             />
             {/* PROJECTS Button (Internal) */}
             <NavButton
                 icon={<Brain />}
-                label="PROJECTS"
+                label={t('nav.projects.label')}
                 onClick={() => navigate('/projects')}
                 active={isActive('/projects')}
-                title="Ecosystem Projects"
+                title={t('nav.projects.title')}
             />
             {/* External Apps */}
             <NavButton
                 icon={<Globe />}
-                label="EGI"
+                label={t('nav.egi.label')}
                 href={APPS.EGI}
-                title="EGI - Florence Art"
+                title={t('nav.egi.title')}
             />
             <NavButton
                 icon={<Brain />}
-                label="NATAN"
+                label={t('nav.natan.label')}
                 href={APPS.NATAN}
-                title="NATAN LOC - Documenti PA"
+                title={t('nav.natan.title')}
             />
             <NavButton
                 icon={<Info />}
-                label="INFO"
+                label={t('nav.info.label')}
                 href={APPS.INFO}
-                title="EGI Info & Docs"
+                title={t('nav.info.title')}
             />
         </div>
     );

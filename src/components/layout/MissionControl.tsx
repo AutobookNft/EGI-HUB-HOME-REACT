@@ -1,4 +1,8 @@
+import { useI18n } from '@/i18n';
+
 export const MissionControl = () => {
+    const { t } = useI18n();
+
     return (
         <>
             {/* Desktop Version - Right Sidebar */}
@@ -7,28 +11,28 @@ export const MissionControl = () => {
                     className="text-xs text-primary uppercase tracking-wider block mb-3"
                     style={{ fontFamily: 'Share Tech Mono, monospace' }}
                 >
-                    Cosa Facciamo Per Te
+                    {t('missioncontrol.title')}
                 </span>
                 <h2
                     className="text-xl mb-3 leading-tight"
                     style={{ fontFamily: 'Rajdhani, sans-serif', textShadow: '0 0 20px rgba(0,255,221,0.5)' }}
                 >
-                    TRASFORMIAMO I TUOI ASSET IN VALORE LIQUIDO
+                    {t('missioncontrol.headline')}
                 </h2>
                 <p
                     className="text-sm leading-relaxed text-text-muted mb-4"
                     style={{ textShadow: '0 0 5px rgba(0,0,0,1)' }}
                 >
-                    Certifichi arte, immobili, beni reali sulla blockchain. Li rendi frazionabili, scambiabili, liquidi. Pagamenti in tempo reale. Diritti garantiti on-chain.
+                    {t('missioncontrol.body')}
                 </p>
 
                 {/* Benefits Grid */}
                 <div className="grid grid-cols-2 gap-3 mt-4">
                     {[
-                        { top: 'ASSET', bottom: 'CERTIFICATI' },
-                        { top: 'PAGAMENTI', bottom: 'ISTANTANEI' },
-                        { top: 'PROPRIETÀ', bottom: 'FRAZIONATA' },
-                        { top: 'DIRITTI', bottom: 'GARANTITI' },
+                        { top: t('missioncontrol.benefit1.top'), bottom: t('missioncontrol.benefit1.bottom') },
+                        { top: t('missioncontrol.benefit2.top'), bottom: t('missioncontrol.benefit2.bottom') },
+                        { top: t('missioncontrol.benefit3.top'), bottom: t('missioncontrol.benefit3.bottom') },
+                        { top: t('missioncontrol.benefit4.top'), bottom: t('missioncontrol.benefit4.bottom') },
                     ].map((benefit, idx) => (
                         <div key={idx} className="pt-2">
                             <div
@@ -50,22 +54,22 @@ export const MissionControl = () => {
                         className="text-sm font-bold mb-2 leading-tight text-center"
                         style={{ fontFamily: 'Rajdhani, sans-serif', textShadow: '0 0 20px rgba(0,255,221,0.5)' }}
                     >
-                        TRASFORMIAMO I TUOI ASSET IN VALORE LIQUIDO
+                        {t('missioncontrol.mobile.headline')}
                     </h3>
                     <p
                         className="text-xs leading-tight text-text-muted text-center mb-3"
                         style={{ textShadow: '0 0 5px rgba(0,0,0,1)' }}
                     >
-                        Certificazione blockchain, asset frazionabili, pagamenti istantanei, diritti garantiti.
+                        {t('missioncontrol.mobile.body')}
                     </p>
 
                     {/* Compact Benefits Row */}
                     <div className="grid grid-cols-4 gap-2 text-center">
                         {[
-                            { icon: '🎨', label: 'ASSET' },
-                            { icon: '⚡', label: 'INSTANT' },
-                            { icon: '🔗', label: 'LIQUID' },
-                            { icon: '✓', label: 'SAFE' },
+                            { icon: '🎨', label: t('missioncontrol.mobile.item1') },
+                            { icon: '⚡', label: t('missioncontrol.mobile.item2') },
+                            { icon: '🔗', label: t('missioncontrol.mobile.item3') },
+                            { icon: '✓', label: t('missioncontrol.mobile.item4') },
                         ].map((item, idx) => (
                             <div key={idx}>
                                 <div className="text-lg mb-1">{item.icon}</div>

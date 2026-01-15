@@ -3,17 +3,36 @@ import { useUIStore } from '@/stores/useUIStore';
 import { ecosystemAPI } from '@/services/endpoints/ecosystem';
 import type { EcosystemData } from '@/types/ecosystem';
 import { useQuery } from '@tanstack/react-query';
+import { createFallbackEcosystemData } from './fallbackEcosystemData';
+import { useI18n } from '@/i18n';
 
 export const useEcosystemData = () => {
     // Read view from Zustand store directly
     const currentPath = useUIStore((state) => state.currentPath);
     const view = currentPath.includes('projects') ? 'projects' : 'main';
+    const { t } = useI18n();
+    const fallbackEcosystemData = createFallbackEcosystemData(t);
 
     console.log(`🎣 [useEcosystemData] Hook called, currentPath: ${currentPath}, view: ${view}`);
 
     const [data, setData] = useState<EcosystemData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const syncEcosystemData = (config: EcosystemData) => {
+        setData(config);
+
+        // Expose to window for engine.js
+        (window as any).ecosystemData = config;
+        (window as any).orbitalConfig = config.orbitalConfig || [];
+
+        // Trigger Full Scene Rebuild
+        if ((window as any).rebuildEcosystem) {
+            (window as any).rebuildEcosystem(config);
+        } else if ((window as any).updateEcosystem) {
+            (window as any).updateEcosystem(config);
+        }
+    };
 
     // Initial load
     useEffect(() => {
@@ -22,22 +41,12 @@ export const useEcosystemData = () => {
             setError(null);
             try {
                 const config = await ecosystemAPI.getEcosystem(view);
-                setData(config);
-
-                // Expose to window for engine.js
-                (window as any).ecosystemData = config;
-                (window as any).orbitalConfig = config.orbitalConfig || [];
-
-                // Trigger Full Scene Rebuild
-                if ((window as any).rebuildEcosystem) {
-                    (window as any).rebuildEcosystem(config);
-                } else if ((window as any).updateEcosystem) {
-                    (window as any).updateEcosystem(config);
-                }
+                syncEcosystemData(config);
                 console.log(`✅ Ecosystem data ("${view}") synced with backend`);
 
             } catch (err) {
                 console.error("Failed to load ecosystem:", err);
+                syncEcosystemData(fallbackEcosystemData);
                 setError('Failed to load ecosystem configuration');
             } finally {
                 setLoading(false);
@@ -45,7 +54,7 @@ export const useEcosystemData = () => {
         };
 
         loadData();
-    }, [view]);
+    }, [view, fallbackEcosystemData]);
 
 
     // Connect UI interaction
