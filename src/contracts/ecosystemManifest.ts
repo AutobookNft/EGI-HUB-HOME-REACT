@@ -12,6 +12,7 @@ export interface Layer {
     id: EcosystemLayerId;
     title: string;
     subtitle?: string;
+    description?: string;
     entryPath: string;
     secondaryEntryPath?: string;
     level: number;

@@ -39,8 +39,14 @@ export const StackSection = ({
                     </h2>
 
                     {layer.subtitle && (
-                        <p className="mt-3 text-base text-white/70 truncate">
+                        <p className="mt-3 text-base text-white/70">
                             {layer.subtitle}
+                        </p>
+                    )}
+
+                    {layer.description && (
+                        <p className="mt-4 text-sm leading-relaxed text-white/60">
+                            {layer.description}
                         </p>
                     )}
 
