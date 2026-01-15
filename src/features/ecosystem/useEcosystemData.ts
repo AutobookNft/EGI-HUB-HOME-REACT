@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useUIStore } from '@/stores/useUIStore';
 import { ecosystemAPI } from '@/services/endpoints/ecosystem';
 import type { EcosystemData } from '@/types/ecosystem';
@@ -11,7 +11,7 @@ export const useEcosystemData = () => {
     const currentPath = useUIStore((state) => state.currentPath);
     const view = currentPath.includes('projects') ? 'projects' : 'main';
     const { t } = useI18n();
-    const fallbackEcosystemData = createFallbackEcosystemData(t);
+    const fallbackEcosystemData = useMemo(() => createFallbackEcosystemData(t), [t]);
 
     console.log(`🎣 [useEcosystemData] Hook called, currentPath: ${currentPath}, view: ${view}`);
 
