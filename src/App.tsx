@@ -70,26 +70,30 @@ function App() {
 
     // Routing logic
     const renderPage = () => {
-        const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
-        const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/under-construction'];
-        const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
-        const isHomePath =
-            path === '/' ||
-            path.endsWith('/index.html') ||
-            (!isKnownRoute && path.endsWith('/'));
-
-        if (isMobile && isHomePath) return <EcosystemEntranceMobile />;
+        console.log('🔍 [renderPage] currentPath:', currentPath, 'isMobile:', isMobile);
+        
+        // Mobile home
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
+        
+        // Static pages
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
-
-        // NEW ROUTES
         if (currentPath === '/platforms') return <PlatformsPage />;
-        if (currentPath === '/projects') return <PlatformsPage />; // Legacy redirect
+        if (currentPath === '/projects') return <PlatformsPage />;
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
 
-        // Default: 3D Ecosystem View
+        // Home page routing
+        const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
+        const isHomePath = path === '/' || currentPath === '/' || path.endsWith('/index.html');
+        
+        if (isMobile && isHomePath) {
+            console.log('📱 Rendering mobile home');
+            return <EcosystemEntranceMobile />;
+        }
+        
+        // Default: 3D Ecosystem View (desktop home)
+        console.log('🖥️ Rendering desktop 3D view');
         return <EcosystemView />;
     };
 
