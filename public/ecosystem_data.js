@@ -35,7 +35,7 @@ const ecosystemData = {
         bullets: ["Marketplace", "NFT Collections", "My Assets"],
         egi_link: "Se esiste, egizzalo. Se lo egizzi, VALE.",
         route: "https://egi.13.53.205.215.sslip.io",
-        radius: 50 // Unified Large Size
+        radius: 42 // EXACTLY 50% larger than original 28 (28 * 1.5 = 42)
     },
 
     // 2. PROGETTI (Piattaforme Attive)
@@ -48,7 +48,7 @@ const ecosystemData = {
         bullets: ["Florence Art", "NATAN LOC", "Tosca Bandi"],
         egi_link: "Esplora le piattaforme attive dell'ecosistema.",
         route: "/platforms",
-        radius: 50 // Unified Large Size
+        radius: 42 // EXACTLY 50% larger than original 28
     },
 
     // 3. AMBIENTE
@@ -61,7 +61,7 @@ const ecosystemData = {
         bullets: ["EPP Dashboard", "Riforestazione", "Certificati Green"],
         egi_link: "Ogni atto crea impatto.",
         route: "/ambiente", // Fixed internal route
-        radius: 50 // Unified Large Size
+        radius: 42 // EXACTLY 50% larger than original 28
     },
 
     // 4. ORACODE
@@ -74,7 +74,7 @@ const ecosystemData = {
         bullets: ["White Paper", "Documentation", "Compliance"],
         egi_link: "Il codice non mente.",
         route: "/oracode", // Fixed internal route
-        radius: 50 // Unified Large Size
+        radius: 42 // EXACTLY 50% larger than original 28
     }
 };
 
