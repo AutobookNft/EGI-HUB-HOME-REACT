@@ -32,14 +32,13 @@ function App() {
         const handleViewportChange = () => {
             const uaMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
             const uaDataMobile = (window.navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData?.mobile;
-            const viewportMobile = window.innerWidth <= 900 || window.screen.width <= 900;
+            const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
             const mobileDetected =
                 media.matches ||
-                window.matchMedia('(pointer: coarse)').matches ||
+                hasCoarsePointer ||
                 uaMobile ||
-                uaDataMobile === true ||
-                viewportMobile;
+                uaDataMobile === true;
 
             setIsMobile(mobileDetected);
 
