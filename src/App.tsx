@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
 import { EcosystemEntranceMobile } from '@/components/ecosystem/EcosystemEntranceMobile';
@@ -20,16 +20,19 @@ function App() {
     console.log(`🧭 [App] Rendering`);
     const currentPath = useUIStore((state) => state.currentPath);
     const navigate = useUIStore((state) => state.navigate);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
         const media = window.matchMedia('(max-width: 768px)');
 
         const handleViewportChange = () => {
-            const isMobile =
+            const mobileDetected =
                 media.matches ||
                 window.matchMedia('(pointer: coarse)').matches ||
                 /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
+
+            setIsMobile(mobileDetected);
 
             const path = window.location.pathname;
             const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects'];
@@ -39,12 +42,12 @@ function App() {
                 path.endsWith('/index.html') ||
                 (!isKnownRoute && path.endsWith('/'));
 
-            if (isMobile && isHomePath && currentPath !== '/hub-mobile') {
+            if (mobileDetected && isHomePath && currentPath !== '/hub-mobile') {
                 navigate('/hub-mobile');
                 return;
             }
 
-            if (!isMobile && path.endsWith('/hub-mobile')) {
+            if (!mobileDetected && path.endsWith('/hub-mobile')) {
                 navigate('/');
             }
         };
@@ -59,6 +62,15 @@ function App() {
 
     // Routing logic
     const renderPage = () => {
+        const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
+        const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects'];
+        const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
+        const isHomePath =
+            path === '/' ||
+            path.endsWith('/index.html') ||
+            (!isKnownRoute && path.endsWith('/'));
+
+        if (isMobile && isHomePath) return <EcosystemEntranceMobile />;
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
