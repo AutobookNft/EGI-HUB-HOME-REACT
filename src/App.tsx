@@ -26,15 +26,25 @@ function App() {
         const media = window.matchMedia('(max-width: 768px)');
 
         const handleViewportChange = () => {
-            const isMobile = media.matches;
-            const isHomePath = currentPath === '/' || currentPath === '/index.html';
+            const isMobile =
+                media.matches ||
+                window.matchMedia('(pointer: coarse)').matches ||
+                /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
 
-            if (isMobile && isHomePath) {
+            const path = window.location.pathname;
+            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects'];
+            const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
+            const isHomePath =
+                path === '/' ||
+                path.endsWith('/index.html') ||
+                (!isKnownRoute && path.endsWith('/'));
+
+            if (isMobile && isHomePath && currentPath !== '/hub-mobile') {
                 navigate('/hub-mobile');
                 return;
             }
 
-            if (!isMobile && currentPath === '/hub-mobile') {
+            if (!isMobile && path.endsWith('/hub-mobile')) {
                 navigate('/');
             }
         };
