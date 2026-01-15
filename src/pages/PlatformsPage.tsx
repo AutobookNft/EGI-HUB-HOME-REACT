@@ -18,28 +18,21 @@ export const PlatformsPage = () => {
     console.log(`🪐 [PlatformsPage] Rendering`);
 
     useEffect(() => {
+        // DISABLED: Causing route/render conflicts
+        // The PlatformsPage should just show the overlay, not rebuild the 3D scene
+        /*
         // MOUNT: Switch to Platforms Solar System
         if (window.rebuildEcosystem) {
             console.log("🚀 Switching to Piattaforme Attive System");
-            // Inject orbital config into data object if engine expects it there (based on engine.js logic)
-            // engine.js: constructEcosystem(newData, newData.orbitalConfig || [])
             const fullData = {
                 ...platformsData,
                 orbitalConfig: platformsOrbitConfig
             };
             window.rebuildEcosystem(fullData);
-        }
+        }*/
 
         return () => {
-            // UNMOUNT: Switch back to Main Hub System
-            if (window.rebuildEcosystem && window.ecosystemData) {
-                console.log("↩️  Reverting to Main Hub System");
-                const mainData = {
-                    ...window.ecosystemData,
-                    orbitalConfig: window.orbitalConfig
-                };
-                window.rebuildEcosystem(mainData);
-            }
+            // No cleanup needed
         };
     }, []);
 
