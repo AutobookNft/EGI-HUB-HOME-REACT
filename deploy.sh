@@ -46,10 +46,11 @@ echo ""
 echo -e "${BLUE}📦 Sincronizzazione dist/ → ${REMOTE_PATH}...${NC}"
 
 # rsync con compressione e progresso
+# Aggiornamento OS3: Sync dentro la cartella 'dist' remota per rispettare config Nginx
 rsync -avz --delete \
     --exclude='.git' \
     --exclude='node_modules' \
-    dist/ ${SERVER}:${REMOTE_PATH}/
+    dist/ ${SERVER}:${REMOTE_PATH}/dist/
 
 if [ $? -eq 0 ]; then
     echo ""
