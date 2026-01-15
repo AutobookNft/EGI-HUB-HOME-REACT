@@ -1,13 +1,14 @@
 // ecosystem_data.js
 // DATABASE CENTRALE DELL'ECOSISTEMA FLORENCE EGI - HOME PAGE
-// Updated: User Request - Role-Based Navigation
+// Updated: OS3 Refactor - EGI Core & Large Uniform Satellites
 
-console.log("🌍 [ecosystem_data.js] Loading configuration vOS3.2...");
+console.log("🌍 [ecosystem_data.js] Loading configuration vOS3.5 (EGI Core)...");
 const ecosystemData = {
-    // --- CORE: HUB ---
+    // --- CORE: EGI ---
+    // User Request: Center sphere must be EGI
     core: {
-        label: "HUB",
-        tagline: "Centro di Controllo",
+        label: "EGI",
+        tagline: "Ecosistema Genesi",
         cat: "CORE",
         color: 0xFFD700, // Gold
         desc: "Il cuore pulsante dell'ecosistema.",
@@ -17,10 +18,12 @@ const ecosystemData = {
             "System Status"
         ],
         egi_link: "Il punto di partenza.",
-        route: "https://egi-hub.13.53.205.215.sslip.io"
+        route: "https://egi-hub.13.53.205.215.sslip.io",
+        radius: 65 // Larger core
     },
 
     // --- SATELLITES ---
+    // User Request: All spheres equal size and 50% larger (Default was ~28, setting to 45-50)
     
     // 1. GLI EGIS
     egis: {
@@ -29,29 +32,23 @@ const ecosystemData = {
         cat: "ASSETS",
         color: 0xFF00FF, // Magenta
         desc: "Tutto ciò che è stato Egizzato: Arte, Beni, Documenti.",
-        bullets: [
-            "Marketplace",
-            "NFT Collections",
-            "My Assets"
-        ],
+        bullets: ["Marketplace", "NFT Collections", "My Assets"],
         egi_link: "Se esiste, egizzalo. Se lo egizzi, VALE.",
-        route: "https://egi.13.53.205.215.sslip.io"
+        route: "https://egi.13.53.205.215.sslip.io",
+        radius: 50 // Unified Large Size
     },
 
-    // 2. PROGETTI
+    // 2. PROGETTI (Piattaforme Attive)
     project: {
         label: "PROGETTI",
-        tagline: "Piattaforme Attive.",
+        tagline: "Piattaforme Attive",
         cat: "CATEGORY",
         color: 0x00FFAA, // Verde Acqua
         desc: "L'universo delle piattaforme EGI: da Florence Art a NATAN.",
-        bullets: [
-            "Florence Art - Collezionismo",
-            "NATAN LOC - Documenti PA",
-            "Tosca Bandi - Monitoraggio"
-        ],
+        bullets: ["Florence Art", "NATAN LOC", "Tosca Bandi"],
         egi_link: "Esplora le piattaforme attive dell'ecosistema.",
-        route: "/platforms"
+        route: "/platforms",
+        radius: 50 // Unified Large Size
     },
 
     // 3. AMBIENTE
@@ -61,13 +58,10 @@ const ecosystemData = {
         cat: "IMPACT",
         color: 0x00FF00, // Green
         desc: "Il monitoraggio dell'impatto ambientale reale.",
-        bullets: [
-            "EPP Dashboard",
-            "Riforestazione",
-            "Certificati Green"
-        ],
+        bullets: ["EPP Dashboard", "Riforestazione", "Certificati Green"],
         egi_link: "Ogni atto crea impatto.",
-        route: "#"
+        route: "/ambiente", // Fixed internal route
+        radius: 50 // Unified Large Size
     },
 
     // 4. ORACODE
@@ -75,15 +69,12 @@ const ecosystemData = {
         label: "ORACODE",
         tagline: "Verità & Codice",
         cat: "ETHICS",
-        color: 0xFFAA00, // Orange/Gold
+        color: 0xFFAA00, // Orange
         desc: "Le regole, l'etica e la documentazione del sistema.",
-        bullets: [
-            "White Paper",
-            "Documentation",
-            "Compliance"
-        ],
+        bullets: ["White Paper", "Documentation", "Compliance"],
         egi_link: "Il codice non mente.",
-        route: "#"
+        route: "/oracode", // Fixed internal route
+        radius: 50 // Unified Large Size
     }
 };
 
