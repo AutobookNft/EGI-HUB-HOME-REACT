@@ -2,6 +2,7 @@
 // DATABASE CENTRALE DELL'ECOSISTEMA FLORENCE EGI - HOME PAGE
 // Updated: User Request - Role-Based Navigation
 
+console.log("🌍 [ecosystem_data.js] Loading configuration vOS3.2...");
 const ecosystemData = {
     // --- CORE: HUB ---
     core: {

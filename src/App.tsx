@@ -87,6 +87,7 @@ function App() {
 
         // NEW ROUTES
         if (currentPath === '/platforms') return <PlatformsPage />;
+        if (currentPath === '/projects') return <PlatformsPage />; // Legacy redirect
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
 
         // Default: 3D Ecosystem View
