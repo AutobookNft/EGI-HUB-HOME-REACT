@@ -21,10 +21,13 @@ echo -e "${BLUE}║   EGI-HUB-HOME-REACT - Deploy          ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════╝${NC}"
 echo ""
 
-# Check if dist/ exists
+# Check if dist/ exists or force rebuild
+echo -e "${YELLOW}⚙️  Eseguo build di produzione (Clean Cache)...${NC}"
+rm -rf dist
+npm run build
+
 if [ ! -d "dist" ]; then
-    echo -e "${RED}❌ dist/ non trovata!${NC}"
-    echo -e "${YELLOW}   Esegui prima: npm run build${NC}"
+    echo -e "${RED}❌ Errore: Build fallita! dist/ non trovata.${NC}"
     exit 1
 fi
 
