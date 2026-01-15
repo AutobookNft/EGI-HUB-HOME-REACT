@@ -1,4 +1,3 @@
-```
 import { api } from '../api';
 import type { EcosystemData, EcosystemMetrics } from '@/types/ecosystem';
 
