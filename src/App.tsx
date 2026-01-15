@@ -27,8 +27,9 @@ function App() {
 
         const handleViewportChange = () => {
             const isMobile = media.matches;
+            const isHomePath = currentPath === '/' || currentPath === '/index.html';
 
-            if (isMobile && currentPath === '/') {
+            if (isMobile && isHomePath) {
                 navigate('/hub-mobile');
                 return;
             }
