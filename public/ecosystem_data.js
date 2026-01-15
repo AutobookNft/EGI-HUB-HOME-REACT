@@ -38,19 +38,19 @@ const ecosystemData = {
     },
 
     // 2. PROGETTI
-    progetti: {
+    project: {
         label: "PROGETTI",
-        tagline: "Applicazioni & Servizi",
-        cat: "APPS",
-        color: 0x0088FF, // Blue
-        desc: "Le applicazioni verticali dell'ecosistema.",
+        tagline: "Piattaforme Attive.",
+        cat: "CATEGORY",
+        color: 0x00FFAA, // Verde Acqua
+        desc: "L'universo delle piattaforme EGI: da Florence Art a NATAN.",
         bullets: [
-            "FlorenceArtEGI",
-            "PartnerHub",
-            "Finance"
+            "Florence Art - Collezionismo",
+            "NATAN LOC - Documenti PA",
+            "Tosca Bandi - Monitoraggio"
         ],
-        egi_link: "Gli strumenti per operare.",
-        route: "#"
+        egi_link: "Esplora le piattaforme attive dell'ecosistema.",
+        route: "/platforms"
     },
 
     // 3. AMBIENTE

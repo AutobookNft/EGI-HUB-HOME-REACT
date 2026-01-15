@@ -7,6 +7,9 @@ import { OracodePage } from '@/pages/OracodePage';
 import { CorporatePage } from '@/pages/CorporatePage';
 import { useUIStore } from '@/stores/useUIStore';
 
+import { PlatformsPage } from '@/pages/PlatformsPage';
+import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -41,7 +44,7 @@ function App() {
             setIsMobile(mobileDetected);
 
             const path = window.location.pathname;
-            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects'];
+            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/under-construction'];
             const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
             const isHomePath =
                 path === '/' ||
@@ -69,7 +72,7 @@ function App() {
     // Routing logic
     const renderPage = () => {
         const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
-        const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects'];
+        const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/under-construction'];
         const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
         const isHomePath =
             path === '/' ||
@@ -81,6 +84,10 @@ function App() {
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
+
+        // NEW ROUTES
+        if (currentPath === '/platforms') return <PlatformsPage />;
+        if (currentPath === '/under-construction') return <UnderConstructionPage />;
 
         // Default: 3D Ecosystem View
         return <EcosystemView />;

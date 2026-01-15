@@ -196,8 +196,9 @@ function constructEcosystem(newData, newOrbitConfig) {
             const x = Math.cos(angle) * orbitR;
             const y = Math.sin(angle) * orbitR; // Y varies (vertical circle)
         
-            // SCALE UP SATELLITE: 12 -> 28
-            const node = createComplexNode(cfg.id, d, 28);
+            // SCALE UP SATELLITE: Use custom radius or default 28
+            const nodeRadius = d.radius || 28;
+            const node = createComplexNode(cfg.id, d, nodeRadius);
             node.root.position.set(x, y, zDepth); // X-Y circle, Z=0
             node.root.lookAt(0,0,0); // Orient rings to center
             

@@ -8,6 +8,7 @@ export interface EcosystemNode {
     bullets?: string[];
     egi_link: string;
     route: string;
+    radius?: number;
 }
 
 export interface OrbitalConfig {
