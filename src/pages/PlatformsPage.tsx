@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { TopBar } from '@/components/layout/TopBar';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { MissionControl } from '@/components/layout/MissionControl';
+import { DetailPanel } from '@/components/layout/DetailPanel';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { platformsData, platformsOrbitConfig } from '@/data/platformsData';
 

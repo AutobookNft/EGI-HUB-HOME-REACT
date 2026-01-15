@@ -1,6 +1,6 @@
 import type { EcosystemData } from '@/types/ecosystem';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-expect-error - t parameter reserved for future i18n
 export const createFallbackEcosystemData = (
     t: (key: string) => string
 ): EcosystemData => ({

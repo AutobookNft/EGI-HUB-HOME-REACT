@@ -115,13 +115,13 @@ export const EcosystemEntranceMobile = () => {
     };
 
     return (
-        <div className="relative h-dvh w-full overflow-hidden bg-black text-white">
+        <div className="relative w-full overflow-hidden text-white bg-black h-dvh">
             <AmbientBackground activeIndex={activeIndex} reducedMotion={reducedMotion} />
 
-            <div className="pointer-events-none fixed left-5 top-0 z-20 h-dvh w-px bg-gradient-to-b from-white/5 via-white/25 to-white/5" />
+            <div className="fixed top-0 z-20 w-px pointer-events-none left-5 h-dvh bg-gradient-to-b from-white/5 via-white/25 to-white/5" />
 
-            <div className="fixed left-0 top-0 z-30 w-full px-5 pt-4">
-                <div className="rounded-2xl bg-black/35 p-4 backdrop-blur">
+            <div className="fixed top-0 left-0 z-30 w-full px-5 pt-4">
+                <div className="p-4 rounded-2xl bg-black/35 backdrop-blur">
                     <div className="flex items-center justify-between gap-4">
                         <CoordinatesHUD coordinates={coordinates} />
                         <ProgressIndicator current={activeIndex + 1} total={layersOrdered.length} />

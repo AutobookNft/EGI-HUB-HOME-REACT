@@ -3,7 +3,7 @@ import type { EcosystemData, EcosystemMetrics } from '@/types/ecosystem';
 
 export const ecosystemAPI = {
     // Get full node configuration with colors based on active status
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // @ts-expect-error - view parameter reserved for future multi-view support
     getEcosystem: async (view: string = 'main'): Promise<EcosystemData> => {
         // DISABLED: Prefer fallback data instead of API for now
         // The backend API returns outdated structure
