@@ -89,7 +89,7 @@ const ecosystemData = {
 // Configurazione Orbite - Balanced 4-point orbit
 const orbitalConfig = [
     { id: "egis", orbit: 1 },
-    { id: "progetti", orbit: 1 },
+    { id: "project", orbit: 1 },
     { id: "ambiente", orbit: 1 },
     { id: "oracode", orbit: 1 }
 ];
