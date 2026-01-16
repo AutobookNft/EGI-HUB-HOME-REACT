@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useUIStore } from '@/stores/useUIStore';
-import { useI18n } from '@/i18n';
 import { AmbientBackground } from '@/components/ecosystem/AmbientBackground';
 import { CoordinatesHUD } from '@/components/ecosystem/CoordinatesHUD';
 import { ProgressIndicator } from '@/components/ecosystem/ProgressIndicator';
@@ -11,7 +10,6 @@ import type { Layer } from '@/contracts/ecosystemManifest';
 
 export const NatanMobilePage = () => {
     const navigate = useUIStore((state) => state.navigate);
-    const { t } = useI18n();
 
     // Transform natanSystemData to Layer[] format
     const layersOrdered: Layer[] = useMemo(() => [
@@ -29,40 +27,40 @@ export const NatanMobilePage = () => {
         // Other slides: satellites
         {
             id: 'natanloc' as any,
-            title: natanSystemData.natanloc.label,
-            subtitle: natanSystemData.natanloc.tagline,
-            description: natanSystemData.natanloc.desc,
-            entryPath: natanSystemData.natanloc.route || '#',
+            title: (natanSystemData.natanloc as any)?.label || 'NATAN LOC',
+            subtitle: (natanSystemData.natanloc as any)?.tagline || '',
+            description: (natanSystemData.natanloc as any)?.desc || '',
+            entryPath: (natanSystemData.natanloc as any)?.route || '#',
             level: 2,
-            coordinates: `NATAN • Layer: ${natanSystemData.natanloc.label} • Node: PA`,
+            coordinates: `NATAN • Layer: ${(natanSystemData.natanloc as any)?.label || 'NATAN LOC'} • Node: PA`,
             node: 'PA',
         },
         {
             id: 'natanorg' as any,
-            title: natanSystemData.natanorg.label,
-            subtitle: natanSystemData.natanorg.tagline,
-            description: natanSystemData.natanorg.desc,
-            entryPath: natanSystemData.natanorg.route || '#',
+            title: (natanSystemData.natanorg as any)?.label || 'NATAN ORG',
+            subtitle: (natanSystemData.natanorg as any)?.tagline || '',
+            description: (natanSystemData.natanorg as any)?.desc || '',
+            entryPath: (natanSystemData.natanorg as any)?.route || '#',
             level: 3,
-            coordinates: `NATAN • Layer: ${natanSystemData.natanorg.label} • Node: No-Profit`,
+            coordinates: `NATAN • Layer: ${(natanSystemData.natanorg as any)?.label || 'NATAN ORG'} • Node: No-Profit`,
             node: 'No-Profit',
         },
         {
             id: 'natanbusiness' as any,
-            title: natanSystemData.natanbusiness.label,
-            subtitle: natanSystemData.natanbusiness.tagline,
-            description: natanSystemData.natanbusiness.desc,
-            entryPath: natanSystemData.natanbusiness.route || '#',
+            title: (natanSystemData.natanbusiness as any)?.label || 'NATAN BUSINESS',
+            subtitle: (natanSystemData.natanbusiness as any)?.tagline || '',
+            description: (natanSystemData.natanbusiness as any)?.desc || '',
+            entryPath: (natanSystemData.natanbusiness as any)?.route || '#',
             level: 4,
-            coordinates: `NATAN • Layer: ${natanSystemData.natanbusiness.label} • Node: Business`,
+            coordinates: `NATAN • Layer: ${(natanSystemData.natanbusiness as any)?.label || 'NATAN BUSINESS'} • Node: Business`,
             node: 'Business',
         },
         {
             id: 'back' as any,
-            title: natanSystemData.back.label,
-            subtitle: natanSystemData.back.tagline,
-            description: natanSystemData.back.desc,
-            entryPath: natanSystemData.back.route || '#',
+            title: (natanSystemData.back as any)?.label || '← PLATFORMS',
+            subtitle: (natanSystemData.back as any)?.tagline || '',
+            description: (natanSystemData.back as any)?.desc || '',
+            entryPath: (natanSystemData.back as any)?.route || '#',
             level: 5,
             coordinates: `NATAN • Layer: Navigation • Node: Back`,
             node: 'Navigation',

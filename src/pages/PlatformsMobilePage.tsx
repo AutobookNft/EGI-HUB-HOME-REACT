@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useUIStore } from '@/stores/useUIStore';
-import { useI18n } from '@/i18n';
 import { AmbientBackground } from '@/components/ecosystem/AmbientBackground';
 import { CoordinatesHUD } from '@/components/ecosystem/CoordinatesHUD';
 import { ProgressIndicator } from '@/components/ecosystem/ProgressIndicator';
@@ -11,7 +10,6 @@ import type { Layer } from '@/contracts/ecosystemManifest';
 
 export const PlatformsMobilePage = () => {
     const navigate = useUIStore((state) => state.navigate);
-    const { t } = useI18n();
 
     // Transform platformsSystemData to Layer[] format
     const layersOrdered: Layer[] = useMemo(() => [
@@ -29,50 +27,50 @@ export const PlatformsMobilePage = () => {
         // Other slides: satellites
         {
             id: 'florenceegi' as any,
-            title: platformsSystemData.florenceegi.label,
-            subtitle: platformsSystemData.florenceegi.tagline,
-            description: platformsSystemData.florenceegi.desc,
-            entryPath: platformsSystemData.florenceegi.route || '#',
+            title: (platformsSystemData.florenceegi as any)?.label || 'FLORENCE EGI',
+            subtitle: (platformsSystemData.florenceegi as any)?.tagline || '',
+            description: (platformsSystemData.florenceegi as any)?.desc || '',
+            entryPath: (platformsSystemData.florenceegi as any)?.route || '#',
             level: 2,
-            coordinates: `PLATFORMS • Layer: ${platformsSystemData.florenceegi.label} • Node: Piattaforma`,
+            coordinates: `PLATFORMS • Layer: ${(platformsSystemData.florenceegi as any)?.label || 'FLORENCE EGI'} • Node: Piattaforma`,
             node: 'Piattaforma',
         },
         {
             id: 'natan' as any,
-            title: platformsSystemData.natan.label,
-            subtitle: platformsSystemData.natan.tagline,
-            description: platformsSystemData.natan.desc,
-            entryPath: platformsSystemData.natan.route || '#',
+            title: (platformsSystemData.natan as any)?.label || 'NATAN',
+            subtitle: (platformsSystemData.natan as any)?.tagline || '',
+            description: (platformsSystemData.natan as any)?.desc || '',
+            entryPath: (platformsSystemData.natan as any)?.route || '#',
             level: 3,
-            coordinates: `PLATFORMS • Layer: ${platformsSystemData.natan.label} • Node: Piattaforma`,
+            coordinates: `PLATFORMS • Layer: ${(platformsSystemData.natan as any)?.label || 'NATAN'} • Node: Piattaforma`,
             node: 'Piattaforma',
         },
         {
             id: 'tosca' as any,
-            title: platformsSystemData.tosca.label,
-            subtitle: platformsSystemData.tosca.tagline,
-            description: platformsSystemData.tosca.desc,
-            entryPath: platformsSystemData.tosca.route || '#',
+            title: (platformsSystemData.tosca as any)?.label || 'TOSCA BANDI',
+            subtitle: (platformsSystemData.tosca as any)?.tagline || '',
+            description: (platformsSystemData.tosca as any)?.desc || '',
+            entryPath: (platformsSystemData.tosca as any)?.route || '#',
             level: 4,
-            coordinates: `PLATFORMS • Layer: ${platformsSystemData.tosca.label} • Node: Coming Soon`,
+            coordinates: `PLATFORMS • Layer: ${(platformsSystemData.tosca as any)?.label || 'TOSCA'} • Node: Coming Soon`,
             node: 'Coming Soon',
         },
         {
             id: 'partners' as any,
-            title: platformsSystemData.partners.label,
-            subtitle: platformsSystemData.partners.tagline,
-            description: platformsSystemData.partners.desc,
-            entryPath: platformsSystemData.partners.route || '#',
+            title: (platformsSystemData.partners as any)?.label || 'PARTNERS',
+            subtitle: (platformsSystemData.partners as any)?.tagline || '',
+            description: (platformsSystemData.partners as any)?.desc || '',
+            entryPath: (platformsSystemData.partners as any)?.route || '#',
             level: 5,
-            coordinates: `PLATFORMS • Layer: ${platformsSystemData.partners.label} • Node: Coming Soon`,
+            coordinates: `PLATFORMS • Layer: ${(platformsSystemData.partners as any)?.label || 'PARTNERS'} • Node: Coming Soon`,
             node: 'Coming Soon',
         },
         {
             id: 'back' as any,
-            title: platformsSystemData.back.label,
-            subtitle: platformsSystemData.back.tagline,
-            description: platformsSystemData.back.desc,
-            entryPath: platformsSystemData.back.route || '#',
+            title: (platformsSystemData.back as any)?.label || '← HOME',
+            subtitle: (platformsSystemData.back as any)?.tagline || '',
+            description: (platformsSystemData.back as any)?.desc || '',
+            entryPath: (platformsSystemData.back as any)?.route || '#',
             level: 6,
             coordinates: `PLATFORMS • Layer: Navigation • Node: Back`,
             node: 'Navigation',
