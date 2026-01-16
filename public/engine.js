@@ -173,8 +173,8 @@ function constructEcosystem(newData, newOrbitConfig) {
     console.log('🖥️ Building DESKTOP orbital layout');
     
     // 2. CORE SYSTEM
-    // SCALE UP: 24 -> 50 (Compensate for Camera Z)
-    const coreNode = createComplexNode('core', newData.core, 50);
+    // SCALE UP: Core must be 30% larger than satellites for visual hierarchy
+    const coreNode = createComplexNode('core', newData.core, 65);
     systemGroup.add(coreNode.root);
     nodes['core'] = coreNode;
 
