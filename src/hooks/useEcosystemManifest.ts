@@ -8,7 +8,6 @@ const MANIFEST_CACHE_KEY = 'ecosystem_manifest_cache_v1';
 const MANIFEST_ETAG_KEY = 'ecosystem_manifest_etag_v1';
 
 const APP_EGI_URL = import.meta.env.VITE_APP_EGI_URL;
-const APP_INFO_URL = import.meta.env.VITE_APP_INFO_URL;
 
 const FALLBACK_TELEMETRY: Telemetry = {
     layers: 7,
