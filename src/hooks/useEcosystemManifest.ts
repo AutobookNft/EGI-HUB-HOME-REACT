@@ -41,7 +41,7 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         id: 'projects',
         title: 'PROGETTI',
         subtitle: t('mobile.subtitle.projects'),
-        entryPath: '/projects',
+        entryPath: '/platforms',
         level: 3,
         coordinates: t('mobile.coordinates.projects'),
         node: 'Costellazione',
