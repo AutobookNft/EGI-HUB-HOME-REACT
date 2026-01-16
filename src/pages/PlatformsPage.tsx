@@ -23,17 +23,16 @@ export const PlatformsPage = () => {
         console.log("📦 [PlatformsPage] platformsSystemData:", platformsSystemData);
         console.log("🔧 [PlatformsPage] platformsOrbitConfig:", platformsOrbitConfig);
         
-        const fullData = platformsSystemData;
-        
-        console.log("📦 [PlatformsPage] fullData to rebuild:", fullData);
-        
-        // Force overwrite window globals
-        window.ecosystemData = fullData;
+        // Pass data AND orbitalConfig separately to window
+        window.ecosystemData = platformsSystemData;
         window.orbitalConfig = platformsOrbitConfig;
+        
+        console.log("📦 [PlatformsPage] ecosystemData:", platformsSystemData);
+        console.log("📦 [PlatformsPage] orbitalConfig:", platformsOrbitConfig);
         
         if (window.rebuildEcosystem) {
             console.log("♻️ [PlatformsPage] Calling rebuildEcosystem NOW...");
-            window.rebuildEcosystem(fullData);
+            window.rebuildEcosystem(platformsSystemData);
             console.log("✅ [PlatformsPage] rebuildEcosystem COMPLETED");
         } else {
             console.error("❌ [PlatformsPage] window.rebuildEcosystem not found!");
