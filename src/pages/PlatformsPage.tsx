@@ -23,16 +23,7 @@ export const PlatformsPage = () => {
         console.log("📦 [PlatformsPage] platformsSystemData:", platformsSystemData);
         console.log("🔧 [PlatformsPage] platformsOrbitConfig:", platformsOrbitConfig);
         
-        const fullData = {
-            ...platformsSystemData,
-            orbitalConfig: platformsOrbitConfig
-        };
-        
-        // Remove orbitalConfig from data keys (it's not a node)
-        delete fullData.orbitalConfig;
-        
-        // Re-add as separate property
-        fullData.orbitalConfig = platformsOrbitConfig;
+        const fullData = platformsSystemData;
         
         console.log("📦 [PlatformsPage] fullData to rebuild:", fullData);
         

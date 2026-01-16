@@ -1,5 +1,3 @@
-import { useUIStore } from '@/stores/useUIStore';
-
 export const UnderConstructionPage = () => {
     // Simple back navigation to sender page
     const handleBack = () => {
