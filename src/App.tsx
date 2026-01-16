@@ -8,7 +8,9 @@ import { CorporatePage } from '@/pages/CorporatePage';
 import { useUIStore } from '@/stores/useUIStore';
 
 import { PlatformsPage } from '@/pages/PlatformsPage';
+import { PlatformsMobilePage } from '@/pages/PlatformsMobilePage';
 import { NatanSystemPage } from '@/pages/NatanSystemPage';
+import { NatanMobilePage } from '@/pages/NatanMobilePage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 const queryClient = new QueryClient({
@@ -73,17 +75,21 @@ function App() {
     const renderPage = () => {
         console.log('🔍 [renderPage] currentPath:', currentPath, 'isMobile:', isMobile);
         
-        // Mobile home
+        // Mobile-specific pages
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
+        if (isMobile && currentPath === '/platforms') return <PlatformsMobilePage />;
+        if (isMobile && currentPath === '/platforms/natan') return <NatanMobilePage />;
         
-        // Static pages
+        // Static pages (desktop or responsive)
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
+        if (currentPath === '/under-construction') return <UnderConstructionPage />;
+        
+        // Desktop-specific pages
         if (currentPath === '/platforms') return <PlatformsPage />;
         if (currentPath === '/platforms/natan') return <NatanSystemPage />;
         if (currentPath === '/projects') return <PlatformsPage />;
-        if (currentPath === '/under-construction') return <UnderConstructionPage />;
 
         // Home page routing
         const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
