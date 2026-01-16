@@ -22,7 +22,7 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         title: 'HUB',
         subtitle: t('mobile.subtitle.hub'),
         description: t('mobile.description.hub'),
-        entryPath: '/',
+        entryPath: 'https://egi-hub.13.53.205.215.sslip.io',
         level: 1,
         coordinates: t('mobile.coordinates.hub'),
         node: 'Entrata',
