@@ -11,7 +11,7 @@ export const createFallbackEcosystemData = (
         desc: 'Il cuore pulsante dell\'ecosistema.',
         bullets: ['Governance', 'Identity', 'System Status'],
         egi_link: 'Il punto di partenza.',
-        route: 'https://egi-hub.13.53.205.215.sslip.io',
+        route: '/under-construction', // Under construction - EGI core page
         radius: 65
     },
     egis: {

@@ -133,20 +133,47 @@ export class HyperspaceEffect {
                 this.fadeToWhite(() => {
                     if (isInternal) {
                         // Use React Router navigation (no page reload)
-                        if (window.useUIStore) {
+                        console.log(`✅ [Hyperspace] Internal navigation to: ${targetURL}`);
+                        if (window.navigateInternal) {
+                            window.navigateInternal(targetURL);
+                            
+                            // Wait for React to mount new page, then remove overlay
+                            console.log(`⏳ [Hyperspace] Waiting 800ms for React to render new page...`);
+                            setTimeout(() => {
+                                const overlay = document.getElementById('hyperspace-overlay');
+                                console.log(`🔍 [Hyperspace] Looking for overlay to remove...`, overlay);
+                                if (overlay) {
+                                    console.log(`✨ [Hyperspace] Fading out overlay...`);
+                                    gsap.to(overlay, {
+                                        opacity: 0,
+                                        duration: 0.3,
+                                        onComplete: () => {
+                                            console.log(`🗑️ [Hyperspace] Removing overlay from DOM`);
+                                            overlay.remove();
+                                        }
+                                    });
+                                } else {
+                                    console.warn(`⚠️ [Hyperspace] Overlay not found!`);
+                                }
+                                this.isWarping = false;
+                                this.resetStarField();
+                                console.log(`✅ [Hyperspace] Navigation complete`);
+                            }, 800); // Give React time to render new page
+                            
+                        } else if (window.useUIStore) {
                             window.useUIStore.getState().navigate(targetURL);
+                        } else {
+                            console.error('❌ [Hyperspace] No internal navigation method found!');
+                            // Fallback: force page change
+                            window.history.pushState({}, '', targetURL);
+                            window.location.reload();
                         }
                     } else {
                         // External navigation (page reload)
+                        console.log(`✅ [Hyperspace] External navigation to: ${targetURL}`);
                         window.location.href = targetURL;
                     }
                     resolve();
-                    
-                    // Reset after navigation
-                    setTimeout(() => {
-                        this.isWarping = false;
-                        this.resetStarField();
-                    }, 500);
                 });
             }, 1000);
         });
@@ -191,6 +218,13 @@ export class HyperspaceEffect {
      * Fade to white overlay with radial gradient
      */
     fadeToWhite(callback) {
+        // Remove any existing overlay first
+        const existingOverlay = document.getElementById('hyperspace-overlay');
+        if (existingOverlay) {
+            console.log('🧹 [HyperspaceEffect] Removing existing overlay');
+            existingOverlay.remove();
+        }
+        
         const overlay = document.createElement('div');
         overlay.id = 'hyperspace-overlay';
         overlay.style.cssText = `
@@ -208,6 +242,7 @@ export class HyperspaceEffect {
             pointer-events: none;
         `;
         document.body.appendChild(overlay);
+        console.log('✨ [HyperspaceEffect] Overlay created');
         
         // Fade in using GSAP
         gsap.to(overlay, {
@@ -215,6 +250,7 @@ export class HyperspaceEffect {
             duration: 0.4,
             ease: "power2.out",
             onComplete: () => {
+                console.log('✅ [HyperspaceEffect] Fade to white complete, calling callback');
                 if (callback) callback();
             }
         });

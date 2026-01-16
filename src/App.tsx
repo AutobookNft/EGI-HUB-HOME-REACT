@@ -8,6 +8,7 @@ import { CorporatePage } from '@/pages/CorporatePage';
 import { useUIStore } from '@/stores/useUIStore';
 
 import { PlatformsPage } from '@/pages/PlatformsPage';
+import { NatanSystemPage } from '@/pages/NatanSystemPage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 const queryClient = new QueryClient({
@@ -43,7 +44,7 @@ function App() {
             setIsMobile(mobileDetected);
 
             const path = window.location.pathname;
-            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/under-construction'];
+            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/platforms/natan', '/under-construction'];
             const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
             const isHomePath =
                 path === '/' ||
@@ -80,6 +81,7 @@ function App() {
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
         if (currentPath === '/platforms') return <PlatformsPage />;
+        if (currentPath === '/platforms/natan') return <NatanSystemPage />;
         if (currentPath === '/projects') return <PlatformsPage />;
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
 

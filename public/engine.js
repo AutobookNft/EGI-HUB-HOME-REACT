@@ -22,7 +22,7 @@ console.log(`📱 Device: ${isMobile ? 'MOBILE' : 'DESKTOP'}`);
 
 // --- CONFIGURATION ---
 const SYSTEM_CONFIG = {
-    camera: { fov: 45, pos: [0, 50, 850] }, // GOD VIEW: See entire system
+    camera: { fov: 45, pos: [0, 15, 850] }, // CENTERED: Match scene yOffset for symmetrical view
     bloom: { threshold: 0.9, strength: 0.3, radius: 0.1 }, // REDUCED for readability
     physics: { metalness: 0.2, roughness: 0.1, transmission: 1.0, thickness: 1.5 },
     scene: { yOffset: 15 }
@@ -122,6 +122,9 @@ window.nodes = nodes; // ⭐ Expose to React for hyperspace effect
 let carouselController = null; // Mobile carousel instance
 
 function constructEcosystem(newData, newOrbitConfig) {
+    console.log(`🔧 [constructEcosystem] START - newData:`, newData);
+    console.log(`🔧 [constructEcosystem] newOrbitConfig:`, newOrbitConfig);
+    
     // 1. Clear existing group
     while(systemGroup.children.length > 0){ 
         systemGroup.remove(systemGroup.children[0]); 
@@ -130,9 +133,11 @@ function constructEcosystem(newData, newOrbitConfig) {
     window.nodes = nodes; // ⭐ Update window reference
 
     if (!newData || !newData.core) {
-        console.error("ConstructEcosystem: Invalid Data", newData);
+        console.error("❌ ConstructEcosystem: Invalid Data", newData);
         return;
     }
+
+    console.log(`✅ [constructEcosystem] Valid data, building scene...`);
 
     // ========================================
     // 📱 MOBILE: Cylindrical Carousel
@@ -174,15 +179,24 @@ function constructEcosystem(newData, newOrbitConfig) {
     
     // 2. CORE SYSTEM
     // SCALE UP: Core must be 30% larger than satellites for visual hierarchy
+    console.log(`🌟 [constructEcosystem] Creating CORE node:`, newData.core);
     const coreNode = createComplexNode('core', newData.core, 65);
     systemGroup.add(coreNode.root);
     nodes['core'] = coreNode;
+    console.log(`✅ [constructEcosystem] CORE added to scene, position:`, coreNode.root.position);
 
     // 3. SATELLITES & CABLES
     if (newOrbitConfig && Array.isArray(newOrbitConfig)) {
+        console.log(`🪐 [constructEcosystem] Creating ${newOrbitConfig.length} satellites`);
         newOrbitConfig.forEach((cfg, idx) => {
             const d = newData[cfg.id];
-            if(!d) return;
+            if(!d) {
+                console.warn(`⚠️ [constructEcosystem] No data for satellite: ${cfg.id}`);
+                return;
+            }
+            
+            console.log(`🪐 [constructEcosystem] Processing satellite: ${cfg.id}`, d);
+            console.log(`📏 [constructEcosystem] Radius from data: ${d.radius}`);
         
             // Distribute planets in 2D circle
             // FIXED RADIUS: All satellites equidistant from HUB
@@ -196,14 +210,21 @@ function constructEcosystem(newData, newOrbitConfig) {
             const x = Math.cos(angle) * orbitR;
             const y = Math.sin(angle) * orbitR; // Y varies (vertical circle)
         
-            // SCALE UP SATELLITE: Use custom radius or default 28
-            const nodeRadius = d.radius || 28;
+            // SCALE UP SATELLITE: Force all satellites to same size (42)
+            const nodeRadius = 42; // FORCED - ignore d.radius to ensure consistency
+            console.log(`📏 [constructEcosystem] FORCED nodeRadius: ${nodeRadius} for ${cfg.id}`);
+            
             const node = createComplexNode(cfg.id, d, nodeRadius);
+            
+            // Verify node scale after creation
+            console.log(`🔍 [constructEcosystem] Node ${cfg.id} root.scale:`, node.root.scale);
+            
             node.root.position.set(x, y, zDepth); // X-Y circle, Z=0
             node.root.lookAt(0,0,0); // Orient rings to center
             
             systemGroup.add(node.root);
             nodes[cfg.id] = node;
+            console.log(`✅ [constructEcosystem] Satellite ${cfg.id} added at (${x.toFixed(2)}, ${y.toFixed(2)}, ${zDepth}) with FORCED radius ${nodeRadius}`);
         
             // FIBER OPTIC CABLE (Tube)
             const curve = new THREE.CatmullRomCurve3([
@@ -221,6 +242,15 @@ function constructEcosystem(newData, newOrbitConfig) {
             systemGroup.add(tube);
         });
     }
+    
+    console.log(`✅ [constructEcosystem] COMPLETE - Total nodes:`, Object.keys(nodes).length);
+    console.log(`✅ [constructEcosystem] systemGroup.children:`, systemGroup.children.length);
+    
+    // Reset camera to proper view
+    camera.position.set(SYSTEM_CONFIG.camera.pos[0], SYSTEM_CONFIG.camera.pos[1], camZ);
+    camera.lookAt(0, SYSTEM_CONFIG.scene.yOffset, 0);
+    controls.update();
+    console.log(`📷 [constructEcosystem] Camera reset to:`, camera.position);
 }
 
 // Initial Build (if window data exists)

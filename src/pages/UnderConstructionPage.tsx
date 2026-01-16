@@ -1,11 +1,10 @@
 import { useUIStore } from '@/stores/useUIStore';
 
 export const UnderConstructionPage = () => {
-    // We use the store navigation if available, or direct window location as fallback
-    // But since this is inside the React App, we should stick to internal navigation if possible
-    // However, our router seems custom. let's check App.tsx again.
-    // App.tsx uses useUIStore for navigation.
-    const navigate = useUIStore((state) => state.navigate);
+    // Simple back navigation to sender page
+    const handleBack = () => {
+        window.history.back();
+    };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white font-rajdhani overflow-hidden">
@@ -41,12 +40,12 @@ export const UnderConstructionPage = () => {
 
                 {/* Back Button */}
                 <button
-                    onClick={() => navigate('/platforms')}
+                    onClick={handleBack}
                     className="group relative px-8 py-3 bg-transparent border border-white/20 hover:border-gold/50 transition-all duration-300 overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gold/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                     <span className="relative font-mono text-sm uppercase tracking-widest group-hover:text-gold transition-colors">
-                        Return to Hub
+                        ← Torna Indietro
                     </span>
                 </button>
             </div>

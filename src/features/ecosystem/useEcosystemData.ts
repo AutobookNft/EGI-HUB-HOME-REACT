@@ -22,12 +22,23 @@ export const useEcosystemData = () => {
     const syncEcosystemData = (config: EcosystemData) => {
         setData(config);
 
+        // Check if we're on a "system page" (Platforms, Natan, etc.)
+        // These pages manage their own 3D scene data
+        const systemPages = ['/platforms', '/platforms/natan'];
+        const isSystemPage = systemPages.some(page => currentPath.startsWith(page));
+        
+        if (isSystemPage) {
+            console.log(`⚠️ [useEcosystemData] On system page ${currentPath}, skipping rebuild to avoid override`);
+            return;
+        }
+
         // Expose to window for engine.js
         (window as any).ecosystemData = config;
         (window as any).orbitalConfig = config.orbitalConfig || [];
 
         // Trigger Full Scene Rebuild
         if ((window as any).rebuildEcosystem) {
+            console.log(`♻️ [useEcosystemData] Rebuilding ecosystem for home view`);
             (window as any).rebuildEcosystem(config);
         } else if ((window as any).updateEcosystem) {
             (window as any).updateEcosystem(config);
@@ -36,6 +47,15 @@ export const useEcosystemData = () => {
 
     // Initial load
     useEffect(() => {
+        // ⚠️ SKIP loadData on system pages - they manage their own data
+        const systemPages = ['/platforms', '/platforms/natan'];
+        const isSystemPage = systemPages.some(page => currentPath.startsWith(page));
+        
+        if (isSystemPage) {
+            console.log(`⚠️ [useEcosystemData] On system page ${currentPath}, SKIPPING loadData entirely`);
+            return; // Don't load fallback data on system pages
+        }
+
         const loadData = async () => {
             setLoading(true);
             setError(null);
@@ -54,12 +74,18 @@ export const useEcosystemData = () => {
         };
 
         loadData();
-    }, [view, fallbackEcosystemData]);
+    }, [view, fallbackEcosystemData, currentPath]);
 
 
     // Connect UI interaction
     const { openDetailPanel } = useUIStore();
     useEffect(() => {
+        // ⭐ Expose internal navigation for HyperspaceEffect
+        (window as any).navigateInternal = (path: string) => {
+            console.log(`🚀 [navigateInternal] Navigating to: ${path}`);
+            useUIStore.getState().navigate(path);
+        };
+        
         // Fallback
         (window as any).openDetailPanel = (nodeId: string) => {
             openDetailPanel(nodeId);
@@ -67,27 +93,48 @@ export const useEcosystemData = () => {
 
         // Smart Click Handler (Navigation vs Details)
         (window as any).handleNodeClick = (nodeId: string) => {
-            if (!data) return;
-            const node = data[nodeId];
+            console.log(`🖱️ [handleNodeClick] Clicked node: ${nodeId}`);
+            
+            // Use window.ecosystemData instead of state data (for system pages)
+            const currentData = (window as any).ecosystemData || data;
+            console.log(`📦 [handleNodeClick] Using data from:`, currentData === data ? 'React state' : 'window.ecosystemData');
+            
+            if (!currentData) {
+                console.error(`❌ [handleNodeClick] No data available!`);
+                return;
+            }
+            
+            const node = currentData[nodeId];
+            console.log(`🎯 [handleNodeClick] Found node:`, node);
+            
             // Type guard: ensure it's an EcosystemNode, not OrbitalConfig[]
-            if (!node || Array.isArray(node)) return;
+            if (!node || Array.isArray(node)) {
+                console.error(`❌ [handleNodeClick] Invalid node or is array`);
+                return;
+            }
 
             // Get sphere mesh for hyperspace effect
             const nodes = (window as any).nodes;
             const sphereMesh = nodes?.[nodeId]?.glassMesh || nodes?.[nodeId]?.coreMesh;
             const hyperspaceEffect = (window as any).hyperspaceEffect;
+            
+            console.log(`🎨 [handleNodeClick] sphereMesh:`, sphereMesh);
+            console.log(`✨ [handleNodeClick] hyperspaceEffect:`, hyperspaceEffect);
+            console.log(`🛤️ [handleNodeClick] node.route:`, node.route);
 
             // ⭐ Hyperspace whitelist: internal routes that should trigger effect
-            const hyperspaceInternalRoutes = ['/ambiente', '/oracode', '/corporate'];
+            const hyperspaceInternalRoutes = ['/ambiente', '/oracode', '/corporate', '/platforms', '/platforms/natan', '/under-construction'];
 
             // 1. Internal Route -> Check if should trigger hyperspace
             if (node.route && node.route.startsWith('/')) {
+                console.log(`🔍 [handleNodeClick] Internal route detected: ${node.route}`);
+                
                 if (hyperspaceInternalRoutes.includes(node.route) && hyperspaceEffect && sphereMesh) {
                     console.log(`✨ [Hyperspace Internal] Warping to: ${node.route}`);
                     // Trigger hyperspace, then navigate internally
                     hyperspaceEffect.warpToSphere(sphereMesh, node.route, true);
                 } else {
-                    console.log(`🚀 [Direct Navigate] ${node.route}`);
+                    console.log(`🚀 [Direct Navigate] ${node.route} (no hyperspace or missing effect/mesh)`);
                     useUIStore.getState().navigate(node.route);
                 }
                 return;
