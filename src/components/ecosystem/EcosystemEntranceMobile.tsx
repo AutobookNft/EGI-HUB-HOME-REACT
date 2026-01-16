@@ -16,6 +16,7 @@ const ORDERED_LAYER_IDS: EcosystemLayerId[] = [
     'environment',
     'oracode',
     'info',
+    'corporate',
 ];
 
 export const EcosystemEntranceMobile = () => {

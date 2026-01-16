@@ -6,7 +6,8 @@ export type EcosystemLayerId =
     | 'projects'
     | 'environment'
     | 'oracode'
-    | 'info';
+    | 'info'
+    | 'corporate';
 
 export interface Layer {
     id: EcosystemLayerId;

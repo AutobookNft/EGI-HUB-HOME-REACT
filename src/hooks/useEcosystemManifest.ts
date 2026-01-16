@@ -11,7 +11,7 @@ const APP_EGI_URL = import.meta.env.VITE_APP_EGI_URL;
 const APP_INFO_URL = import.meta.env.VITE_APP_INFO_URL;
 
 const FALLBACK_TELEMETRY: Telemetry = {
-    layers: 6,
+    layers: 7,
     nodes: 0,
     modules: 0,
 };
@@ -69,9 +69,17 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         title: 'INFO',
         subtitle: t('mobile.subtitle.info'),
         entryPath: APP_INFO_URL || '/info',
-        secondaryEntryPath: '/corporate',
         level: 6,
         coordinates: t('mobile.coordinates.info'),
+        node: 'Info',
+    },
+    {
+        id: 'corporate',
+        title: 'CORPORATE',
+        subtitle: t('mobile.subtitle.corporate'),
+        entryPath: '/corporate',
+        level: 7,
+        coordinates: t('mobile.coordinates.corporate'),
         node: 'Corporate',
     },
 ];
