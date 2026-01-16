@@ -23,7 +23,7 @@ export const PlatformsPage = () => {
         console.log("📦 [PlatformsPage] platformsSystemData:", platformsSystemData);
         console.log("🔧 [PlatformsPage] platformsOrbitConfig:", platformsOrbitConfig);
         
-        // Pass data AND orbitalConfig separately to window
+        // Pass both data and orbitalConfig to window
         window.ecosystemData = platformsSystemData;
         window.orbitalConfig = platformsOrbitConfig;
         
