@@ -68,7 +68,7 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         id: 'info',
         title: 'INFO',
         subtitle: t('mobile.subtitle.info'),
-        entryPath: APP_INFO_URL || '/info',
+        entryPath: 'https://egi-info.13.53.205.215.sslip.io',
         level: 6,
         coordinates: t('mobile.coordinates.info'),
         node: 'Info',
