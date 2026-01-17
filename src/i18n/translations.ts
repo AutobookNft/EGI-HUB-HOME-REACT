@@ -109,7 +109,7 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
 
         // Mobile - CORPORATE
         'mobile.subtitle.corporate': 'Trasparenza totale',
-        'mobile.description.corporate': 'Chi siamo e chi risponde. Governance duale: Frangette SRL (operatività/tecnologia) + Associazione Frangette APS (valori/20% EPP). Equilibrio impresa-missione che previene greenwashing.',
+        'mobile.description.corporate': 'Chi siamo e chi risponde. Governance duale: Florence EGI SRL (operatività e tecnologia) + Associazione Frangette APS (custode dei valori e tutela 20% EPP). Equilibrio impresa-missione che previene greenwashing.',
 
         // Mobile - Coordinates existing (keep original)
         'mobile.coordinates.hub': 'HUB • Layer: HUB • Nodo: Entrata',
