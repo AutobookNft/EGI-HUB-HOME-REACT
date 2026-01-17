@@ -1,9 +1,7 @@
 import React from 'react';
-import { useI18n } from '@/i18n';
 import { useUIStore } from '@/stores/useUIStore';
 
 export const CorporatePage: React.FC = () => {
-    const { t } = useI18n();
     const navigate = useUIStore((state) => state.navigate);
 
     return (
