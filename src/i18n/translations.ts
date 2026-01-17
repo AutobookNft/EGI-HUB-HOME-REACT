@@ -7,6 +7,7 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'general.cta.enter': 'Entra',
         'general.cta.corporate': 'Corporate',
         'general.scroll_down': 'SCORRI PER SCENDERE',
+        'general.scroll_explore': 'Scorri per esplorare',
         'general.level': 'LEVEL',
         'general.system': 'SYSTEM',
         'general.layer': 'LAYER',
@@ -76,15 +77,41 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'corporate.section2.item3': 'Legal Framework: Struttura legale e compliance',
         'corporate.section2.item4': 'Contatti Diretti: Come raggiungerci',
         'corporate.construction': '🚧 Pagina in costruzione - Contenuti in arrivo',
-        'mobile.subtitle.hub': 'Sistema Nervoso Centrale',
-        'mobile.subtitle.egi': 'NFT avanzati collegati ad asset tangibili e impegno ambientale',
-        'mobile.subtitle.projects': 'Moduli attivi',
-        'mobile.subtitle.environment': 'Sistema operativo',
-        'mobile.subtitle.oracode': 'Dottrina vivente',
-        'mobile.subtitle.info': 'Sistema e governance',
-        'mobile.subtitle.corporate': 'Chi siamo',
-        'mobile.description.hub': 'Coordina infinite piattaforme attraverso il Business Granulare',
-        'mobile.description.egi': 'Se esiste Egizzalo, se lo Egizzi Vale',
+
+        // Mobile - Florence EGI (prima slide)
+        'mobile.subtitle.florence': 'L\'ecosistema che trasforma beni in asset',
+        'mobile.description.florence': 'Non vendi prodotti, vendi asset redditizi a vita. Artisti, imprenditori, chiunque: trasforma opere, prodotti, idee in asset certificati che generano rendita perenne. In autonomia, legalmente valido, a costo zero.',
+        'mobile.coordinates.florence': 'FLORENCE EGI • Layer: Ecosistema • Nodo: Benvenuto',
+
+        // Mobile - HUB
+        'mobile.subtitle.hub': 'Centro nevralgico dell\'ecosistema',
+        'mobile.description.hub': 'Sistema nervoso centrale che garantisce coerenza, uniformità e standard normativi su infinite piattaforme. Centrale di controllo unica che coordina l\'intero organismo.',
+
+        // Mobile - EGI
+        'mobile.subtitle.egi': 'Involucro legale dei tuoi asset',
+        'mobile.description.egi': 'Trasforma il tuo bene in asset certificato: certificato di proprietà, autenticità, utility personalizzate. Certifica idee, vendi asset e riscuoti royalty perenne ad ogni rivendita. A costo zero.',
+
+        // Mobile - PROGETTI
+        'mobile.subtitle.projects': 'Piattaforme verticali per ogni settore',
+        'mobile.description.projects': 'Ogni progetto è una piattaforma completa. EGI come opere d\'arte su marketplace, prodotti ecommerce blockchain, documenti PA con ricerche RAG. Un nuovo concetto di economia.',
+
+        // Mobile - AMBIENTE
+        'mobile.subtitle.environment': 'Impatto ambientale nativo',
+        'mobile.description.environment': 'L\'economia non può essere separata dall\'impegno ambientale. Siamo responsabili del pianeta. Il nostro modello agisce automaticamente: percentuale transazioni destinata a risanamento ambientale certificato.',
+
+        // Mobile - ORACODE
+        'mobile.subtitle.oracode': 'Sistema intelligente di governo',
+        'mobile.description.oracode': 'Serve un sistema cognitivo per un\'impresa così. Oracode definisce le basi sistemiche dell\'ecosistema. Non è una piattaforma. È un organismo.',
+
+        // Mobile - INFO
+        'mobile.subtitle.info': 'Hub informativo in evoluzione',
+        'mobile.description.info': 'Qualunque cosa tu voglia sapere su Florence EGI, qui troverai le risposte. Whitepaper, guide, API reference, documentazione tecnica, tutorial.',
+
+        // Mobile - CORPORATE
+        'mobile.subtitle.corporate': 'Trasparenza totale',
+        'mobile.description.corporate': 'Chi siamo e chi risponde. Governance duale: Frangette SRL (operatività/tecnologia) + Associazione Frangette APS (valori/20% EPP). Equilibrio impresa-missione che previene greenwashing.',
+
+        // Mobile - Coordinates existing (keep original)
         'mobile.coordinates.hub': 'HUB • Layer: HUB • Nodo: Entrata',
         'mobile.coordinates.egi': 'HUB • Layer: EGI • Nodo: Collezione',
         'mobile.coordinates.projects': 'HUB • Layer: Progetti • Nodo: Costellazione',
@@ -691,7 +718,7 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'mobile.subtitle.projects': 'Modules actifs',
         'mobile.subtitle.environment': "Système d'exploitation",
         'mobile.subtitle.oracode': 'Doctrine vivante',
-        'mobile.subtitle.info': 'Système et gouvernance',        'mobile.subtitle.corporate': 'Qui sommes-nous',        'mobile.description.hub': "Coordonne des plateformes infinies à travers l'Affaire Granulaire",
+        'mobile.subtitle.info': 'Système et gouvernance', 'mobile.subtitle.corporate': 'Qui sommes-nous', 'mobile.description.hub': "Coordonne des plateformes infinies à travers l'Affaire Granulaire",
         'mobile.description.egi': 'Si ça existe, faites-le EGI. Si vous le faites EGI, ça vaut',
         'mobile.coordinates.hub': 'HUB • Couche : HUB • Nœud : Entrée',
         'mobile.coordinates.egi': 'HUB • Couche : EGI • Nœud : Collection',

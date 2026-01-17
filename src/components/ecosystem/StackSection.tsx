@@ -12,6 +12,11 @@ type StackSectionProps = {
 
 // Color mapping per layer
 const LAYER_COLORS: Record<string, { primary: string; glow: string; gradient: string }> = {
+    florence: {
+        primary: '#FF6B35',
+        glow: 'rgba(255, 107, 53, 0.3)',
+        gradient: 'radial-gradient(circle at 30% 40%, rgba(255, 107, 53, 0.15) 0%, transparent 60%)',
+    },
     hub: {
         primary: '#FFD700',
         glow: 'rgba(255, 215, 0, 0.3)',
@@ -101,15 +106,15 @@ export const StackSection = ({
             <div className="w-full px-8 max-w-2xl animate-fade-in">
                 {/* Level indicator */}
                 <div className="flex items-center gap-3 text-white/50 text-xs uppercase tracking-[0.4em] mb-8">
-                    <span 
-                        className="inline-flex h-3 w-3 rounded-full animate-pulse" 
+                    <span
+                        className="inline-flex h-3 w-3 rounded-full animate-pulse"
                         style={{ backgroundColor: colors.primary }}
                     />
                     <span>{t('general.level')} {levelValue}</span>
                 </div>
 
                 {/* Titolo MASSICCIO */}
-                <h2 
+                <h2
                     className="text-7xl sm:text-8xl font-bold tracking-tighter text-shimmer mb-6"
                     style={{ lineHeight: '0.9' }}
                 >
@@ -118,7 +123,7 @@ export const StackSection = ({
 
                 {/* Subtitle LEGGIBILE */}
                 {layer.subtitle && (
-                    <p 
+                    <p
                         className="text-lg sm:text-xl font-medium leading-relaxed mb-4"
                         style={{ color: colors.primary }}
                     >
@@ -134,34 +139,44 @@ export const StackSection = ({
                 )}
 
                 {/* Bottoni con glow */}
-                <div className="flex flex-col gap-4">
-                    <button
-                        type="button"
-                        onClick={onPrimaryAction}
-                        className="w-full rounded-full border-2 px-8 py-5 text-base font-bold uppercase tracking-[0.3em] text-white backdrop-blur-md transition-all duration-300 hover:scale-105 animate-glow"
-                        style={{ 
-                            borderColor: colors.primary,
-                            backgroundColor: `${colors.primary}20`,
-                        }}
-                    >
-                        {t('general.cta.enter')}
-                    </button>
-
-                    {onSecondaryAction && (
+                {layer.entryPath && layer.entryPath !== '#' && (
+                    <div className="flex flex-col gap-4">
                         <button
                             type="button"
-                            onClick={onSecondaryAction}
-                            className="w-full rounded-full border border-white/20 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
+                            onClick={onPrimaryAction}
+                            className="w-full rounded-full border-2 px-8 py-5 text-base font-bold uppercase tracking-[0.3em] text-white backdrop-blur-md transition-all duration-300 hover:scale-105 animate-glow"
+                            style={{
+                                borderColor: colors.primary,
+                                backgroundColor: `${colors.primary}20`,
+                            }}
                         >
-                            {t('general.cta.corporate')}
+                            {t('general.cta.enter')}
                         </button>
-                    )}
-                </div>
 
-                {/* Scroll indicator */}
-                <div className="mt-16 text-xs uppercase tracking-[0.5em] text-white/30 flex items-center gap-3">
-                    <span className="h-px w-12 bg-white/20" />
-                    <span>{t('general.scroll_down')}</span>
+                        {onSecondaryAction && (
+                            <button
+                                type="button"
+                                onClick={onSecondaryAction}
+                                className="w-full rounded-full border border-white/20 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white/80 backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
+                            >
+                                {t('general.cta.corporate')}
+                            </button>
+                        )}
+                    </div>
+                )}
+
+                {/* Scroll indicator - ENHANCED */}
+                <div className="mt-16 flex flex-col items-center gap-4">
+                    <span className="text-sm uppercase tracking-[0.4em] text-white/70 font-semibold animate-pulse">
+                        {t('general.scroll_explore')}
+                    </span>
+                    <div className="flex items-center gap-3 animate-bounce">
+                        <span className="h-px w-12 bg-white/30" />
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: colors.primary }}>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                        <span className="h-px w-12 bg-white/30" />
+                    </div>
                 </div>
             </div>
 

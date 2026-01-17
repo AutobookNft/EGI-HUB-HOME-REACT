@@ -10,6 +10,7 @@ import { TelemetryStrip } from './TelemetryStrip';
 import { StackSection } from './StackSection';
 
 const ORDERED_LAYER_IDS: EcosystemLayerId[] = [
+    'florence',
     'hub',
     'egi',
     'projects',

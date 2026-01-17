@@ -1,6 +1,7 @@
 export type ProjectStatus = 'active' | 'paused' | 'planned' | 'archived' | 'unknown';
 
 export type EcosystemLayerId =
+    | 'florence'
     | 'hub'
     | 'egi'
     | 'projects'
