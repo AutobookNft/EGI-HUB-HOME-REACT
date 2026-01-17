@@ -5,7 +5,7 @@ export const CorporatePage: React.FC = () => {
     const navigate = useUIStore((state) => state.navigate);
 
     return (
-        <div className="min-h-screen bg-dark text-white overflow-y-auto">
+        <div className="h-screen bg-dark text-white overflow-y-scroll">
             {/* Back Button - Mobile optimized */}
             <div className="sticky top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-light/10 p-4">
                 <button
