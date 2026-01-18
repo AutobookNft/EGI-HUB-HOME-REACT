@@ -128,6 +128,17 @@ export const StackSection = ({
                     <span>{t('general.level')} {levelValue}</span>
                 </div>
 
+                {/* Hero image per florence - NELLO SPAZIO TRA LEVEL E TITOLO */}
+                {layer.id === 'florence' && (
+                    <div className="mb-6">
+                        <img
+                            src="/assets/hero-images/florence-egi-hero.png"
+                            alt="Florence EGI Hero"
+                            className="w-full h-auto rounded-lg"
+                        />
+                    </div>
+                )}
+
                 {/* Titolo MASSICCIO */}
                 <h2
                     className="text-7xl sm:text-8xl font-bold tracking-tighter text-shimmer mb-6"
