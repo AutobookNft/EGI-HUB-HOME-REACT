@@ -115,7 +115,7 @@ export const StackSection = ({
 
                 {/* Hero image per florence - NELLO SPAZIO TRA LEVEL E TITOLO */}
                 {layer.id === 'florence' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/florence-egi-hero.png"
                             alt="Florence EGI Hero"
@@ -126,7 +126,7 @@ export const StackSection = ({
 
                 {/* Hero image per hub */}
                 {layer.id === 'hub' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/hub-hero.png"
                             alt="HUB Hero"
@@ -137,7 +137,7 @@ export const StackSection = ({
 
                 {/* Hero image per egi */}
                 {layer.id === 'egi' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/egi-hero.png"
                             alt="EGI Hero"
@@ -148,7 +148,7 @@ export const StackSection = ({
 
                 {/* Hero image per projects */}
                 {layer.id === 'projects' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/projects-hero.png"
                             alt="Projects Hero"
@@ -159,7 +159,7 @@ export const StackSection = ({
 
                 {/* Hero image per environment */}
                 {layer.id === 'environment' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/environment-hero.png"
                             alt="Environment Hero"
@@ -170,7 +170,7 @@ export const StackSection = ({
 
                 {/* Hero image per oracode */}
                 {layer.id === 'oracode' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/oracode-hero.png"
                             alt="Oracode Hero"
@@ -181,7 +181,7 @@ export const StackSection = ({
 
                 {/* Hero image per info */}
                 {layer.id === 'info' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/info-hero.png"
                             alt="Info Hero"
@@ -192,7 +192,7 @@ export const StackSection = ({
 
                 {/* Hero image per corporate */}
                 {layer.id === 'corporate' && (
-                    <div className="mb-6">
+                    <div className="mb-8 sm:mb-6">
                         <img
                             src="/assets/hero-images/corporate-hero.png"
                             alt="Corporate Hero"
@@ -254,7 +254,7 @@ export const StackSection = ({
                 )}
 
                 {/* Scroll indicator - ENHANCED */}
-                <div className="mt-16 flex flex-col items-center gap-4">
+                <div className="mt-20 sm:mt-16 flex flex-col items-center gap-4">
                     <span className="text-sm uppercase tracking-[0.4em] text-white/70 font-semibold animate-pulse">
                         {t('general.scroll_explore')}
                     </span>
