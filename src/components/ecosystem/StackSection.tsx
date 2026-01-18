@@ -254,7 +254,7 @@ export const StackSection = ({
                 )}
 
                 {/* Scroll indicator - ENHANCED */}
-                <div className="mt-12 sm:mt-16 flex flex-col items-center gap-4">
+                <div className="mt-16 flex flex-col items-center gap-4">
                     <span className="text-sm uppercase tracking-[0.4em] text-white/70 font-semibold animate-pulse">
                         {t('general.scroll_explore')}
                     </span>
