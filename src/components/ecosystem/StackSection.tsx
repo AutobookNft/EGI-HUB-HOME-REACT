@@ -103,6 +103,21 @@ export const StackSection = ({
                 }
             `}</style>
 
+            {/* Hero image background per florence layer */}
+            {layer.id === 'florence' && (
+                <>
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                            backgroundImage: 'url(/assets/hero-images/florence-egi-hero.png)',
+                            backgroundPosition: 'center 40%',
+                            opacity: 0.5,
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+                </>
+            )}
+
             <div className="w-full px-8 max-w-2xl animate-fade-in">
                 {/* Level indicator */}
                 <div className="flex items-center gap-3 text-white/50 text-xs uppercase tracking-[0.4em] mb-8">
