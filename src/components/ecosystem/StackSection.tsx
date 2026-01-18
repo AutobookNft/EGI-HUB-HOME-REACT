@@ -179,6 +179,17 @@ export const StackSection = ({
                     </div>
                 )}
 
+                {/* Hero image per info */}
+                {layer.id === 'info' && (
+                    <div className="mb-6">
+                        <img
+                            src="/assets/hero-images/info-hero.png"
+                            alt="Info Hero"
+                            className="w-full h-auto rounded-lg"
+                        />
+                    </div>
+                )}
+
                 {/* Titolo MASSICCIO */}
                 <h2
                     className="text-7xl sm:text-8xl font-bold tracking-tighter text-shimmer mb-6"
