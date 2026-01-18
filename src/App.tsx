@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { EcosystemView } from '@/features/ecosystem/EcosystemView';
 import { EcosystemEntranceMobile } from '@/components/ecosystem/EcosystemEntranceMobile';
 import { AmbientePage } from '@/pages/AmbientePage';
 import { OracodePage } from '@/pages/OracodePage';
@@ -74,35 +73,35 @@ function App() {
     // Routing logic
     const renderPage = () => {
         console.log('🔍 [renderPage] currentPath:', currentPath, 'isMobile:', isMobile);
-        
+
         // Mobile-specific pages
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
         if (isMobile && currentPath === '/platforms') return <PlatformsMobilePage />;
         if (isMobile && currentPath === '/platforms/natan') return <NatanMobilePage />;
-        
+
         // Static pages (desktop or responsive)
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
-        
+
         // Desktop-specific pages
         if (currentPath === '/platforms') return <PlatformsPage />;
         if (currentPath === '/platforms/natan') return <NatanSystemPage />;
         if (currentPath === '/projects') return <PlatformsPage />;
 
-        // Home page routing
+        // Home page routing - Always mobile home (no more 3D view)
         const path = typeof window !== 'undefined' ? window.location.pathname : currentPath;
         const isHomePath = path === '/' || currentPath === '/' || path.endsWith('/index.html');
-        
-        if (isMobile && isHomePath) {
-            console.log('📱 Rendering mobile home');
+
+        if (isHomePath) {
+            console.log('🏠 Rendering home (mobile interface)');
             return <EcosystemEntranceMobile />;
         }
-        
-        // Default: 3D Ecosystem View (desktop home)
-        console.log('🖥️ Rendering desktop 3D view');
-        return <EcosystemView />;
+
+        // Default fallback: mobile home
+        console.log('🏠 Fallback to mobile home');
+        return <EcosystemEntranceMobile />;
     };
 
     return (
