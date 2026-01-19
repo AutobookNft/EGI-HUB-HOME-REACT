@@ -65,7 +65,7 @@ export const StackSection = ({
         <section
             ref={setRef}
             data-index={index}
-            className="relative h-dvh snap-start flex items-center justify-center"
+            className="relative min-h-dvh snap-start flex items-center justify-center"
             style={{ background: colors.gradient }}
         >
             <style>{`
