@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemEntranceMobile } from '@/components/ecosystem/EcosystemEntranceMobile';
-import { EcosystemView } from '@/components/ecosystem/EcosystemView';
+import { EcosystemView } from '@/features/ecosystem/EcosystemView';
 import { AmbientePage } from '@/pages/AmbientePage';
 import { OracodePage } from '@/pages/OracodePage';
 import { CorporatePage } from '@/pages/CorporatePage';
