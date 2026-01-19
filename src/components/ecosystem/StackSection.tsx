@@ -103,7 +103,7 @@ export const StackSection = ({
                 }
             `}</style>
 
-            <div className="w-full px-8 max-w-2xl animate-fade-in">
+            <div className="w-full px-8 max-w-2xl animate-fade-in pb-32 sm:pb-8">
                 {/* Level indicator */}
                 <div className="flex items-center gap-3 text-white/50 text-xs uppercase tracking-[0.4em] mb-8">
                     <span
