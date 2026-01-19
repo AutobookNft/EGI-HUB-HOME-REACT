@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemEntranceMobile } from '@/components/ecosystem/EcosystemEntranceMobile';
+import { EcosystemView } from '@/components/ecosystem/EcosystemView';
 import { AmbientePage } from '@/pages/AmbientePage';
 import { OracodePage } from '@/pages/OracodePage';
 import { CorporatePage } from '@/pages/CorporatePage';
@@ -95,13 +96,13 @@ function App() {
         const isHomePath = path === '/' || currentPath === '/' || path.endsWith('/index.html');
 
         if (isHomePath) {
-            console.log('🏠 Rendering home (mobile interface)');
-            return <EcosystemEntranceMobile />;
+            console.log('🏠 Rendering home - desktop 3D view');
+            return <EcosystemView />;
         }
 
-        // Default fallback: mobile home
-        console.log('🏠 Fallback to mobile home');
-        return <EcosystemEntranceMobile />;
+        // Default fallback: desktop 3D
+        console.log('🏠 Fallback to desktop 3D view');
+        return <EcosystemView />;
     };
 
     return (
