@@ -1,36 +1,40 @@
-<!doctype html>
-<html lang="it">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Florence EGI - Ecological Goods Invent">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <title>Florence EGI - Hub</title>
 
-  <!-- Fonts (come originale) -->
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap"
-    rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-  <!-- Import map per Three.js CDN (come originale) -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
-      "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js@23.1.1/dist/tween.esm.js"
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0A0A0A;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      color: white;
     }
-  }
-  </script>
 
-  <!-- GSAP Animation Library (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-  <title>HUB-EGI | Ecosystem Control</title>
+    #root {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Engine 3D originale DISABLED - usando solo mobile home -->
-  <!-- DISABLED: Dynamic data loading -->
-  <!-- <script type="module" src="/ecosystem_data.js?v=emergency_fix"></script> -->
-  <!-- <script type="module" src="/engine.js?v=emergency_fix"></script> -->
+  <!-- Engine 3D riabilitato per desktop -->
+  <script type="module" src="/ecosystem_data.js?v=emergency_fix"></script>
+  <script type="module" src="/engine.js?v=emergency_fix"></script>
 
   <!-- React UI overlay -->
   <div id="root"></div>
