@@ -84,7 +84,9 @@ function App() {
         // Old mobile pages (deprecated - keep for fallback)
 
         // 🚨 FORCE REDIRECT: Se siamo mobile ma su path vecchi, vai a Home
+        // 🚨 FORCE REDIRECT: Se siamo mobile ma su path vecchi, vai a Home
         if (isMobile && (currentPath === '/hub-mobile' || currentPath === '/hub')) {
+            // Clean URL history without reload
             window.history.replaceState(null, '', '/');
             return <MobileHomePage />;
         }

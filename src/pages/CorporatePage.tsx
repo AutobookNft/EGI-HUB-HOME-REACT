@@ -9,7 +9,7 @@ export const CorporatePage: React.FC = () => {
             {/* Back Button - Mobile optimized */}
             <div className="sticky top-0 z-50 bg-dark/95 backdrop-blur-sm border-b border-light/10 p-4">
                 <button
-                    onClick={() => navigate('/hub-mobile')}
+                    onClick={() => navigate('/')}
                     className="flex items-center gap-2 px-3 py-2 bg-dark-light border border-light rounded-lg hover:bg-light/10 transition-colors active:scale-95"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
