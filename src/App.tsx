@@ -33,34 +33,41 @@ function App() {
     console.log(`🧭 [App] Rendering`);
     const currentPath = useUIStore((state) => state.currentPath);
     const navigate = useUIStore((state) => state.navigate);
-    const [isMobile, setIsMobile] = useState(false);
+    // Inizializza isMobile controllando window subito, se possibile, per evitare FOUC (Flash of Unstyled Content)
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        // Check rapido sincrono iniziale
+        return window.matchMedia('(max-width: 768px)').matches ||
+            /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
+    });
 
+    // Per sicurezza, usiamo useLayoutEffect o useEffect per raffinare la stima o gestire resize
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        const media = window.matchMedia('(max-width: 768px)');
 
+        const media = window.matchMedia('(max-width: 768px)');
         const handleViewportChange = () => {
+            // Logica più robusta per determinare mobile reale
             const uaMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
             const uaDataMobile = (window.navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData?.mobile;
-            const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+            const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches; // Touchscreens
 
             const mobileDetected =
                 media.matches ||
-                hasCoarsePointer ||
+                (hasCoarsePointer && window.innerWidth < 1024) || // Touch devices piccoli
                 uaMobile ||
                 uaDataMobile === true;
 
             setIsMobile(mobileDetected);
-
-            // No auto-redirect to /hub-mobile - new mobile UI renders on /
-            // Old /hub-mobile route kept for manual access only
         };
 
-        handleViewportChange();
+        handleViewportChange(); // Esegui subito una volta per correggere eventuali mis-match iniziali
         media.addEventListener('change', handleViewportChange);
+        window.addEventListener('resize', handleViewportChange); // Ascolta anche resize generale per sicurezza
 
         return () => {
             media.removeEventListener('change', handleViewportChange);
+            window.removeEventListener('resize', handleViewportChange);
         };
     }, [currentPath, navigate]);
 
