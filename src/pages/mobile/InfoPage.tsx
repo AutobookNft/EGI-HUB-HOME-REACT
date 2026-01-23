@@ -1,27 +1,34 @@
 import { ScreenContainer } from '@/components/mobile/layout/ScreenContainer';
-import { TabBar } from '@/components/mobile/layout/TabBar';
+import { Header } from '@/components/mobile/layout/Header';
+import { Footer } from '@/components/mobile/layout/Footer';
 import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 
 export const InfoPage = () => {
     return (
         <>
-            <ScreenContainer>
-                <div className="px-5 py-8 space-y-6">
-                    <div className="text-center">
-                        <h1 className="text-3xl font-bold text-white font-rajdhani">
-                            Info
-                        </h1>
-                    </div>
+            <Header />
+            <ScreenContainer className="bg-black text-white">
+                <div className="pt-24 px-6 pb-24 text-center">
+                    <div className="max-w-xs mx-auto space-y-6">
+                        <h1 className="text-3xl font-light text-white">Documentazione</h1>
 
-                    <LiquidGlassCard className="p-5 text-center text-text-muted">
-                        <p>[TBD - Placeholder content]</p>
-                        <p className="text-xs mt-2">
-                            (Use external EGI-INFO site via Tab Bar)
-                        </p>
-                    </LiquidGlassCard>
+                        <LiquidGlassCard className="p-8 space-y-4" variant="dark">
+                            <p className="text-gray-400 text-sm leading-relaxed">
+                                La documentazione tecnica completa è disponibile sul portale EGI INFO.
+                            </p>
+                            <a
+                                href="https://egi-info.13.53.205.215.sslip.io"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full py-3 bg-white text-black font-bold text-sm rounded hover:bg-gray-200 transition-colors"
+                            >
+                                Vai al Portale Info ↗
+                            </a>
+                        </LiquidGlassCard>
+                    </div>
                 </div>
+                <Footer />
             </ScreenContainer>
-            <TabBar />
         </>
     );
 };

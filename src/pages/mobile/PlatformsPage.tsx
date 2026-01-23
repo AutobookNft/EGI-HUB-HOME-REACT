@@ -1,9 +1,10 @@
 import { ScreenContainer } from '@/components/mobile/layout/ScreenContainer';
-import { TabBar } from '@/components/mobile/layout/TabBar';
+import { Header } from '@/components/mobile/layout/Header';
+import { Footer } from '@/components/mobile/layout/Footer';
 import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { platforms } from '@/data/content/platforms';
 import { useI18n } from '@/i18n';
-import { ExternalLink, Tag } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export const PlatformsPage = () => {
     const { locale } = useI18n();
@@ -11,69 +12,73 @@ export const PlatformsPage = () => {
 
     return (
         <>
-            <ScreenContainer>
-                {/* Top Header Fixed */}
-                <div className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md px-6 py-5 border-b border-white/[0.05]">
-                    <h1 className="text-lg font-medium text-white tracking-wide">Piattaforme</h1>
-                </div>
-
-                <div className="px-6 pt-24 pb-32 space-y-8">
-                    <div className="space-y-1">
-                        <h2 className="text-3xl font-light text-white">Ecosistema</h2>
-                        <p className="text-sm text-gray-400">Strumenti decentralizzati per il valore.</p>
+            <Header />
+            <ScreenContainer className="bg-black text-white">
+                <div className="pt-24 px-6 pb-12">
+                    {/* Hero interna */}
+                    <div className="space-y-4 mb-12">
+                        <span className="text-xs uppercase tracking-widest text-primary font-bold">Ecosistema</span>
+                        <h1 className="text-4xl font-light text-white leading-tight">Piattaforme</h1>
+                        <p className="text-sm text-gray-500 max-w-[90%] font-light leading-relaxed">
+                            Strumenti decentralizzati per certificare valore nella PA e nell'Arte.
+                        </p>
                     </div>
 
-                    <div className="grid gap-4">
+                    <div className="grid gap-6">
                         {platformsList.map((platform) => (
                             <LiquidGlassCard
                                 key={platform.id}
-                                className="p-0 group"
+                                className="p-0 group overflow-hidden border border-white/10"
+                                variant="dark"
                                 onClick={() => {
                                     if (platform.status === 'active') {
                                         window.open(platform.url, '_blank', 'noopener,noreferrer');
                                     }
                                 }}
                             >
+                                {/* Visual Header Colored */}
+                                <div className={`h-2 bg-gradient-to-r ${platform.status === 'active' ? 'from-primary to-transparent' : 'from-gray-700 to-transparent'}`} />
+
                                 <div className="p-6">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl font-rajdhani font-bold text-white">
-                                            {platform.name.substring(0, 2).toUpperCase()}
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl">
+                                            {platform.icon || platform.name.substring(0, 1)}
                                         </div>
                                         {platform.status === 'active' ? (
-                                            <div className="bg-primary/10 text-primary px-2 py-1 rounded text-[10px] font-medium tracking-wide border border-primary/20 uppercase">
-                                                Active
+                                            <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border border-primary/20 uppercase">
+                                                Live
                                             </div>
                                         ) : (
-                                            <div className="bg-white/5 text-gray-500 px-2 py-1 rounded text-[10px] font-medium tracking-wide border border-white/10 uppercase">
+                                            <div className="bg-white/5 text-gray-500 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border border-white/10 uppercase">
                                                 Coming Soon
                                             </div>
                                         )}
                                     </div>
 
-                                    <h3 className="text-lg font-medium text-white mb-1 group-hover:text-primary transition-colors">
+                                    <h3 className="text-2xl font-light text-white mb-2 group-hover:text-primary transition-colors">
                                         {platform.name}
                                     </h3>
-                                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+                                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">
                                         {platform.category}
                                     </p>
-                                    <p className="text-sm text-gray-400 leading-relaxed">
+                                    <p className="text-sm text-gray-400 leading-relaxed font-light">
                                         {platform.description}
                                     </p>
                                 </div>
 
                                 {/* Action Bar */}
                                 {platform.status === 'active' && (
-                                    <div className="border-t border-white/[0.05] px-6 py-3 bg-white/[0.02] flex items-center justify-between text-xs text-gray-400 group-hover:text-white transition-colors">
-                                        <span>Visita piattaforma</span>
-                                        <ExternalLink className="w-3 h-3" />
+                                    <div className="border-t border-white/5 px-6 py-4 bg-white/[0.02] flex items-center justify-between text-xs text-gray-400 group-hover:text-white transition-colors">
+                                        <span className="uppercase tracking-widest font-medium">Access Platform</span>
+                                        <ExternalLink className="w-4 h-4" />
                                     </div>
                                 )}
                             </LiquidGlassCard>
                         ))}
                     </div>
                 </div>
+                <Footer />
             </ScreenContainer>
-            <TabBar />
         </>
     );
 };
