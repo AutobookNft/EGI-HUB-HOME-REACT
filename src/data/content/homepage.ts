@@ -4,6 +4,7 @@ export interface HomepageContent {
     hero: {
         headline: string;
         subheadline: string;
+        badge: string;
         cta_primary: string;
         cta_secondary: string;
     };
@@ -29,6 +30,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     it: {
         // Hero (linee 14-16 Fondamenti)
         hero: {
+            badge: "Equilibrium Protocol",
             headline: "Dove l'opera trova la sua forma completa.",
             subheadline: "Proteggiamo, certifichiamo e attiviamo il valore reale attraverso la tecnologia Blockchain.",
             cta_primary: "Esplora Piattaforme",
@@ -67,6 +69,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     // Altre lingue TBD post-approvazione IT
     en: {
         hero: {
+            badge: "[TBD]",
             headline: "[TBD]",
             subheadline: "[TBD]",
             cta_primary: "Explore Platforms",
@@ -83,25 +86,25 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     },
 
     de: {
-        hero: { headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
+        hero: { badge: "[TBD]", headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
         pillars: { title: "[TBD]", items: [] },
         socialProof: { title: "[TBD]", metrics: [] }
     },
 
     es: {
-        hero: { headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
+        hero: { badge: "[TBD]", headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
         pillars: { title: "[TBD]", items: [] },
         socialProof: { title: "[TBD]", metrics: [] }
     },
 
     fr: {
-        hero: { headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
+        hero: { badge: "[TBD]", headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
         pillars: { title: "[TBD]", items: [] },
         socialProof: { title: "[TBD]", metrics: [] }
     },
 
     pt: {
-        hero: { headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
+        hero: { badge: "[TBD]", headline: "[TBD]", subheadline: "[TBD]", cta_primary: "[TBD]", cta_secondary: "[TBD]" },
         pillars: { title: "[TBD]", items: [] },
         socialProof: { title: "[TBD]", metrics: [] }
     }

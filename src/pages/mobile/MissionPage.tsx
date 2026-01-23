@@ -5,9 +5,10 @@ import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { missionContent } from '@/data/content/mission';
 import { useI18n } from '@/i18n';
 import { Target, Users, Globe } from 'lucide-react';
+import { SeoHead } from '@/components/common/SeoHead';
 
 export const MissionPage = () => {
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
     const content = missionContent[locale];
 
     const getIcon = (i: number) => {
@@ -18,6 +19,20 @@ export const MissionPage = () => {
 
     return (
         <>
+            <SeoHead
+                title={t('mission.hero.label')}
+                description={content.vision}
+                type="article"
+                schema={{
+                    "@type": "AboutPage",
+                    "mainEntity": {
+                        "@type": "Organization",
+                        "name": "Florence EGI",
+                        "foundingDate": "2024",
+                        "description": content.vision
+                    }
+                }}
+            />
             <Header />
             <ScreenContainer className="bg-black text-white">
                 <div className="pt-24 px-6 pb-12">
@@ -25,7 +40,7 @@ export const MissionPage = () => {
                     {/* Hero Text */}
                     <div className="space-y-8 mb-16">
                         <div className="space-y-4">
-                            <span className="text-xs uppercase tracking-widest text-primary font-bold">La Nostra Visione</span>
+                            <span className="text-xs uppercase tracking-widest text-primary font-bold">{t('mission.hero.label')}</span>
                             <h1 className="text-4xl font-light text-white leading-[1.2]">
                                 {content.hero.title}
                             </h1>
@@ -40,7 +55,7 @@ export const MissionPage = () => {
 
                     {/* Values */}
                     <div className="space-y-6 mb-16">
-                        <h3 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-4">Core Values</h3>
+                        <h3 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-4">{t('mission.values.title')}</h3>
                         <div className="grid gap-4">
                             {content.values.map((value, idx) => (
                                 <LiquidGlassCard key={idx} className="p-6 flex flex-col gap-4" variant="dark">
@@ -60,8 +75,8 @@ export const MissionPage = () => {
                     <div className="space-y-6">
                         <h3 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-4">{content.roadmap.title}</h3>
                         <div className="p-8 text-center border border-dashed border-white/20 rounded-xl bg-white/5">
-                            <span className="text-gray-400 block mb-2 font-mono text-xs uppercase">Milestones</span>
-                            <p className="text-white font-light">Roadmap strategica in definizione (Q1-Q4 2026)</p>
+                            <span className="text-gray-400 block mb-2 font-mono text-xs uppercase">{t('mission.roadmap.label')}</span>
+                            <p className="text-white font-light">{t('mission.roadmap.text')}</p>
                         </div>
                     </div>
 

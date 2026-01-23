@@ -7,13 +7,13 @@ import config from '@/utils/config';
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useUIStore((state) => state.navigate);
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
 
     const menuItems = [
-        { label: 'Home', path: '/' },
-        { label: 'Piattaforme', path: '/platforms' },
-        { label: 'Mission', path: '/mission' },
-        { label: 'Tecnologia', path: '/tech' },
+        { label: t('nav.home'), path: '/' },
+        { label: t('nav.platforms'), path: '/platforms' },
+        { label: t('nav.mission'), path: '/mission' },
+        { label: t('nav.tech'), path: '/tech' },
     ];
 
     const handleNav = (path: string) => {
@@ -24,13 +24,16 @@ export const Header = () => {
     return (
         <>
             {/* Navbar Fixed - Translucent */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-transparent pb-4 pt-4">
+            {/* Navbar Fixed - Translucent */}
+            <nav
+                className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black via-black/80 to-transparent transition-all duration-300 pt-6 pb-4"
+            >
                 <div className="px-6 flex items-center justify-between">
                     <div className="flex items-center gap-3" onClick={() => navigate('/')}>
                         <img src={config.logoPath} alt={config.appName} className="h-10 w-auto" />
                         <span className="font-rajdhani font-bold text-xl tracking-wider text-white drop-shadow-md hidden sm:block">FLORENCE<span className="text-primary">.EGI</span></span>
                     </div>
-                    <button onClick={() => setIsOpen(true)} className="text-white p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
+                    <button onClick={() => setIsOpen(true)} className="text-white p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10" aria-label={t('general.open_menu') || "Open menu"}>
                         <Menu className="w-6 h-6" />
                     </button>
                 </div>
@@ -43,7 +46,7 @@ export const Header = () => {
                         <div className="font-rajdhani font-bold text-xl tracking-wider text-white">
                             FLORENCE<span className="text-primary">.EGI</span>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <button onClick={() => setIsOpen(false)} className="text-white p-2 rounded-full hover:bg-white/10 transition-colors" aria-label={t('general.close_menu') || "Close menu"}>
                             <X className="w-6 h-6" />
                         </button>
                     </div>

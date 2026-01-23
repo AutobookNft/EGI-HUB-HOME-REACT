@@ -5,23 +5,34 @@ import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { techContent } from '@/data/content/tech';
 import { useI18n } from '@/i18n';
 import { Hexagon, Layers, ShieldCheck, Cpu, Code2, Database } from 'lucide-react';
+import { SeoHead } from '@/components/common/SeoHead';
 
 export const TechPage = () => {
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
     const content = techContent[locale];
 
     return (
         <>
+            <SeoHead
+                title={t('tech.hero.title')}
+                description={content.oracode.quote}
+                schema={{
+                    "@type": "TechArticle",
+                    "headline": t('tech.hero.title'),
+                    "alternativeHeadline": t('tech.hero.subtitle'),
+                    "tech": ["Algorand", "React", "Oracode"]
+                }}
+            />
             <Header />
             <ScreenContainer className="bg-black text-white">
                 <div className="pt-24 px-6 pb-12 space-y-16">
 
                     {/* Header */}
                     <div className="space-y-4">
-                        <span className="text-xs uppercase tracking-widest text-primary font-bold">Infrastructure</span>
+                        <span className="text-xs uppercase tracking-widest text-primary font-bold">{t('tech.hero.label')}</span>
                         <h2 className="text-4xl font-light text-white leading-tight">
-                            Architettura<br />
-                            <span className="text-gray-500">Hub & Spoke</span>
+                            {t('tech.hero.title')}<br />
+                            <span className="text-gray-500">{t('tech.hero.subtitle')}</span>
                         </h2>
                     </div>
 
@@ -29,7 +40,7 @@ export const TechPage = () => {
                     <section className="space-y-6">
                         <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                             <Hexagon className="w-5 h-5 text-primary" />
-                            <h3 className="text-xs uppercase tracking-[0.2em] text-white font-bold">Oracode System</h3>
+                            <h3 className="text-xs uppercase tracking-[0.2em] text-white font-bold">{t('tech.layer.oracode')}</h3>
                         </div>
 
                         <div className="space-y-8">
@@ -54,7 +65,7 @@ export const TechPage = () => {
                     <section className="space-y-6">
                         <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                             <Layers className="w-5 h-5 text-emerald-400" />
-                            <h3 className="text-xs uppercase tracking-[0.2em] text-white font-bold">Blockchain Layer</h3>
+                            <h3 className="text-xs uppercase tracking-[0.2em] text-white font-bold">{t('tech.layer.blockchain')}</h3>
                         </div>
 
                         <LiquidGlassCard className="p-8 bg-gradient-to-br from-emerald-950/30 to-black border-emerald-500/20">
@@ -76,17 +87,17 @@ export const TechPage = () => {
                     <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-12">
                         <div className="text-center space-y-3">
                             <Cpu className="text-white w-8 h-8 mx-auto stroke-1" />
-                            <span className="block text-xs uppercase tracking-widest text-gray-500">Frontend</span>
+                            <span className="block text-xs uppercase tracking-widest text-gray-500">{t('tech.stats.frontend')}</span>
                             <span className="block text-sm text-white">React</span>
                         </div>
                         <div className="text-center space-y-3">
                             <Code2 className="text-white w-8 h-8 mx-auto stroke-1" />
-                            <span className="block text-xs uppercase tracking-widest text-gray-500">Backend</span>
+                            <span className="block text-xs uppercase tracking-widest text-gray-500">{t('tech.stats.backend')}</span>
                             <span className="block text-sm text-white">Laravel</span>
                         </div>
                         <div className="text-center space-y-3">
                             <Database className="text-white w-8 h-8 mx-auto stroke-1" />
-                            <span className="block text-xs uppercase tracking-widest text-gray-500">Data</span>
+                            <span className="block text-xs uppercase tracking-widest text-gray-500">{t('tech.stats.data')}</span>
                             <span className="block text-sm text-white">Postgres</span>
                         </div>
                     </div>

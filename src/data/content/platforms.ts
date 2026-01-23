@@ -14,6 +14,8 @@ export interface Platform {
 }
 
 // Fonte: /home/fabio/EGI-HUB/docs/01_PLATFORME_ARCHITECTURE_03.md (linee 171-188)
+import config from '@/utils/config';
+
 export const platforms: Record<SupportedLocale, Platform[]> = {
     it: [
         // NATAN_LOC (linee 172, Architecture doc)
@@ -24,7 +26,7 @@ export const platforms: Record<SupportedLocale, Platform[]> = {
             description: 'AI Assistant per PA (Comuni, Enti)',
             status: 'active',
             category: 'Pubblica Amministrazione',
-            url: 'https://natan-loc.13.53.205.215.sslip.io',
+            url: config.natanUrl,
             icon: '📄',
             color: '#FF4500',
             features: [] // [TBD - da definire]
@@ -38,7 +40,7 @@ export const platforms: Record<SupportedLocale, Platform[]> = {
             description: 'Piattaforma NFT per artisti',
             status: 'coming_soon', // "futuro" in Architecture doc
             category: 'Arte & Collezionismo',
-            url: 'https://egi.13.53.205.215.sslip.io',
+            url: config.florenceUrl,
             icon: '🎨',
             color: '#00FF88',
             features: [] // [TBD]
@@ -52,7 +54,7 @@ export const platforms: Record<SupportedLocale, Platform[]> = {
             description: 'Orchestratore centrale',
             status: 'active',
             category: 'Infrastructure',
-            url: 'https://egi-hub.13.53.205.215.sslip.io',
+            url: config.infoUrl,
             icon: '⚙️',
             color: '#FFD700',
             features: [] // [TBD]

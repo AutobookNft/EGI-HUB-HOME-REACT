@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
 import { AmbientePage } from '@/pages/AmbientePage';
@@ -118,9 +119,11 @@ function App() {
     };
 
     return (
-        <QueryClientProvider client={queryClient}>
-            {renderPage()}
-        </QueryClientProvider>
+        <HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+                {renderPage()}
+            </QueryClientProvider>
+        </HelmetProvider>
     );
 }
 

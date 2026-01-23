@@ -1,12 +1,30 @@
 interface Config {
     logoPath: string;
+    heroPath: string;
+    projectsHeroPath: string;
+    florenceHeroPath: string;
+    infoHeroPath: string;
     appName: string;
+    appUrl: string;
+    infoUrl: string;
+    florenceUrl: string;
+    natanUrl: string;
+    hubUrl: string;
     isProduction: boolean;
 }
 
 const config: Config = {
     logoPath: import.meta.env.VITE_APP_LOGO_PATH || '/assets/logo/FEGI-logo.png',
+    heroPath: import.meta.env.VITE_APP_HERO_PATH || '/assets/hero-images/hub-hero.png',
+    projectsHeroPath: import.meta.env.VITE_APP_PROJECTS_HERO_PATH || '/assets/hero-images/projects-hero.png',
+    florenceHeroPath: import.meta.env.VITE_APP_FLORENCE_HERO_PATH || '/assets/hero-images/florence-egi-hero.png',
+    infoHeroPath: import.meta.env.VITE_APP_INFO_HERO_PATH || '/assets/hero-images/info-hero.png',
     appName: import.meta.env.VITE_APP_NAME || 'FlorenceEGI',
+    appUrl: import.meta.env.VITE_APP_URL || 'https://egi.13.53.205.215.sslip.io',
+    infoUrl: import.meta.env.VITE_INFO_URL || 'https://egi-info.13.53.205.215.sslip.io',
+    florenceUrl: import.meta.env.VITE_FLORENCE_URL || 'https://egi.13.53.205.215.sslip.io', // Main EGI Art
+    natanUrl: import.meta.env.VITE_NATAN_URL || 'https://natan-loc.13.53.205.215.sslip.io',
+    hubUrl: import.meta.env.VITE_HUB_URL || 'https://egi-hub.13.53.205.215.sslip.io',
     isProduction: import.meta.env.PROD
 };
 

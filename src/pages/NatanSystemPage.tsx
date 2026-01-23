@@ -5,6 +5,8 @@
  */
 
 import { useEffect } from 'react';
+import { useI18n } from '@/i18n';
+import { SeoHead } from '@/components/common/SeoHead';
 import { TopBar } from '@/components/layout/TopBar';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { MissionControl } from '@/components/layout/MissionControl';
@@ -22,6 +24,7 @@ declare global {
 
 export const NatanSystemPage = () => {
     console.log(`🪐 [NatanSystemPage] Rendering NATAN Subsystem`);
+    const { t } = useI18n();
 
     useEffect(() => {
         // Build NATAN solar system when component mounts
@@ -30,13 +33,13 @@ export const NatanSystemPage = () => {
             const fullData = {
                 ...natanSystemData
             };
-            
+
             // Remove orbitalConfig from data keys (it's not a node)
             delete fullData.orbitalConfig;
-            
+
             // Re-add as separate property
             fullData.orbitalConfig = natanOrbitConfig;
-            
+
             window.ecosystemData = fullData;
             window.orbitalConfig = natanOrbitConfig;
             window.rebuildEcosystem(fullData);
@@ -49,6 +52,10 @@ export const NatanSystemPage = () => {
 
     return (
         <>
+            <SeoHead
+                title={t('natan.title')}
+                description={t('natan.subtitle')}
+            />
             {/* Reuse Main Layout Components */}
             <TopBar />
             <Sidebar />
@@ -59,7 +66,7 @@ export const NatanSystemPage = () => {
             {/* Title Overlay for context */}
             <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none fade-in">
                 <h2 className="text-orange-500 font-rajdhani text-2xl tracking-[0.5em] opacity-80 backdrop-blur-sm bg-black/30 px-6 py-1 rounded-full border border-orange-500/20">
-                    NATAN SYSTEM
+                    {t('natan.title')}
                 </h2>
             </div>
         </>

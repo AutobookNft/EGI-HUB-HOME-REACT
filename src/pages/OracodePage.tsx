@@ -1,11 +1,16 @@
 import React from 'react';
 import { useI18n } from '@/i18n';
+import { SeoHead } from '@/components/common/SeoHead';
 
 export const OracodePage: React.FC = () => {
     const { t } = useI18n();
 
     return (
         <div className="min-h-screen bg-dark text-white p-8">
+            <SeoHead
+                title={t('oracode.title')}
+                description={t('oracode.subtitle')}
+            />
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold mb-4">{t('oracode.title')}</h1>
                 <p className="text-xl text-primary mb-8">{t('oracode.subtitle')}</p>

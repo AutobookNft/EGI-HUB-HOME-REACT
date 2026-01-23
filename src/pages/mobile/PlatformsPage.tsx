@@ -5,22 +5,39 @@ import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { platforms } from '@/data/content/platforms';
 import { useI18n } from '@/i18n';
 import { ExternalLink } from 'lucide-react';
+import { SeoHead } from '@/components/common/SeoHead';
 
 export const PlatformsPage = () => {
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
     const platformsList = platforms[locale];
 
     return (
         <>
+            <SeoHead
+                title={t('platforms.title')}
+                description={t('platforms.hero.description')}
+                schema={{
+                    "@type": "CollectionPage",
+                    "name": t('platforms.title'),
+                    "description": t('platforms.hero.description'),
+                    "hasPart": platformsList.map(p => ({
+                        "@type": "SoftwareApplication",
+                        "name": p.name,
+                        "description": p.description,
+                        "applicationCategory": p.category,
+                        "operatingSystem": "Web"
+                    }))
+                }}
+            />
             <Header />
             <ScreenContainer className="bg-black text-white">
                 <div className="pt-24 px-6 pb-12">
                     {/* Hero interna */}
                     <div className="space-y-4 mb-12">
-                        <span className="text-xs uppercase tracking-widest text-primary font-bold">Ecosistema</span>
-                        <h1 className="text-4xl font-light text-white leading-tight">Piattaforme</h1>
+                        <span className="text-xs uppercase tracking-widest text-primary font-bold">{t('platforms.hero.label')}</span>
+                        <h1 className="text-4xl font-light text-white leading-tight">{t('platforms.title')}</h1>
                         <p className="text-sm text-gray-500 max-w-[90%] font-light leading-relaxed">
-                            Strumenti decentralizzati per certificare valore nella PA e nell'Arte.
+                            {t('platforms.hero.description')}
                         </p>
                     </div>
 
@@ -46,11 +63,11 @@ export const PlatformsPage = () => {
                                         </div>
                                         {platform.status === 'active' ? (
                                             <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border border-primary/20 uppercase">
-                                                Live
+                                                {t('general.status.live')}
                                             </div>
                                         ) : (
                                             <div className="bg-white/5 text-gray-500 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest border border-white/10 uppercase">
-                                                Coming Soon
+                                                {t('general.status.coming_soon')}
                                             </div>
                                         )}
                                     </div>
@@ -69,7 +86,7 @@ export const PlatformsPage = () => {
                                 {/* Action Bar */}
                                 {platform.status === 'active' && (
                                     <div className="border-t border-white/5 px-6 py-4 bg-white/[0.02] flex items-center justify-between text-xs text-gray-400 group-hover:text-white transition-colors">
-                                        <span className="uppercase tracking-widest font-medium">Access Platform</span>
+                                        <span className="uppercase tracking-widest font-medium">{t('platforms.card.access')}</span>
                                         <ExternalLink className="w-4 h-4" />
                                     </div>
                                 )}
