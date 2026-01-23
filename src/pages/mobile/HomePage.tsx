@@ -31,14 +31,16 @@ export const HomePage = () => {
 
                     <div className="relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
                         <span className="inline-block py-1.5 px-3 rounded text-[10px] uppercase tracking-[0.2em] font-bold text-white border border-white/20 backdrop-blur-md mb-6 bg-white/5">
-                            Ecosystem V2.1
+                            Protocollo di Equilibrio
                         </span>
                         <h1 className="text-5xl font-medium leading-[1.05] mb-6 tracking-tight text-white drop-shadow-2xl">
-                            EGI Hub<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white font-normal">Ecosystem.</span>
+                            FlorenceEGI<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white font-normal text-3xl block mt-2">
+                                Il luogo dove un'opera diventa vera.
+                            </span>
                         </h1>
                         <p className="text-lg text-gray-200 font-light leading-relaxed mb-10 max-w-[90%] drop-shadow-md">
-                            Tecnologia blockchain enterprise per la Pubblica Amministrazione e l'Arte. Immutabilità garantita.
+                            Non basta creare. Occorre che qualcuno accolga. Trasformiamo la visibilità effimera in struttura di guarigione digitale.
                         </p>
 
                         <button

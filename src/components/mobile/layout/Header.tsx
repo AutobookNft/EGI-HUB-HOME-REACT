@@ -26,7 +26,7 @@ export const Header = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-transparent pb-4 pt-4">
                 <div className="px-6 flex items-center justify-between">
                     <div className="font-rajdhani font-bold text-xl tracking-wider text-white drop-shadow-md" onClick={() => navigate('/')}>
-                        EGI<span className="text-primary">.HUB</span>
+                        FLORENCE<span className="text-primary">.EGI</span>
                     </div>
                     <button onClick={() => setIsOpen(true)} className="text-white p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
                         <Menu className="w-6 h-6" />
@@ -39,7 +39,7 @@ export const Header = () => {
                 <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col animate-in fade-in duration-300">
                     <div className="px-6 h-20 flex items-center justify-between border-b border-white/[0.05]">
                         <div className="font-rajdhani font-bold text-xl tracking-wider text-white">
-                            EGI<span className="text-primary">.HUB</span>
+                            FLORENCE<span className="text-primary">.EGI</span>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
                             <X className="w-6 h-6" />
