@@ -2,24 +2,14 @@ import { ScreenContainer } from '@/components/mobile/layout/ScreenContainer';
 import { TabBar } from '@/components/mobile/layout/TabBar';
 import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { homepageContent } from '@/data/content/homepage';
-import { platforms } from '@/data/content/platforms';
 import { useI18n } from '@/i18n';
 import { useUIStore } from '@/stores/useUIStore';
-import { Bell, ArrowRight, ExternalLink, Box, Scale, Globe, ChevronRight } from 'lucide-react';
+import { Bell, ArrowRight, ChevronRight, Layers, Target } from 'lucide-react';
 
 export const HomePage = () => {
     const { locale } = useI18n();
     const navigate = useUIStore((state) => state.navigate);
     const content = homepageContent[locale];
-    const platformsList = platforms[locale];
-
-    // Map icons string to Lucide components manually for now to fix emoji issue
-    const getPillarIcon = (iconName: string) => {
-        if (iconName.includes('🏛')) return <Box className="w-5 h-5 text-primary" />;
-        if (iconName.includes('⚖')) return <Scale className="w-5 h-5 text-primary" />;
-        if (iconName.includes('🌍')) return <Globe className="w-5 h-5 text-primary" />;
-        return <Box className="w-5 h-5 text-white" />;
-    };
 
     return (
         <>
@@ -32,98 +22,72 @@ export const HomePage = () => {
                     <Bell className="w-5 h-5 text-white/60 stroke-[1.5]" />
                 </div>
 
-                <div className="px-6 pt-24 pb-32 space-y-12">
+                <div className="px-6 pt-32 pb-32 space-y-16">
 
-                    {/* HERO SECTION: Clean, Typography-led */}
+                    {/* HERO: ESSENZIALE, PURO, CORPORATE */}
                     <div className="space-y-6">
-                        <div className="space-y-4">
-                            <h1 className="text-3xl font-medium text-white leading-[1.2] tracking-tight">
-                                Il luogo dove<br />
-                                <span className="text-gray-400">un'opera diventa vera.</span>
-                            </h1>
-                            <p className="text-sm text-gray-400 leading-relaxed font-light max-w-[90%] border-l border-white/20 pl-4">
-                                {content.hero.subheadline}
-                            </p>
-                        </div>
+                        <h1 className="text-4xl font-light text-white leading-[1.1] tracking-tight">
+                            Il valore,<br />
+                            <span className="text-gray-500 font-normal">certificato.</span>
+                        </h1>
 
-                        <div className="flex gap-4 pt-2">
+                        <div className="h-0.5 w-16 bg-primary/50" />
+
+                        <p className="text-base text-gray-400 leading-relaxed font-light max-w-[95%]">
+                            {content.hero.subheadline}
+                        </p>
+
+                        <div className="pt-4 flex gap-4">
                             <button
                                 onClick={() => navigate('/platforms')}
-                                className="px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                                className="flex-1 py-4 bg-white text-black text-sm font-medium rounded-lg flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
                             >
-                                Esplora <ArrowRight className="w-4 h-4" />
-                            </button>
-                            <button
-                                onClick={() => navigate('/mission')}
-                                className="px-6 py-3 border border-white/20 text-white text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
-                            >
-                                Visione
+                                Esplora Prodotti <ArrowRight className="w-4 h-4" />
                             </button>
                         </div>
                     </div>
 
-                    {/* I TRE PILASTRI: Minimal List (Corporate) */}
+                    {/* NAVIGATION CARDS: Dirette, senza filosofia inutile */}
                     <div className="space-y-4">
-                        <h2 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-medium pl-1">
-                            Core Principles
+                        <h2 className="text-xs uppercase tracking-[0.2em] text-gray-600 font-medium pl-1">
+                            Esplora Ecosistema
                         </h2>
-                        <div className="grid gap-3">
-                            {content.pillars.items.map((pillar, idx) => (
-                                <LiquidGlassCard key={idx} className="p-5 flex items-start gap-4" variant="dark">
-                                    <div className="mt-1 p-2 bg-white/5 rounded-full border border-white/10">
-                                        {getPillarIcon(pillar.icon)}
-                                    </div>
-                                    <div>
-                                        <h3 className="font-medium text-white text-base mb-1">
-                                            {pillar.title}
-                                        </h3>
-                                        <p className="text-xs text-gray-400 leading-relaxed">
-                                            {pillar.description}
-                                        </p>
-                                    </div>
-                                </LiquidGlassCard>
-                            ))}
-                        </div>
-                    </div>
 
-                    {/* PIATTAFORME: Horizontal Scroll or Stack */}
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between pl-1">
-                            <h2 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-medium">
-                                Piattaforme
-                            </h2>
-                            <button onClick={() => navigate('/platforms')} className="text-xs text-primary flex items-center gap-1">
-                                Tutte <ChevronRight className="w-3 h-3" />
-                            </button>
-                        </div>
+                        {/* Card Piattaforme */}
+                        <LiquidGlassCard
+                            className="p-5 flex items-center justify-between group"
+                            variant="dark"
+                            onClick={() => navigate('/platforms')}
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                                    <Layers className="w-5 h-5 stroke-[1.5]" />
+                                </div>
+                                <div>
+                                    <h3 className="text-white font-medium">Piattaforme</h3>
+                                    <p className="text-xs text-gray-500">Arte, PA, Bandi</p>
+                                </div>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                        </LiquidGlassCard>
 
-                        <div className="space-y-3">
-                            {platformsList.slice(0, 2).map((platform) => (
-                                <LiquidGlassCard
-                                    key={platform.id}
-                                    className="p-0"
-                                    onClick={() => platform.status === 'active' && window.open(platform.url, '_blank')}
-                                >
-                                    <div className="p-5 flex items-center justify-between group">
-                                        <div className="flex items-center gap-4">
-                                            {/* Placeholder icon container if needed, or using Lucide based on ID later */}
-                                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-white/10 to-transparent border border-white/10`}>
-                                                <span className="text-lg">{/* Simple fallback letter */} {platform.name[0]}</span>
-                                            </div>
-                                            <div>
-                                                <h3 className="text-white font-medium">{platform.name}</h3>
-                                                <p className="text-xs text-gray-500 mt-0.5">{platform.category}</p>
-                                            </div>
-                                        </div>
-                                        {platform.status === 'active' ? (
-                                            <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
-                                        ) : (
-                                            <span className="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-500">Coming</span>
-                                        )}
-                                    </div>
-                                </LiquidGlassCard>
-                            ))}
-                        </div>
+                        {/* Card Mission */}
+                        <LiquidGlassCard
+                            className="p-5 flex items-center justify-between group"
+                            variant="dark"
+                            onClick={() => navigate('/mission')}
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400">
+                                    <Target className="w-5 h-5 stroke-[1.5]" />
+                                </div>
+                                <div>
+                                    <h3 className="text-white font-medium">Visione & Valori</h3>
+                                    <p className="text-xs text-gray-500">I 3 Pilastri, Roadmap</p>
+                                </div>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                        </LiquidGlassCard>
                     </div>
 
                 </div>
