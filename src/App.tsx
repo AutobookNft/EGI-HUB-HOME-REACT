@@ -78,8 +78,12 @@ function App() {
         // Old mobile pages (deprecated - keep for fallback)
 
         // Old mobile pages (deprecated - keep for fallback)
-        if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
-        if (isMobile && currentPath === '/platforms/natan') return <NatanMobilePage />;
+
+        // 🚨 FORCE REDIRECT: Se siamo mobile ma su path vecchi, vai a Home
+        if (isMobile && (currentPath === '/hub-mobile' || currentPath === '/hub')) {
+            window.history.replaceState(null, '', '/');
+            return <MobileHomePage />;
+        }
 
         // Static pages (desktop or responsive)
         if (currentPath === '/ambiente') return <AmbientePage />;
