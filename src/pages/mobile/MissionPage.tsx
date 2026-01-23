@@ -4,7 +4,7 @@ import { Footer } from '@/components/mobile/layout/Footer';
 import { LiquidGlassCard } from '@/components/mobile/ui/LiquidGlassCard';
 import { missionContent } from '@/data/content/mission';
 import { useI18n } from '@/i18n';
-import { Target, Users, Globe, Download, Mail } from 'lucide-react';
+import { Target, Users, Globe } from 'lucide-react';
 
 export const MissionPage = () => {
     const { locale } = useI18n();

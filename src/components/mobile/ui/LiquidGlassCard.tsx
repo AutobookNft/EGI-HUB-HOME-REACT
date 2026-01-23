@@ -1,4 +1,7 @@
-import { cn } from '@/utils/cn'; // Assuming utility exists or just standard className
+// Simple utility since we don't have the external lib
+function cn(...classes: (string | undefined | null | false)[]) {
+    return classes.filter(Boolean).join(' ');
+}
 
 interface LiquidGlassCardProps {
     children: React.ReactNode;
