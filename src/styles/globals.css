@@ -5,8 +5,8 @@
 @layer base {
   body {
     @apply bg-black text-text-main font-sans antialiased;
-    overflow: hidden;
-    user-select: none;
+    /* overflow: hidden;  REMOVED TO FIX SCROLL */
+    /* user-select: none; REMOVED FOR USABILITY */
   }
 }
 

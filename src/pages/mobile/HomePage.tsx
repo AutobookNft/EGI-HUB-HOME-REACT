@@ -34,8 +34,8 @@ export const HomePage = () => {
                             Ecosystem V2.1
                         </span>
                         <h1 className="text-5xl font-medium leading-[1.05] mb-6 tracking-tight text-white drop-shadow-2xl">
-                            Certifichiamo<br />
-                            il <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white font-normal">Valore Reale.</span>
+                            EGI Hub<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white font-normal">Ecosystem.</span>
                         </h1>
                         <p className="text-lg text-gray-200 font-light leading-relaxed mb-10 max-w-[90%] drop-shadow-md">
                             Tecnologia blockchain enterprise per la Pubblica Amministrazione e l'Arte. Immutabilità garantita.
