@@ -17,10 +17,19 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import TWEEN from "@tweenjs/tween.js";
 
 // 📱 MOBILE DETECTION (Must be defined first)
-const isMobile = window.innerWidth < 768;
+const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(window.navigator.userAgent);
 console.log(`📱 Device: ${isMobile ? "MOBILE" : "DESKTOP"}`);
 
-// --- CONFIGURATION ---
+// 🛑 STOP ENGINE ON MOBILE
+// Non caricare assolutamente nulla del 3D su mobile. Lascia spazio a React.
+if (isMobile) {
+    console.log("🛑 ENGINE: Mobile detected. Stopping 3D core initialization completely.");
+    // Espone stub vuoti per evitare errori se React li chiama
+    window.updateEcosystem = () => {};
+    window.rebuildEcosystem = () => {};
+    window.nodes = {}; 
+    throw new Error("ENGINE_HALTED_FOR_MOBILE"); // Interrompi esecuzione script qui
+}
 const SYSTEM_CONFIG = {
   camera: { fov: 45, pos: [0, 15, 850] }, // CENTERED: Match scene yOffset for symmetrical view
   bloom: { threshold: 0.9, strength: 0.3, radius: 0.1 }, // REDUCED for readability
