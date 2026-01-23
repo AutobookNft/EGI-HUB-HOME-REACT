@@ -17,6 +17,9 @@ import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 import { HomePage as MobileHomePage } from '@/pages/mobile/HomePage';
 import { PlatformsPage as MobilePlatformsPageV2 } from '@/pages/mobile/PlatformsPage';
 import { MissionPage } from '@/pages/mobile/MissionPage';
+import { TechPage } from '@/pages/mobile/TechPage';
+import { InfoPage } from '@/pages/mobile/InfoPage';
+import { MorePage } from '@/pages/mobile/MorePage';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -70,6 +73,9 @@ function App() {
         if (isMobile && currentPath === '/') return <MobileHomePage />;
         if (isMobile && currentPath === '/platforms') return <MobilePlatformsPageV2 />;
         if (isMobile && currentPath === '/mission') return <MissionPage />;
+        if (isMobile && currentPath === '/tech') return <TechPage />;
+        if (isMobile && currentPath === '/info') return <InfoPage />;
+        if (isMobile && currentPath === '/more') return <MorePage />;
 
         // Old mobile pages (deprecated - keep for fallback)
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
