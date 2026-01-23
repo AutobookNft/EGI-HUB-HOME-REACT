@@ -29,7 +29,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     it: {
         // Hero (linee 14-16 Fondamenti)
         hero: {
-            headline: "Il luogo dove un'opera diventa vera",
+            headline: "Piattaforma di Certificazione Digitale",
             subheadline: "EGI - Eco Goods Invent: certificazione blockchain per beni frutto dell'ingegno umano",
             cta_primary: "Esplora Piattaforme",
             cta_secondary: "Scopri di più"
