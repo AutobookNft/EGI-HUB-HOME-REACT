@@ -34,6 +34,22 @@
   <!-- React UI overlay -->
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  
+  <!-- SERVICE WORKER KILLER: Force unregister old SW to clear cache -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          console.log('🚨 Unregistering Service Worker:', registration);
+          registration.unregister();
+        }
+        if(registrations.length > 0) {
+            console.log('♻️ Service Workers killed. Reloading page...');
+            window.location.reload();
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
