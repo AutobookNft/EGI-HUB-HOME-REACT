@@ -40,7 +40,7 @@ export const HomePage = () => {
                             </span>
                         </h1>
                         <p className="text-lg text-gray-200 font-light leading-relaxed mb-10 max-w-[90%] drop-shadow-md">
-                            Non basta creare. Occorre che qualcuno accolga. Trasformiamo la visibilità effimera in struttura di guarigione digitale.
+                            Tecnologia blockchain enterprise per la certificazione del valore. Immutabilità garantita su Algorand.
                         </p>
 
                         <button
