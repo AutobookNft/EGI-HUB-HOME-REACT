@@ -1,7 +1,5 @@
-// Simple utility since we don't have the external lib
-function cn(...classes: (string | undefined | null | false)[]) {
-    return classes.filter(Boolean).join(' ');
-}
+// Simple utility removed as unused
+
 
 interface LiquidGlassCardProps {
     children: React.ReactNode;
