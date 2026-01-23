@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useUIStore } from '@/stores/useUIStore';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useI18n } from '@/i18n';
-import config from '../../../config';
+import config from '@/utils/config';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
