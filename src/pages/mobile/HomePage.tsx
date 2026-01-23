@@ -17,7 +17,7 @@ export const HomePage = () => {
             <ScreenContainer className="bg-black text-white">
 
                 {/* HERO SECTION - REAL VISUAL with IMPROVED SPACING */}
-                <section className="relative h-[85vh] w-full overflow-hidden flex flex-col justify-end pb-32 px-6">
+                <section className="relative h-[85dvh] w-full overflow-hidden flex flex-col justify-end pb-32 px-6">
                     {/* Background Image: Hub Hero - Gold Spheres */}
                     <div className="absolute inset-0 z-0">
                         <img

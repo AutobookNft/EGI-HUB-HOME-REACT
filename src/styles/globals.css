@@ -23,6 +23,29 @@
   .border-active {
     border-color: rgba(0, 255, 221, 0.5);
   }
+
+  /* iOS Safe Areas */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .min-h-safe {
+    min-height: 100dvh;
+  }
+
+  /* Utilities for hiding scrollbar but keeping function */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* Animations */
