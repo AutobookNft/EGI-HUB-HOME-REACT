@@ -63,7 +63,7 @@ export const Header = () => {
                                 Documentazione Esterna ↗
                             </a>
                             <div className="text-[10px] text-gray-700 font-mono uppercase tracking-widest">
-                                EGI Holding © 2026
+                                EGI Holding © 2026 [{locale.toUpperCase()}]
                             </div>
                         </div>
                     </div>
