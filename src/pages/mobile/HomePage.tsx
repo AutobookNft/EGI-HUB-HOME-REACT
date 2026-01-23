@@ -36,11 +36,11 @@ export const HomePage = () => {
                         <h1 className="text-5xl font-medium leading-[1.05] mb-6 tracking-tight text-white drop-shadow-2xl">
                             FlorenceEGI<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white font-normal text-3xl block mt-2">
-                                Il luogo dove un'opera diventa vera.
+                                Dove l'opera trova la sua forma completa.
                             </span>
                         </h1>
                         <p className="text-lg text-gray-200 font-light leading-relaxed mb-10 max-w-[90%] drop-shadow-md">
-                            Perché qualcuno la crea, la riconosce e la completa tramite EGI su blockchain.
+                            Proteggiamo, certifichiamo e attiviamo il valore reale attraverso la tecnologia Blockchain.
                         </p>
 
                         <button
