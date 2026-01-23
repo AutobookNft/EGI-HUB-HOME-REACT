@@ -13,6 +13,11 @@ import { NatanSystemPage } from '@/pages/NatanSystemPage';
 import { NatanMobilePage } from '@/pages/NatanMobilePage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
+// New mobile pages v2
+import { HomePage as MobileHomePage } from '@/pages/mobile/HomePage';
+import { PlatformsPage as MobilePlatformsPageV2 } from '@/pages/mobile/PlatformsPage';
+import { MissionPage } from '@/pages/mobile/MissionPage';
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -75,15 +80,20 @@ function App() {
     const renderPage = () => {
         console.log('🔍 [renderPage] currentPath:', currentPath, 'isMobile:', isMobile);
 
-        // Mobile-specific pages
+        // Mobile pages v2 (new)
+        if (isMobile && currentPath === '/') return <MobileHomePage />;
+        if (isMobile && currentPath === '/platforms') return <MobilePlatformsPageV2 />;
+        if (isMobile && currentPath === '/mission') return <MissionPage />;
+
+        // Old mobile pages (deprecated - keep for fallback)
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
-        if (isMobile && currentPath === '/platforms') return <PlatformsMobilePage />;
         if (isMobile && currentPath === '/platforms/natan') return <NatanMobilePage />;
 
         // Static pages (desktop or responsive)
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
+        if (currentPath === '/mission') return <MissionPage />; // Desktop mission (same component)
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
 
         // Desktop-specific pages
