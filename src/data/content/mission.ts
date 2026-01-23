@@ -37,11 +37,11 @@ export const missionContent: Record<SupportedLocale, MissionContent> = {
     it: {
         hero: {
             title: "Mission & Vision",
-            subtitle: "Il Rinascimento Digitale" // linea 189 Fondamenti
+            subtitle: "Certificazione e Valore Digitale" // Sanitized
         },
 
-        // Vision (linea 191 Fondamenti)
-        vision: "In un mondo che consuma attenzione e brucia significato, noi costruiamo memoria, equilibrio e impatto reale.",
+        // Vision (linea 191 Fondamenti - Sanitized to Neutral)
+        vision: "Costruiamo infrastrutture per la memoria digitale, l'equilibrio economico e l'impatto reale certificato.",
 
         // Mission - NON PRESENTE LETTERALMENTE nei documenti
         mission: "[TBD - da definire]",
