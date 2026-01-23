@@ -69,13 +69,14 @@ function App() {
     const renderPage = () => {
         console.log('🔍 [renderPage] currentPath:', currentPath, 'isMobile:', isMobile);
 
-        // Mobile pages v2 (new)
+        // Mobile pages v2 (new corporate)
         if (isMobile && currentPath === '/') return <MobileHomePage />;
         if (isMobile && currentPath === '/platforms') return <MobilePlatformsPageV2 />;
         if (isMobile && currentPath === '/mission') return <MissionPage />;
         if (isMobile && currentPath === '/tech') return <TechPage />;
         if (isMobile && currentPath === '/info') return <InfoPage />;
-        if (isMobile && currentPath === '/more') return <MorePage />;
+
+        // Old mobile pages (deprecated - keep for fallback)
 
         // Old mobile pages (deprecated - keep for fallback)
         if (currentPath === '/hub-mobile') return <EcosystemEntranceMobile />;
