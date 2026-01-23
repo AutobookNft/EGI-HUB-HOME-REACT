@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useUIStore } from '@/stores/useUIStore';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useI18n } from '@/i18n';
+import config from '@/config';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +26,9 @@ export const Header = () => {
             {/* Navbar Fixed - Translucent */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-transparent pb-4 pt-4">
                 <div className="px-6 flex items-center justify-between">
-                    <div className="font-rajdhani font-bold text-xl tracking-wider text-white drop-shadow-md" onClick={() => navigate('/')}>
-                        FLORENCE<span className="text-primary">.EGI</span>
+                    <div className="flex items-center gap-3" onClick={() => navigate('/')}>
+                        <img src={config.logoPath} alt={config.appName} className="h-10 w-auto" />
+                        <span className="font-rajdhani font-bold text-xl tracking-wider text-white drop-shadow-md hidden sm:block">FLORENCE<span className="text-primary">.EGI</span></span>
                     </div>
                     <button onClick={() => setIsOpen(true)} className="text-white p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
                         <Menu className="w-6 h-6" />
