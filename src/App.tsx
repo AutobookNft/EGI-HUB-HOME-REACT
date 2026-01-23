@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { EcosystemEntranceMobile } from '@/components/ecosystem/EcosystemEntranceMobile';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
 import { AmbientePage } from '@/pages/AmbientePage';
 import { OracodePage } from '@/pages/OracodePage';
@@ -8,9 +7,7 @@ import { CorporatePage } from '@/pages/CorporatePage';
 import { useUIStore } from '@/stores/useUIStore';
 
 import { PlatformsPage } from '@/pages/PlatformsPage';
-import { PlatformsMobilePage } from '@/pages/PlatformsMobilePage';
 import { NatanSystemPage } from '@/pages/NatanSystemPage';
-import { NatanMobilePage } from '@/pages/NatanMobilePage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 // New mobile pages v2
