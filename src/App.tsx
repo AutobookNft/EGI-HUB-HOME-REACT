@@ -50,22 +50,8 @@ function App() {
 
             setIsMobile(mobileDetected);
 
-            const path = window.location.pathname;
-            const knownRoutes = ['/hub-mobile', '/ambiente', '/oracode', '/corporate', '/projects', '/platforms', '/platforms/natan', '/under-construction'];
-            const isKnownRoute = knownRoutes.some((route) => path.endsWith(route));
-            const isHomePath =
-                path === '/' ||
-                path.endsWith('/index.html') ||
-                (!isKnownRoute && path.endsWith('/'));
-
-            if (mobileDetected && isHomePath && currentPath !== '/hub-mobile') {
-                navigate('/hub-mobile');
-                return;
-            }
-
-            if (!mobileDetected && path.endsWith('/hub-mobile')) {
-                navigate('/');
-            }
+            // No auto-redirect to /hub-mobile - new mobile UI renders on /
+            // Old /hub-mobile route kept for manual access only
         };
 
         handleViewportChange();
