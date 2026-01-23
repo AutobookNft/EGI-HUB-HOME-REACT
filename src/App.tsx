@@ -19,7 +19,6 @@ import { PlatformsPage as MobilePlatformsPageV2 } from '@/pages/mobile/Platforms
 import { MissionPage } from '@/pages/mobile/MissionPage';
 import { TechPage } from '@/pages/mobile/TechPage';
 import { InfoPage } from '@/pages/mobile/InfoPage';
-import { MorePage } from '@/pages/mobile/MorePage';
 
 const queryClient = new QueryClient({
     defaultOptions: {
