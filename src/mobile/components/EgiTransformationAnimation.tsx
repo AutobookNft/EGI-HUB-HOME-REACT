@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
 
 export const EgiTransformationAnimation = () => {
+    // Total Duration: 8 seconds
+    // 0% - 25%: Statue Static
+    // 25% - 35%: CROSSFADE (Statue Out, Card In) + LASER SCAN
+    // 35% - 75%: Card Static
+    // 75% - 100%: Reset
+
     return (
         <div className="relative w-full h-[300px] flex items-center justify-center overflow-visible">
 
@@ -9,22 +15,23 @@ export const EgiTransformationAnimation = () => {
                 {/* 1. LAYER STATUA (The Past) */}
                 <motion.div
                     animate={{
-                        opacity: [1, 1, 0, 0, 1],
-                        scale: [1, 1, 0.95, 1.05, 1],
-                        filter: ['grayscale(0%)', 'grayscale(0%)', 'grayscale(100%)', 'grayscale(0%)']
+                        opacity: [1, 1, 0, 0, 1], // Fades OUT at 0.25-0.35, Fades IN at end
+                        scale: [1, 1, 0.95, 0.95, 1],
+                        filter: ['grayscale(0%)', 'grayscale(0%)', 'grayscale(100%)', 'grayscale(100%)', 'grayscale(0%)']
                     }}
                     transition={{
-                        duration: 6,
+                        duration: 8,
                         ease: "easeInOut",
                         repeat: Infinity,
-                        times: [0, 0.3, 0.5, 0.8, 1]
+                        times: [0, 0.25, 0.35, 0.8, 1]
                     }}
                     className="absolute inset-0 z-10"
                 >
+                    {/* Added mix-blend-multiply to hide white/grey background if possible, and rounded corners */}
                     <img
                         src="/images/statue_source.png"
                         alt="Physical Art"
-                        className="w-full h-full object-contain drop-shadow-2xl"
+                        className="w-full h-full object-contain drop-shadow-2xl mix-blend-multiply"
                     />
                     <div className="absolute -bottom-8 left-0 right-0 text-center">
                         <span className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-medium">Physical</span>
@@ -34,14 +41,14 @@ export const EgiTransformationAnimation = () => {
                 {/* 2. SCANNER LIGHT (The Transformation) */}
                 <motion.div
                     animate={{
-                        top: ["-20%", "120%", "120%", "-20%"],
+                        top: ["0%", "150%", "150%", "0%"],
                         opacity: [0, 1, 0, 0]
                     }}
                     transition={{
-                        duration: 6,
+                        duration: 8,
                         ease: "linear",
                         repeat: Infinity,
-                        times: [0.3, 0.5, 0.9, 1]
+                        times: [0.2, 0.3, 0.45, 1] // Laser runs across the crossfade window
                     }}
                     className="absolute left-[-20%] right-[-20%] h-[2px] z-30 flex items-center justify-center"
                 >
@@ -51,15 +58,15 @@ export const EgiTransformationAnimation = () => {
                 {/* 3. LAYER GOLD CARD (The Future) */}
                 <motion.div
                     animate={{
-                        opacity: [0, 0, 1, 1, 0],
-                        scale: [0.9, 0.9, 1.1, 1, 0.9],
-                        y: [0, 0, -10, 0, 0]
+                        opacity: [0, 0, 1, 1, 0], // Fades IN at 0.25-0.35
+                        scale: [0.9, 0.9, 1.1, 1.1, 0.9],
+                        y: [10, 10, -10, -10, 10]
                     }}
                     transition={{
-                        duration: 6,
-                        ease: "backOut",
+                        duration: 8,
+                        ease: "easeInOut",
                         repeat: Infinity,
-                        times: [0, 0.4, 0.55, 0.85, 1]
+                        times: [0, 0.25, 0.35, 0.8, 1]
                     }}
                     className="absolute inset-0 z-20"
                 >
