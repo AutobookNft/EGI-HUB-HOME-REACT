@@ -54,7 +54,16 @@ function App() {
             <HelmetProvider>
                 <QueryClientProvider client={queryClient}>
                     <AppShell>
-                        <MobileHomePage />
+                        {/* Simple Mobile Routing */}
+                        {currentPath === '/' && <MobileHomePage />}
+                        {currentPath === '/corporate' && <CorporatePage />}
+                        {currentPath === '/platforms' && <UnderConstructionPage />} {/* Fallback for now */}
+                        {currentPath === '/ecosystem' && <UnderConstructionPage />}
+                        {currentPath === '/what-is' && <UnderConstructionPage />}
+                        {currentPath === '/how-it-works' && <UnderConstructionPage />}
+
+                        {/* Fallback for unknown mobile routes */}
+                        {!['/', '/corporate', '/platforms', '/ecosystem', '/what-is', '/how-it-works'].includes(currentPath) && <MobileHomePage />}
                     </AppShell>
                 </QueryClientProvider>
             </HelmetProvider>

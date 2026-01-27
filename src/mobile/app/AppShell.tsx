@@ -83,18 +83,32 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                         <nav className="flex flex-col gap-6">
 
                             <Link
-                                to="/platforms"
+                                to="/what-is"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)] opacity-60 hover:opacity-100 transition-opacity"
+                                className="text-3xl font-light tracking-tight text-[var(--text)]"
                             >
-                                {t['nav.platforms']}
+                                {t['nav.whatIsEgi']}
                             </Link>
                             <Link
-                                to="/mission"
+                                to="/how-it-works"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-3xl font-light tracking-tight text-[var(--text)]"
+                            >
+                                {t['nav.howItWorks']}
+                            </Link>
+                            <Link
+                                to="/ecosystem"
                                 onClick={() => setIsMenuOpen(false)}
                                 className="text-3xl font-light tracking-tight text-[var(--text)] opacity-60 hover:opacity-100 transition-opacity"
                             >
-                                {t['nav.mission']}
+                                {t['nav.ecosystem']}
+                            </Link>
+                            <Link
+                                to="/corporate"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-3xl font-light tracking-tight text-[var(--text)] opacity-60 hover:opacity-100 transition-opacity"
+                            >
+                                {t['nav.corporate']}
                             </Link>
                         </nav>
 
