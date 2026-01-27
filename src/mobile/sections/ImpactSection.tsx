@@ -21,16 +21,29 @@ export function ImpactSection() {
             <div ref={ref} className={className}>
                 <SectionTitle title={title} eyebrow="Environment" />
 
-                <div className="relative rounded-[var(--r-card)] overflow-hidden bg-[var(--surface)] border border-[var(--border)] shadow-lg aspect-video flex items-center justify-center group">
-                    {/* Background Image / Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-teal-400/5 mix-blend-multiply transition-transform duration-700 group-hover:scale-105" />
+                {/* Ultra-Glass Card */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
+
+                    {/* Glass Effect Background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-white/5 to-teal-400/10 backdrop-blur-xl border border-white/30" />
+
+                    {/* Inner sheen/reflection */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent opacity-50" />
 
                     {/* Content */}
-                    <div className="relative z-10 p-6 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-2xl shadow-sm">
-                            🌱
+                    <div className="relative z-10 p-8 flex flex-col items-center text-center">
+
+                        {/* 3D Glass Icon */}
+                        <div className="w-40 h-40 mb-6 relative drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]">
+                            <img
+                                src="/images/epp_glass_icon.png"
+                                alt="EPP Ecosystem"
+                                className="w-full h-full object-contain filter brightness-110 contrast-110"
+                            />
                         </div>
-                        <p className="text-[var(--text)] text-lg font-medium max-w-[280px] mx-auto leading-relaxed">
+
+                        {/* Text */}
+                        <p className="text-slate-800 text-lg md:text-xl font-medium leading-relaxed drop-shadow-sm max-w-sm">
                             {text}
                         </p>
                     </div>
