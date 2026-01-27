@@ -44,7 +44,7 @@ export function HeroSection() {
                     </p>
                 </div>
 
-                <div className="mt-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
+                <div className="my-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
                     <div className="w-full flex justify-center">
                         <EgiTransformationAnimation />
                     </div>
