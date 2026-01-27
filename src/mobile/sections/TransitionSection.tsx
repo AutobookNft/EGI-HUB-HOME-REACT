@@ -7,9 +7,9 @@ export function TransitionSection() {
     const { ref, className } = useRevealOnView();
 
     // Blueprint S4: "Transizione Atto (Stato 2)". 
-    // Text: "Dal possesso alla custodia. Dall'inerzia all'azione."
-    const text1 = locale === 'it' ? 'Dal possesso alla custodia.' : 'From possession to custody.';
-    const text2 = locale === 'it' ? "Dall'inerzia all'azione." : 'From inertia to action.';
+    // Updated Text: "Dal semplice possesso. Alla generazione di valore."
+    const text1 = locale === 'it' ? 'Dal semplice possesso.' : 'From simple possession.';
+    const text2 = locale === 'it' ? "Alla generazione di valore." : 'To value generation.';
 
     return (
         <section className="py-32 px-6 relative flex flex-col items-center justify-center min-h-[50vh] text-center">
