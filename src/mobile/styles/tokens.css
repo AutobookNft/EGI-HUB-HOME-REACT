@@ -1,0 +1,30 @@
+:root {
+    /* Base - Light Mode Default */
+    --bg: #F6F7F4;
+    --surface: rgba(255, 255, 255, 0.85);
+    /* Increased opacity for more "glass body" */
+    --surface2: rgba(255, 255, 255, 0.60);
+    --text: #0B1220;
+    --muted: rgba(11, 18, 32, 0.65);
+    --border: rgba(11, 18, 32, 0.15);
+    /* Stronger border */
+
+    /* Accents */
+    --accent: #0EA5A4;
+    /* teal/emerald */
+    --accent2: #B08D2A;
+    /* gold/amber */
+
+    /* State 2 - Dark Phase */
+    --dark-bg: #0A1222;
+    /* navy dark */
+    --dark-surface: rgba(255, 255, 255, 0.08);
+    --dark-text: rgba(255, 255, 255, 0.92);
+    --dark-muted: rgba(255, 255, 255, 0.70);
+    --dark-border: rgba(255, 255, 255, 0.12);
+
+    /* Shared Properties */
+    --r-card: 18px;
+    --r-btn: 14px;
+    --shadow: 0 12px 60px rgba(0, 0, 0, 0.14);
+}
