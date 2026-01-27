@@ -3,7 +3,6 @@ import { WhatIsEgiSection } from '@/mobile/sections/WhatIsEgiSection';
 import { EgiExamplesSection } from '@/mobile/sections/EgiExamplesSection';
 import { TransitionSection } from '@/mobile/sections/TransitionSection';
 import { ImpactSection } from '@/mobile/sections/ImpactSection';
-import { EcosystemOverviewSection } from '@/mobile/sections/EcosystemOverviewSection';
 import { EgiOperationalSystemsSection } from '@/mobile/sections/EgiOperationalSystemsSection';
 import { PillarsSection } from '@/mobile/sections/PillarsSection';
 import { ForWhoSection } from '@/mobile/sections/ForWhoSection';
@@ -25,7 +24,6 @@ export function HomePage() {
             <ImpactSection />
 
             {/* State 3: Return to Light (Structure) */}
-            <EcosystemOverviewSection />
             <EgiOperationalSystemsSection />
             <PillarsSection />
             <ForWhoSection />
