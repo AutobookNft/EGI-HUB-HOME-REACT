@@ -16,7 +16,7 @@ export function HeroSection() {
     const opacity = 1 - Math.min(progress * 3, 1); // Fades out quickly
 
     return (
-        <section className="min-h-[92vh] flex flex-col justify-center px-6 relative overflow-hidden">
+        <section className="min-h-[92vh] flex flex-col justify-center px-6 pt-32 relative overflow-hidden">
             {/* Background elements are handled by HomeAtmosphere, but we can add local decorative items if needed */}
 
             <div
