@@ -44,7 +44,7 @@ export function HeroSection() {
                     </p>
                 </div>
 
-                <div className="pt-12 mt-4 reveal is-in" style={{ animationDelay: '0.4s' }}>
+                <div className="pt-24 mt-12 reveal is-in" style={{ animationDelay: '0.4s' }}>
                     {/* Replaced CTA with Animation as requested */}
                     <div className="w-full max-w-[280px]">
                         <EgiTransformationAnimation />
