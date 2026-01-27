@@ -103,13 +103,35 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                             >
                                 {t['nav.ecosystem']}
                             </Link>
-                            <Link
-                                to="/corporate"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)] opacity-60 hover:opacity-100 transition-opacity"
-                            >
-                                {t['nav.corporate']}
-                            </Link>
+                            {/* Azienda Section */}
+                            <div className="flex flex-col gap-3">
+                                <span className="text-3xl font-light tracking-tight text-[var(--text)] opacity-40">
+                                    {t['nav.corporate']}
+                                </span>
+                                <div className="flex flex-col gap-3 pl-4 border-l-2 border-[var(--border)]">
+                                    <Link
+                                        to="/corporate"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                    >
+                                        {t['nav.about']}
+                                    </Link>
+                                    <Link
+                                        to="/corporate"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                    >
+                                        {t['nav.governance']}
+                                    </Link>
+                                    <Link
+                                        to="/corporate"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                    >
+                                        {t['nav.contacts']}
+                                    </Link>
+                                </div>
+                            </div>
                         </nav>
 
                         <div className="mt-auto pt-8 border-t border-[var(--border)]">
