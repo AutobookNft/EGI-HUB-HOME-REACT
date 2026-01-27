@@ -1,0 +1,58 @@
+.atmo {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    /* Ensure it covers the full viewport height or at least min-h-screen in usage */
+    min-height: 100vh;
+}
+
+/* Layer 1: Diffuse Light */
+.atmo::before {
+    content: "";
+    position: absolute;
+    inset: -20vh -20vw;
+    background:
+        radial-gradient(60vh 60vh at 20% 10%, rgba(14, 165, 164, 0.12), transparent 60%),
+        radial-gradient(70vh 70vh at 85% 30%, rgba(176, 141, 42, 0.10), transparent 62%),
+        radial-gradient(90vh 90vh at 45% 95%, rgba(10, 18, 34, 0.06), transparent 65%);
+    filter: blur(40px);
+    /* Increased blur for smoother gradient */
+    transform: translateZ(0);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layer 2: Subtle Noise */
+.atmo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    /* Assuming a noise pattern exists or will be added. 
+     Using a data URI or path. For now, referencing /noise.png if available, 
+     or relying on project assets. */
+    background-image: url('/noise.png');
+    background-size: 280px 280px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Overlay for State 2 (Dark Phase) */
+.atmoOverlay {
+    position: fixed;
+    /* Fixed to cover view during scroll */
+    inset: 0;
+    background: var(--dark-bg);
+    opacity: 0;
+    /* Controlled via JS/Scroll */
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.1s linear;
+    /* Smooth but responsive */
+}
+
+/* Z-index management for content */
+.atmo>* {
+    position: relative;
+    z-index: 10;
+}

@@ -1,0 +1,18 @@
+/* iOS: evita il casino del 100vh */
+.full-screen {
+    min-height: 92vh;
+    min-height: 92svh;
+    /* supportato su molti browser moderni */
+}
+
+/* padding safe-area per notch */
+.safe-x {
+    padding-left: max(var(--px), env(safe-area-inset-left));
+    padding-right: max(var(--px), env(safe-area-inset-right));
+}
+
+/* blur header più stabile */
+.header-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}

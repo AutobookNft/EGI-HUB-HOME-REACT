@@ -1,0 +1,64 @@
+/* Background System - Radial Gradient (NO pattern statici) */
+body {
+    background: radial-gradient(ellipse at 50% 0%,
+            var(--bg-gradient-2) 0%,
+            var(--bg-gradient-1) 40%,
+            var(--bg-base) 100%);
+    background-attachment: fixed;
+}
+
+/* Header Transition - Blur adulto */
+.header {
+    transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.header.is-scrolled {
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Motion Design - Lento e Naturale */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    animation: fadeUp 0.6s ease both;
+}
+
+/* Micro-Parallax (opzionale, da applicare su card) */
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.drift-slow {
+    animation: drift 8s ease-in-out infinite;
+}
+
+/* Card Hover - Movimento accompagnante */
+.card-interactive {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+}
