@@ -59,10 +59,20 @@ export interface HomepageContent {
         cookies: string;
         rights: string;
     };
+    transition: {
+        headline: string;
+        subheadline: string;
+        description: string;
+    };
 }
 
 export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     it: {
+        transition: {
+            headline: 'Dal semplice possesso.',
+            subheadline: 'Alla generazione di valore.',
+            description: 'Oggi i tuoi beni sono statici. Con EGI diventano asset digitali dinamici: certificati, protetti e pronti per essere scambiati o monetizzati in un mercato globale.',
+        },
         hero: {
             badge: 'EGI Protocol',
             headline: 'Un EGI trasforma qualcosa che già esiste in un bene che può generare valore nel tempo.',
@@ -148,6 +158,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
     },
     en: {
+        transition: {
+            headline: 'From simple possession.',
+            subheadline: 'To value generation.',
+            description: 'Today your goods are static. With EGI they become dynamic digital assets: certified, protected, and ready to be exchanged or monetized in a global market.',
+        },
         hero: {
             badge: 'EGI Protocol',
             headline: 'An EGI transforms something that already exists into an asset that can generate value over time.',
@@ -233,6 +248,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
     },
     pt: {
+        transition: {
+            headline: 'Da simples posse.',
+            subheadline: 'À geração de valor.',
+            description: 'Hoje seus bens são estáticos. Com EGI tornam-se ativos digitais dinâmicos: certificados, protegidos e prontos para serem trocados ou monetizados num mercado global.',
+        },
         hero: {
             badge: 'Protocolo EGI',
             headline: 'Um EGI transforma algo que já existe em um ativo que pode gerar valor ao longo do tempo.',
@@ -318,6 +338,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
     },
     es: {
+        transition: {
+            headline: 'De la simple posesión.',
+            subheadline: 'A la generación de valor.',
+            description: 'Hoy tus bienes son estáticos. Con EGI se convierten en activos digitales dinámicos: certificados, protegidos y listos para ser intercambiados o monetizados en un mercado global.',
+        },
         hero: {
             badge: 'Protocolo EGI',
             headline: 'Un EGI transforma algo que ya existe en un activo que puede generar valor en el tiempo.',
@@ -403,6 +428,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
     },
     fr: {
+        transition: {
+            headline: 'De la simple possession.',
+            subheadline: 'À la création de valeur.',
+            description: 'Aujourd\'hui vos biens sont statiques. Avec EGI ils deviennent des actifs numériques dynamiques : certifiés, protégés et prêts à être échangés ou monétisés sur un marché mondial.',
+        },
         hero: {
             badge: 'Protocole EGI',
             headline: 'Un EGI transforme quelque chose qui existe déjà en un actif capable de générer de la valeur dans le temps.',
@@ -488,6 +518,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
     },
     de: {
+        transition: {
+            headline: 'Vom bloßen Besitz.',
+            subheadline: 'Zur Wertschöpfung.',
+            description: 'Heute sind Ihre Güter statisch. Mit EGI werden sie zu dynamischen digitalen Vermögenswerten: zertifiziert, geschützt und bereit, auf einem globalen Markt gehandelt oder monetarisiert zu werden.',
+        },
         hero: {
             badge: 'EGI-Protokoll',
             headline: 'Ein EGI verwandelt etwas, das bereits existiert, in einen Vermögenswert, der im Laufe der Zeit Wert generieren kann.',

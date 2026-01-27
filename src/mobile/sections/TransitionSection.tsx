@@ -4,27 +4,25 @@ import '../styles/motion.css';
 
 export function TransitionSection() {
     const { locale } = useI18n();
+    const content = homepageContent[locale];
     const { ref, className } = useRevealOnView();
 
-    // Blueprint S4: "Transizione Atto (Stato 2)". 
-    // Updated Text: "Dal semplice possesso. Alla generazione di valore."
-    const text1 = locale === 'it' ? 'Dal semplice possesso.' : 'From simple possession.';
-    const text2 = locale === 'it' ? "Alla generazione di valore." : 'To value generation.';
-
     return (
-        <section className="py-32 px-6 relative flex flex-col items-center justify-center min-h-[50vh] text-center">
-            {/* 
-                This section appears when the atmosphere is DARK (State 2).
-                So text must be LIGHT (white).
-            */}
-            <div ref={ref} className={`space-y-6 ${className}`}>
-                <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight drop-shadow-lg leading-tight">
-                    {text1}
+        <section className="py-24 px-8 relative flex flex-col items-center justify-center min-h-[40vh] text-center">
+            <div ref={ref} className={`space-y-8 max-w-2xl mx-auto ${className}`}>
+                <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg leading-tight">
+                    {content.transition.headline}
                     <br />
-                    <span className="text-emerald-400">{text2}</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                        {content.transition.subheadline}
+                    </span>
                 </h2>
 
-                <div className="w-[1px] h-24 bg-gradient-to-b from-emerald-400 to-transparent mx-auto opacity-50" />
+                <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full" />
+
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+                    {content.transition.description}
+                </p>
             </div>
         </section>
     );
