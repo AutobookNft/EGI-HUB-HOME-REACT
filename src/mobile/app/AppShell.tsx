@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/i18n';
 import { translations } from '@/i18n/translations';
+import config from '@/utils/config';
 import { HomeAtmosphere } from '../components/HomeAtmosphere';
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -33,12 +34,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <header className={headerClasses}>
                     <div className="px-6 h-20 pt-4 flex items-center justify-between">
                         {/* Logo */}
-                        <Link to="/" className="relative z-50 flex items-center gap-2 group">
-                            <div className="w-8 h-8 bg-[var(--text)] rounded-full flex items-center justify-center text-white font-bold text-xs tracking-tighter group-hover:scale-105 transition-transform">
-                                EGI
-                            </div>
+                        <Link to="/" className="relative z-50 flex items-center gap-3 group">
+                            <img
+                                src={config.logoPath}
+                                alt={config.appName}
+                                className="w-8 h-8 object-contain group-hover:scale-105 transition-transform"
+                            />
                             <span className="font-bold text-lg tracking-tight text-[var(--text)]">
-                                Florence
+                                Florence EGI
                             </span>
                         </Link>
 
