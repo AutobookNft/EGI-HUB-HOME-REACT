@@ -20,7 +20,7 @@ export function HeroSection() {
             {/* Background elements are handled by HomeAtmosphere, but we can add local decorative items if needed */}
 
             <div
-                className="space-y-8 relative z-10 mt-[-10vh]"
+                className="space-y-8 relative z-10"
                 style={{ opacity }} // Fade out on scroll
             >
                 <div className="reveal is-in inline-flex items-center px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface)] backdrop-blur-sm">
