@@ -1,3 +1,8 @@
+/* Mobile iPhone-first CSS - MUST BE FIRST */
+@import "../mobile/styles/tokens.css";
+@import "../mobile/styles/ios.css";
+@import "../mobile/styles/app.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

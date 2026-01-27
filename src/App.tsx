@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
@@ -10,6 +11,10 @@ import { PlatformsPage } from '@/pages/PlatformsPage';
 import { NatanSystemPage } from '@/pages/NatanSystemPage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
+// Mobile components
+import { AppShell } from '@/mobile/app/AppShell';
+import { HomePage as MobileHomePage } from '@/mobile/pages/HomePage';
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -20,13 +25,44 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-    console.log(`🧭 [App] Rendering - Desktop Only Mode`);
     const currentPath = useUIStore((state) => state.currentPath);
 
-    // Routing logic - Desktop only
-    const renderPage = () => {
-        console.log('🔍 [renderPage] currentPath:', currentPath);
+    // Mobile detection
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.matchMedia('(max-width: 768px)').matches ||
+            /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    });
 
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const media = window.matchMedia('(max-width: 768px)');
+        const handleChange = () => {
+            const uaMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            setIsMobile(media.matches || uaMobile);
+        };
+
+        handleChange();
+        media.addEventListener('change', handleChange);
+        return () => media.removeEventListener('change', handleChange);
+    }, []);
+
+    // Mobile routing
+    if (isMobile) {
+        return (
+            <HelmetProvider>
+                <QueryClientProvider client={queryClient}>
+                    <AppShell>
+                        <MobileHomePage />
+                    </AppShell>
+                </QueryClientProvider>
+            </HelmetProvider>
+        );
+    }
+
+    // Desktop routing
+    const renderPage = () => {
         // Static pages
         if (currentPath === '/ambiente') return <AmbientePage />;
         if (currentPath === '/oracode') return <OracodePage />;
@@ -43,12 +79,10 @@ function App() {
         const isHomePath = path === '/' || currentPath === '/' || path.endsWith('/index.html');
 
         if (isHomePath) {
-            console.log('🏠 Rendering desktop 3D view');
             return <EcosystemView />;
         }
 
         // Default fallback: desktop 3D
-        console.log('🏠 Fallback to desktop 3D view');
         return <EcosystemView />;
     };
 
