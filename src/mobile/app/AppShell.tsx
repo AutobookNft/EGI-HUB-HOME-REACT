@@ -49,8 +49,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                         <div className="flex items-center gap-4">
                             {/* Lang Switcher (Mini) */}
                             <button
-                                onClick={() => setLocale(locale === 'it' ? 'en' : 'it')}
-                                className="text-xs font-medium uppercase tracking-wider text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+                                onClick={() => {
+                                    const locales: import('@/i18n/translations').SupportedLocale[] = ['it', 'en', 'de', 'fr', 'es', 'pt'];
+                                    const currentIndex = locales.indexOf(locale);
+                                    const nextIndex = (currentIndex + 1) % locales.length;
+                                    setLocale(locales[nextIndex]);
+                                }}
+                                className="text-xs font-medium uppercase tracking-wider text-[var(--muted)] hover:text-[var(--text)] transition-colors w-6 text-center"
                             >
                                 {locale}
                             </button>
