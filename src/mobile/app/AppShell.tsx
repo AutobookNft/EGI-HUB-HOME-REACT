@@ -114,6 +114,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                                         onClick={() => setIsMenuOpen(false)}
                                         className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                                     >
+                                        {t['nav.mission_vision']}
+                                    </Link>
+                                    <Link
+                                        to="/corporate"
+                                        onClick={() => setIsMenuOpen(false)}
+
+                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                    >
                                         {t['nav.about']}
                                     </Link>
                                     <Link
