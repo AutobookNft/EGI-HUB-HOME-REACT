@@ -31,7 +31,7 @@ export function EgiExamplesSection() {
                     <div className="space-y-6">
                         {content.examples.items.map((item, idx) => (
                             <div key={idx} className="flex items-center gap-6 group">
-                                <div className="w-32 h-32 shrink-0 rounded-3xl bg-black/50 border border-[var(--border)] overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-300">
+                                <div className="w-40 h-40 shrink-0 rounded-2xl bg-black/50 border border-[var(--border)] overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-300">
                                     <img
                                         src={EXAMPLE_IMAGES[idx]}
                                         alt={item.label}
