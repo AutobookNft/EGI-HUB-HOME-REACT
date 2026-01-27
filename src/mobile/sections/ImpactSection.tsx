@@ -1,4 +1,9 @@
 import { homepageContent } from '../data/homepage';
+import { useI18n } from '@/i18n';
+import { SectionTitle } from '../ui/SectionTitle';
+import { useRevealOnView } from '@/hooks/useRevealOnView';
+import '../styles/motion.css';
+
 
 export function ImpactSection() {
     const { locale } = useI18n();
