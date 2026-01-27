@@ -1,4 +1,4 @@
-import { ButtonPrimary } from '../ui/Button';
+
 import { useI18n } from '@/i18n';
 import { homepageContent } from '../data/homepage';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
