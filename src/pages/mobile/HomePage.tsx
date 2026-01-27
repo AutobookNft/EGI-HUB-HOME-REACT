@@ -104,44 +104,46 @@ export const HomePage = () => {
 
                     {/* Horizontal Scroll Snap */}
                     <div className="flex overflow-x-auto snap-x snap-mandatory px-6 gap-5 pb-8 no-scrollbar">
-                        {platformsList.map((platform) => {
-                            // Select specific image based on ID
-                            let bgImage = config.projectsHeroPath;
-                            if (platform.id === 'florence-art-egi') bgImage = config.florenceHeroPath; // Purple Visual
-                            if (platform.id === 'natan-loc') bgImage = config.infoHeroPath; // Doc Visual
+                        {platformsList
+                            .filter(platform => platform.type === 'manipulator') // Solo manipolatori EGI nella homepage
+                            .map((platform) => {
+                                // Select specific image based on ID
+                                let bgImage = config.projectsHeroPath;
+                                if (platform.id === 'florence-art-egi') bgImage = config.florenceHeroPath; // Purple Visual
+                                if (platform.id === 'natan-loc') bgImage = config.infoHeroPath; // Doc Visual
 
-                            return (
-                                <div
-                                    key={platform.id}
-                                    onClick={() => platform.status === 'active' && window.open(platform.url, '_blank')}
-                                    className="snap-center shrink-0 w-[85%] h-[420px] bg-[#0A0A0A] border border-white/10 rounded-2xl overflow-hidden relative group active:scale-[0.98] transition-transform shadow-lg"
-                                >
-                                    {/* Full Card Image Background */}
-                                    <div className="absolute inset-0 z-0">
-                                        <img src={bgImage} alt={platform.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
-                                    </div>
-
-                                    <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                                        <div className="flex justify-between items-end mb-4">
-                                            <h3 className="text-3xl font-medium text-white leading-tight">{platform.name}</h3>
-                                            {platform.status === 'active' && <div className="p-2 bg-white rounded-full text-black"><ArrowRight className="w-4 h-4" /></div>}
+                                return (
+                                    <div
+                                        key={platform.id}
+                                        onClick={() => platform.status === 'active' && window.open(platform.url, '_blank')}
+                                        className="snap-center shrink-0 w-[85%] h-[420px] bg-[#0A0A0A] border border-white/10 rounded-2xl overflow-hidden relative group active:scale-[0.98] transition-transform shadow-lg"
+                                    >
+                                        {/* Full Card Image Background */}
+                                        <div className="absolute inset-0 z-0">
+                                            <img src={bgImage} alt={platform.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
                                         </div>
 
-                                        <p className="text-sm text-gray-300 mb-4 line-clamp-2 leading-relaxed">{platform.description}</p>
+                                        <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                                            <div className="flex justify-between items-end mb-4">
+                                                <h3 className="text-3xl font-medium text-white leading-tight">{platform.name}</h3>
+                                                {platform.status === 'active' && <div className="p-2 bg-white rounded-full text-black"><ArrowRight className="w-4 h-4" /></div>}
+                                            </div>
 
-                                        <div className="flex items-center gap-2">
-                                            {platform.status === 'active' ? (
-                                                <span className="text-[10px] text-black bg-primary px-2 py-1 rounded font-bold uppercase">{t('general.status.live')}</span>
-                                            ) : (
-                                                <span className="text-[10px] text-white bg-white/20 backdrop-blur px-2 py-1 rounded font-bold uppercase">{t('general.status.coming_soon')}</span>
-                                            )}
-                                            <span className="text-[10px] text-gray-400 uppercase tracking-wider">{platform.category}</span>
+                                            <p className="text-sm text-gray-300 mb-4 line-clamp-2 leading-relaxed">{platform.description}</p>
+
+                                            <div className="flex items-center gap-2">
+                                                {platform.status === 'active' ? (
+                                                    <span className="text-[10px] text-black bg-primary px-2 py-1 rounded font-bold uppercase">{t('general.status.live')}</span>
+                                                ) : (
+                                                    <span className="text-[10px] text-white bg-white/20 backdrop-blur px-2 py-1 rounded font-bold uppercase">{t('general.status.coming_soon')}</span>
+                                                )}
+                                                <span className="text-[10px] text-gray-400 uppercase tracking-wider">{platform.category}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
                     </div>
                 </section>
 

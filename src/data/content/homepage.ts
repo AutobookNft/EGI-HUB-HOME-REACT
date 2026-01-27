@@ -28,11 +28,11 @@ export interface HomepageContent {
 // Fonte: /home/fabio/EGI/docs/FlorenceEGI/01_Fondamenti_e_Visione.md
 export const homepageContent: Record<SupportedLocale, HomepageContent> = {
     it: {
-        // Hero (linee 14-16 Fondamenti)
+        // Hero - Focus su EGI: certificazione blockchain + protezione ambientale
         hero: {
-            badge: "Equilibrium Protocol",
-            headline: "Dove l'opera trova la sua forma completa.",
-            subheadline: "Proteggiamo, certifichiamo e attiviamo il valore reale attraverso la tecnologia Blockchain.",
+            badge: "EGI Protocol",
+            headline: "EGI: Trasforma ciò che esiste in valore certificato.",
+            subheadline: "Blockchain, certificazione e protezione ambientale. Se esiste, Egizzalo. Se lo Egizzi, vale.",
             cta_primary: "Esplora Piattaforme",
             cta_secondary: "Scopri di più"
         },
