@@ -1,4 +1,5 @@
 import { useI18n } from '@/i18n';
+import { homepageContent } from '../data/homepage';
 import { useRevealOnView } from '@/hooks/useRevealOnView';
 import '../styles/motion.css';
 
