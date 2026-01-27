@@ -79,7 +79,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 {/* Drawer Menu */}
                 <div className={`fixed inset-0 z-40 bg-[var(--bg)]/95 backdrop-blur-xl transition-transform duration-500 ease-spring ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}>
-                    <div className="h-full flex flex-col p-8 pt-24">
+                    <div className="h-full flex flex-col p-8 pt-44">
                         <nav className="flex flex-col gap-6">
 
                             <Link
