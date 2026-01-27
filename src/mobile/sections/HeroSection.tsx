@@ -34,7 +34,15 @@ export function HeroSection() {
                     style={{ transform: `scale(${scale})` }}
                 >
                     <h1 className="text-5xl font-bold leading-[1.05] tracking-tight text-[var(--text)] drop-shadow-sm">
-                        {content.hero.headline}
+                        {content.hero.headline.split(/(EGI)/g).map((part, i) =>
+                            part === 'EGI' ? (
+                                <span key={i} className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-violet-500 to-amber-500">
+                                    EGI
+                                </span>
+                            ) : (
+                                part
+                            )
+                        )}
                     </h1>
                 </div>
 
