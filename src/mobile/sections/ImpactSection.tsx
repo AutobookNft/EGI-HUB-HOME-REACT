@@ -1,24 +1,15 @@
-import { useI18n } from '@/i18n';
-
-import { SectionTitle } from '../ui/SectionTitle';
-import { useRevealOnView } from '@/hooks/useRevealOnView';
-import '../styles/motion.css';
+import { homepageContent } from '../data/homepage';
 
 export function ImpactSection() {
     const { locale } = useI18n();
+    const content = homepageContent[locale];
     const { ref, className } = useRevealOnView();
 
-    // Content: This should be in homepage.ts but I'll hardcode acceptable defaults or use simple generic text if not present.
-    // Blueprint S5: "Environmental Impact".
-    // I can assume specific text or just use a placeholder that fits "Return to Light".
-    // Since I added "Impatto Reale" to pillars, I can use that title.
+    // Use the 4th Pillar (EPP) as the source for this section to ensure consistency
+    const eppPillar = content.pillars.items[3];
 
-    // For now, I'll create a dedicated visual block.
-
-    const title = locale === 'it' ? 'Impatto Ambientale Reale' : 'Real Environmental Impact';
-    const text = locale === 'it'
-        ? 'Non solo teoria. Ogni EGI contribuisce a preservare ecosistemi vitali, con metriche verificate.'
-        : 'Not just theory. Every EGI contributes to preserving vital ecosystems, with verified metrics.';
+    const title = eppPillar.title;
+    const text = eppPillar.description;
 
     return (
         <section className="py-24 px-6 relative">
