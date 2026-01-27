@@ -2,6 +2,7 @@ import { ButtonPrimary } from '../ui/Button';
 import { useI18n } from '@/i18n';
 import { homepageContent } from '../data/homepage';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
+import { EgiTransformationAnimation } from '../components/EgiTransformationAnimation';
 import '../styles/motion.css';
 
 export function HeroSection() {
@@ -43,13 +44,10 @@ export function HeroSection() {
                     </p>
                 </div>
 
-                <div className="pt-6 reveal is-in" style={{ animationDelay: '0.4s' }}>
-                    <ButtonPrimary
-                        aria-label={content.hero.cta_primary}
-                        className="shadow-[var(--shadow)] hover:shadow-lg bg-[var(--text)] text-white hover:bg-[var(--accent)] transition-colors border-none"
-                    >
-                        {content.hero.cta_primary}
-                    </ButtonPrimary>
+                <div className="pt-16 mt-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
+                    <div className="w-full flex justify-center">
+                        <EgiTransformationAnimation />
+                    </div>
                 </div>
             </div>
 
