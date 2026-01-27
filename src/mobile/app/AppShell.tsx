@@ -38,7 +38,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                             <img
                                 src={config.logoPath}
                                 alt="Florence EGI"
-                                className="h-8 w-auto object-contain group-hover:scale-105 transition-transform"
+                                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
                             />
                         </Link>
 
