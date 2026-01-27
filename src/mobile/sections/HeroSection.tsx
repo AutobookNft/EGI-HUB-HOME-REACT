@@ -44,16 +44,11 @@ export function HeroSection() {
                     </p>
                 </div>
 
-                <div className="pt-16 mt-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
+                <div className="mt-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
                     <div className="w-full flex justify-center">
                         <EgiTransformationAnimation />
                     </div>
                 </div>
-            </div>
-
-            {/* Scroll Hint */}
-            <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 transition-opacity duration-300 ${progress > 0.05 ? 'opacity-0' : 'opacity-100'}`}>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-[var(--border)] to-[var(--text)] opacity-30" />
             </div>
         </section>
     );
