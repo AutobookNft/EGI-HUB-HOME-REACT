@@ -8,22 +8,23 @@ export function TransitionSection() {
     const content = homepageContent[locale];
     const { ref, className } = useRevealOnView();
 
-    <section className="py-24 px-8 relative flex flex-col items-center justify-center min-h-[40vh] text-center">
-        <div ref={ref} className={`space-y-8 max-w-2xl mx-auto ${className}`}>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
-                {content.transition.headline}
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">
-                    {content.transition.subheadline}
-                </span>
-            </h2>
+    return (
+        <section className="py-24 px-8 relative flex flex-col items-center justify-center min-h-[40vh] text-center">
+            <div ref={ref} className={`space-y-8 max-w-2xl mx-auto ${className}`}>
+                <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                    {content.transition.headline}
+                    <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">
+                        {content.transition.subheadline}
+                    </span>
+                </h2>
 
-            <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full" />
+                <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full" />
 
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-light">
-                {content.transition.description}
-            </p>
-        </div>
-    </section>
+                <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-light">
+                    {content.transition.description}
+                </p>
+            </div>
+        </section>
     );
 }
