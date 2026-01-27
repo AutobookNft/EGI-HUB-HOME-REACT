@@ -81,13 +81,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     }`}>
                     <div className="h-full flex flex-col p-8 pt-24">
                         <nav className="flex flex-col gap-6">
-                            <Link
-                                to="/"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)]"
-                            >
-                                {t['nav.home']}
-                            </Link>
+
                             <Link
                                 to="/platforms"
                                 onClick={() => setIsMenuOpen(false)}
