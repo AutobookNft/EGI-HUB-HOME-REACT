@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { homepageContent } from '../data/homepage';
 import { useI18n } from '@/i18n';
 import { useRevealOnView } from '@/hooks/useRevealOnView';
@@ -11,6 +12,18 @@ export function ImpactSection() {
 
     // Use the dedicated EPP section data
     const eppData = content.epp_section;
+
+    // Carousel Logic
+    const [activeIndex, setActiveIndex] = useState(0);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const handleScroll = () => {
+        if (scrollContainerRef.current) {
+            const { scrollLeft, clientWidth } = scrollContainerRef.current;
+            const index = Math.round(scrollLeft / clientWidth);
+            setActiveIndex(index);
+        }
+    };
 
     return (
         <section className="py-24 px-6 relative">
@@ -52,11 +65,15 @@ export function ImpactSection() {
 
                 {/* Campaigns Carousel */}
                 <div className="w-full">
-                    <div className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory no-scrollbar px-2 -mx-2">
+                    <div
+                        ref={scrollContainerRef}
+                        onScroll={handleScroll}
+                        className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory no-scrollbar px-2 -mx-2"
+                    >
                         {eppData.items.map((item, idx) => (
                             <div
                                 key={idx}
-                                className="snap-center shrink-0 w-[85vw] relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
+                                className="snap-center shrink-0 w-[75vw] relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
                             >
                                 {/* Background Image */}
                                 <img
@@ -81,10 +98,16 @@ export function ImpactSection() {
                         ))}
                     </div>
 
-                    {/* Swipe Indicator */}
-                    <div className="flex justify-center gap-2 mt-2">
+                    {/* Swipe Indicator (High Contrast + Active State) */}
+                    <div className="flex justify-center gap-3 mt-4">
                         {eppData.items.map((_, idx) => (
-                            <div key={idx} className="w-2 h-2 rounded-full bg-gray-300/30"></div>
+                            <div
+                                key={idx}
+                                className={`transition-all duration-300 rounded-full shadow-sm ${idx === activeIndex
+                                        ? 'w-8 h-2 bg-white'     // Active: Wide & White
+                                        : 'w-2 h-2 bg-gray-600'  // Inactive: Darker Grey (Visible)
+                                    }`}
+                            />
                         ))}
                     </div>
                 </div>
