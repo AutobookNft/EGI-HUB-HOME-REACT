@@ -35,6 +35,11 @@ export interface HomepageContent {
             description: string;
             linkText: string;
         };
+        egiPt: {
+            title: string;
+            description: string;
+            linkText: string;
+        };
     };
     pillars: {
         title: string;
@@ -121,6 +126,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 title: 'NATAN-LOC',
                 description: 'Manipola EGI per certificare e autenticare atti della Pubblica Amministrazione. Ogni documento diventa un EGI certificato on-chain.',
                 linkText: 'Scopri NATAN',
+            },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Piattaforma di donazione libera e circolazione no-fee di cloni digitai EGI unici. Zero guadagni, solo marketing virale e visibilità tramite cloni puri.',
+                linkText: 'Scopri EGI-PT',
             },
         },
         pillars: {
@@ -229,6 +239,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 description: 'Manipulates EGI to certify and authenticate Public Administration deeds. Every document becomes an on-chain certified EGI.',
                 linkText: 'Discover NATAN',
             },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Free donation platform and no-fee circulation of unique EGI digital clones. Zero earnings, only viral marketing and visibility via pure clones.',
+                linkText: 'Discover EGI-PT',
+            },
         },
         pillars: {
             title: 'Our 3 Pillars',
@@ -335,6 +350,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 title: 'NATAN-LOC',
                 description: 'Manipula EGI para certificar e autenticar atos da Administração Pública. Cada documento torna-se um EGI certificado on-chain.',
                 linkText: 'Descubra NATAN',
+            },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Plataforma de doação livre e circulação sem taxas de clones digitais EGI únicos. Zero ganhos, apenas marketing viral e visibilidade via clones puros.',
+                linkText: 'Descubra EGI-PT',
             },
         },
         pillars: {
@@ -443,6 +463,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 description: 'Manipula EGI para certificar y autenticar actos de la Administración Pública. Cada documento se convierte en un EGI certificado on-chain.',
                 linkText: 'Descubre NATAN',
             },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Plataforma de donación libre y circulación sin tarifas de clones digitales EGI únicos. Cero ganancias, solo marketing viral y visibilidad a través de clones puros.',
+                linkText: 'Descubre EGI-PT',
+            },
         },
         pillars: {
             title: 'Nuestros 3 Pilares',
@@ -549,6 +574,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 title: 'NATAN-LOC',
                 description: 'Manipule les EGI pour certifier et authentifier les actes de l\'Administration Publique. Chaque document devient un EGI certifié on-chain.',
                 linkText: 'Découvrir NATAN',
+            },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Plateforme de don libre et circulation sans frais de clones numériques EGI uniques. Zéro gain, uniquement du marketing viral et de la visibilité via des clones purs.',
+                linkText: 'Découvrir EGI-PT',
             },
         },
         pillars: {

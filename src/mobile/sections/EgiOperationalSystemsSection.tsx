@@ -34,6 +34,14 @@ export function EgiOperationalSystemsSection() {
                     linkText={content.systems.natan.linkText}
                     glowColor="trust" // Blue for PA
                 />
+
+                <Card
+                    title={content.systems.egiPt.title}
+                    description={content.systems.egiPt.description}
+                    link="/platforms/egi-pt"
+                    linkText={content.systems.egiPt.linkText}
+                    glowColor="innovation" // Violet/Pink for Pure Trading
+                />
             </div>
         </section>
     );
