@@ -50,34 +50,43 @@ export function ImpactSection() {
                     </div>
                 </div>
 
-                {/* Campaigns List */}
-                <div className="flex flex-col gap-6">
-                    {eppData.items.map((item, idx) => (
-                        <div
-                            key={idx}
-                            className="relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
-                        >
-                            {/* Background Image */}
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
+                {/* Campaigns Carousel */}
+                <div className="w-full">
+                    <div className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory no-scrollbar px-2 -mx-2">
+                        {eppData.items.map((item, idx) => (
+                            <div
+                                key={idx}
+                                className="snap-center shrink-0 w-[85vw] relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
+                            >
+                                {/* Background Image */}
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
 
-                            {/* High Contrast Gradient Overlay (Deep Dark) */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 via-50% to-transparent opacity-95" />
+                                {/* High Contrast Gradient Overlay (Deep Dark) */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 via-50% to-transparent opacity-95" />
 
-                            {/* Content Overlay - Always Visible */}
-                            <div className="relative z-10 p-8 pb-12">
-                                <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
-                                    {item.title}
-                                </h3>
-                                <p className="text-gray-100 text-base leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] font-medium">
-                                    {item.description}
-                                </p>
+                                {/* Content Overlay - Always Visible */}
+                                <div className="relative z-10 p-8 pb-12">
+                                    <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-gray-100 text-base leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] font-medium">
+                                        {item.description}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
+                    {/* Swipe Indicator */}
+                    <div className="flex justify-center gap-2 mt-2">
+                        {eppData.items.map((_, idx) => (
+                            <div key={idx} className="w-2 h-2 rounded-full bg-gray-300/30"></div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
