@@ -75,7 +75,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         transition: {
             headline: 'Dal semplice possesso.',
             subheadline: 'Alla generazione di valore.',
-            description: 'Oggi i tuoi beni sono statici. Con EGI diventano asset digitali dinamici: certificati, protetti e pronti per essere scambiati o monetizzati in un mercato globale.',
+            description: 'EGI sta per "Environmental Good Invent". È un involucro digitale che custodisce la tua opera, la tua idea o il tuo prodotto, arricchendolo con attributi distintivi e un certificato di autenticità immutabile. Può connettere il tuo asset a innumerevoli utility personalizzate. Piattaforme come Florence Art e NATAN-LOC sono solo i primi sistemi di manipolazione in grado di gestire e valorizzare gli EGI.',
         },
         hero: {
             badge: 'EGI Protocol',
