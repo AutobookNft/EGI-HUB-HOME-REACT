@@ -85,34 +85,34 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                             <Link
                                 to="/what-is"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)]"
+                                className="text-3xl font-medium tracking-tight text-[var(--text)]"
                             >
                                 {t['nav.whatIsEgi']}
                             </Link>
                             <Link
                                 to="/how-it-works"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)]"
+                                className="text-3xl font-medium tracking-tight text-[var(--text)]"
                             >
                                 {t['nav.howItWorks']}
                             </Link>
                             <Link
                                 to="/ecosystem"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-3xl font-light tracking-tight text-[var(--text)] opacity-60 hover:opacity-100 transition-opacity"
+                                className="text-3xl font-medium tracking-tight text-[var(--text)] hover:opacity-80 transition-opacity"
                             >
                                 {t['nav.ecosystem']}
                             </Link>
                             {/* Azienda Section */}
                             <div className="flex flex-col gap-3">
-                                <span className="text-3xl font-light tracking-tight text-[var(--text)] opacity-40">
+                                <span className="text-2xl font-bold tracking-tight text-[var(--muted)] uppercase opacity-90 mb-2 mt-4 block">
                                     {t['nav.corporate']}
                                 </span>
-                                <div className="flex flex-col gap-3 pl-4 border-l-2 border-[var(--border)]">
+                                <div className="flex flex-col gap-4 pl-0">
                                     <Link
                                         to="/corporate"
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                        className="text-2xl font-medium tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                                     >
                                         {t['nav.mission_vision']}
                                     </Link>
@@ -120,21 +120,21 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                                         to="/corporate"
                                         onClick={() => setIsMenuOpen(false)}
 
-                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                        className="text-2xl font-medium tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                                     >
                                         {t['nav.about']}
                                     </Link>
                                     <Link
                                         to="/corporate"
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                        className="text-2xl font-medium tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                                     >
                                         {t['nav.governance']}
                                     </Link>
                                     <Link
                                         to="/corporate"
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="text-2xl font-light tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                                        className="text-2xl font-medium tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                                     >
                                         {t['nav.contacts']}
                                     </Link>
