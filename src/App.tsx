@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { EcosystemView } from '@/features/ecosystem/EcosystemView';
@@ -14,6 +15,7 @@ import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 // Mobile components
 import { AppShell } from '@/mobile/app/AppShell';
 import { HomePage as MobileHomePage } from '@/mobile/pages/HomePage';
+import { WhatIsEgiPage } from '@/mobile/pages/WhatIsEgiPage';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,6 +28,12 @@ const queryClient = new QueryClient({
 
 function App() {
     const currentPath = useUIStore((state) => state.currentPath);
+    const location = useLocation();
+
+    // Sync Router with Store
+    useEffect(() => {
+        useUIStore.setState({ currentPath: location.pathname });
+    }, [location]);
 
     // Mobile detection
     const [isMobile, setIsMobile] = useState(() => {
@@ -59,7 +67,7 @@ function App() {
                         {currentPath === '/corporate' && <CorporatePage />}
                         {currentPath === '/platforms' && <UnderConstructionPage />} {/* Fallback for now */}
                         {currentPath === '/ecosystem' && <UnderConstructionPage />}
-                        {currentPath === '/what-is' && <UnderConstructionPage />}
+                        {currentPath === '/what-is' && <WhatIsEgiPage />}
                         {currentPath === '/how-it-works' && <UnderConstructionPage />}
 
                         {/* Fallback for unknown mobile routes */}

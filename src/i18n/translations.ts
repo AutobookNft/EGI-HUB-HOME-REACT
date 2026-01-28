@@ -2,7 +2,7 @@ export type SupportedLocale = 'it' | 'en' | 'pt' | 'es' | 'fr' | 'de';
 
 export const SUPPORTED_LOCALES: SupportedLocale[] = ['it', 'en', 'pt', 'es', 'fr', 'de'];
 
-export const translations: Record<SupportedLocale, Record<string, string>> = {
+const dictionaries = {
     it: {
         'general.cta.enter': 'Entra',
         'general.cta.corporate': 'Corporate',
@@ -289,6 +289,86 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'fallback.epp.bullet2': 'Ocean Cleanup',
         'fallback.epp.bullet3': 'Biodiversità',
         'fallback.epp.link': '20% automatico di ogni transazione va a progetti ambientali verificati.',
+
+        // EGI Info Page
+        'info_egi.page_title': 'EGI: Asset Digitali Beyond NFT | Certificazione Blockchain, Utilities e Impatto Ambientale',
+        'info_egi.page_description': 'Scopri cosa sono gli EGI (Ecological Goods Invent): l\'evoluzione dei beni digitali. Certifica asset reali, prodotti, idee e opere d\'arte in oggetti digitali unici, giuridicamente validi e produttivi.',
+        'info_egi.meta_keywords': 'EGI, Ecological Goods Invent, digital asset, blockchain, NFT evoluti, tokenizzazione, certificazione on-chain, smart contract, Florence EGI, diritti digitali, royalties',
+
+        'info_egi.nav_definition': 'Definizione',
+        'info_egi.nav_components': 'Componenti',
+        'info_egi.nav_functions': 'Funzioni',
+        'info_egi.nav_traits': 'Tratti',
+        'info_egi.nav_utilities': 'Utilities',
+        'info_egi.nav_advantages': 'Vantaggi',
+
+        'info_egi.section_definition_title': 'Cosa sono gli EGI?',
+        'info_egi.section_definition_subtitle': 'Ecological Goods Invent: La Rivoluzione degli Asset Digitali',
+        'info_egi.section_definition_text_1': 'Gli EGI non sono semplici NFT. Sono asset digitali evoluti che portano utilità concreta, certificazione verificabile e impatto ambientale misurabile nel mondo reale.',
+        'info_egi.section_definition_text_2': 'A differenza di un semplice NFT, che spesso rappresenta solo un link a un\'immagine, un EGI è un contratto legale vivo che collega indissolubilmente il proprietario, l\'asset e i suoi diritti, automatizzando royalties e certificazione.',
+
+        'info_egi.section_components_title': 'I 3 Componenti',
+        'info_egi.section_components_intro': 'Ogni EGI è composto da tre elementi fondamentali che ne definiscono unicità e valore.',
+        'info_egi.component_1_title': 'EPP',
+        'info_egi.component_1_desc': 'Environment Protection Programs. Progetti ambientali certificati che generano impatto positivo misurabile.',
+        'info_egi.component_2_title': 'GOODS',
+        'info_egi.component_2_desc': 'Beni o Servizi. Asset digitali che rappresentano beni, servizi, utility o diritti nel mondo reale.',
+        'info_egi.component_3_title': 'CREATIVITÀ',
+        'info_egi.component_3_desc': 'Creatività e Inventiva. La dimensione creativa che rende ogni EGI unico.',
+
+        'info_egi.egi_types_title': 'Cosa può essere un EGI:',
+        'info_egi.egi_type_artwork': "• <strong>Opera d'arte certificata</strong> (digitale o fisica)",
+        'info_egi.egi_type_document': '• <strong>Documento firmato</strong> tra più soggetti (CoA, contratti)',
+        'info_egi.egi_type_utility': '• <strong>Utility card</strong> per servizi esclusivi',
+        'info_egi.egi_type_token': '• <strong>Token commerciale</strong> per aziende',
+        'info_egi.egi_type_collectible': '• <strong>Oggetto da collezione</strong> limitato e permanente',
+        'info_egi.egi_type_narrative': '• <strong>Elemento narrativo</strong> di universi creativi',
+
+        'info_egi.section_functions_title': 'Come Funziona',
+        'info_egi.section_functions_subtitle': 'La meccanica dell\'ecosistema',
+        'info_egi.function_1_title': 'Certificazione',
+        'info_egi.function_1_desc': 'Registra l\'identità univoca dell\'asset su blockchain Algorand.',
+        'info_egi.function_2_title': 'Tokenizzazione',
+        'info_egi.function_2_desc': 'Trasforma il bene in un asset liquido scambiabile globalmente.',
+        'info_egi.function_3_title': 'Automazione',
+        'info_egi.function_3_desc': 'Distribuisce royalties e pagamenti istantaneamente tramite Smart Contracts.',
+        'info_egi.function_4_title': 'Rigenerazione',
+        'info_egi.function_4_desc': 'Devolve automaticamente una quota (20%) all\'ambiente.',
+
+        'info_egi.section_traits_title': 'Caratteristiche Uniche',
+        'info_egi.trait_identity_title': 'Identità Sovrana',
+        'info_egi.trait_identity_desc': 'L\'EGI possiede sé stesso. Non dipende da marketplace centralizzati.',
+        'info_egi.trait_perpetuity_title': 'Perpetuità',
+        'info_egi.trait_perpetuity_desc': 'Vive per sempre sulla blockchain, indipendente dalla durata dell\'asset fisico.',
+        'info_egi.trait_universality_title': 'Universalità',
+        'info_egi.trait_universality_desc': 'Standard compatibile con ogni piattaforma dell\'ecosistema Florence.',
+
+        'info_egi.section_utilities_title': 'Cosa puoi fare con un EGI?',
+        'info_egi.utility_trade_title': 'Trading & Vendita',
+        'info_egi.utility_trade_desc': 'Vendi l\'EGI su marketplace secondari, in tutto o in frazioni.',
+        'info_egi.utility_defi_title': 'Collateralizzazione',
+        'info_egi.utility_defi_desc': 'Usa l\'EGI come garanzia per ottenere liquidità (DeFi).',
+        'info_egi.utility_access_title': 'Access Pass',
+        'info_egi.utility_access_desc': 'L\'EGI garantisce accesso a eventi esclusivi o servizi riservati.',
+        'info_egi.utility_royalty_title': 'Royalties Passive',
+        'info_egi.utility_royalty_desc': 'Guadagna automaticamente dalle rivendite future (Creator Economy).',
+
+        'info_egi.section_advantages_title': 'Perché scegliere EGI',
+        'info_egi.advantage_1_title': 'Sicurezza Legale',
+        'info_egi.advantage_1_desc': 'Validità giuridica garantita da framework contrattuali reali.',
+        'info_egi.advantage_2_title': 'Trasparenza Totale',
+        'info_egi.advantage_2_desc': 'Ogni passaggio di proprietà è pubblico e immutabile.',
+        'info_egi.advantage_3_title': 'Impatto Reale',
+        'info_egi.advantage_3_desc': 'Fai del bene al pianeta semplicemente possedendo ed usando l\'asset.',
+
+        'info_egi.cta_title': 'Pronto a Egizzare il tuo mondo?',
+        'info_egi.cta_subtitle': 'Entra nell\'economia del futuro. Sostenibile, trasparente, tua.',
+        'info_egi.cta_button_create': 'Crea il tuo primo EGI',
+        'info_egi.cta_button_explore': 'Esplora il Marketplace',
+
+        'info_egi.footer_copyright': '© 2024 Florence EGI. Tutti i diritti riservati.',
+        'info_egi.footer_privacy': 'Privacy Policy',
+        'info_egi.footer_terms': 'Termini di Servizio',
     },
     en: {
         'general.cta.enter': 'Enter',
@@ -547,6 +627,8 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'fallback.epp.bullet2': 'Ocean Cleanup',
         'fallback.epp.bullet3': 'Biodiversity',
         'fallback.epp.link': '20% of every transaction goes to verified environmental projects.',
+
+
     },
     pt: {
         'general.cta.enter': 'Entrar',
@@ -1387,4 +1469,13 @@ export const translations: Record<SupportedLocale, Record<string, string>> = {
         'fallback.epp.bullet3': 'Biodiversität',
         'fallback.epp.link': '20% jeder Transaktion gehen an verifizierte Umweltprojekte.',
     },
+};
+
+export const translations: Record<SupportedLocale, Record<string, string>> = {
+    it: dictionaries.it,
+    pt: dictionaries.pt,
+    de: dictionaries.de,
+    en: dictionaries.it, // Fallback to IT
+    es: dictionaries.it, // Fallback to IT
+    fr: dictionaries.it  // Fallback to IT
 };
