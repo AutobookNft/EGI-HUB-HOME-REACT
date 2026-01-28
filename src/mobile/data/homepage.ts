@@ -141,7 +141,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'Il cuore pulsante di EGI. Un\'economia progettata per rigenerare il pianeta: ogni transazione finanzia direttamente il ripristino degli ecosistemi.',
             items: [
                 {
@@ -248,7 +248,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'The beating heart of EGI. An economy designed to regenerate the planet: every transaction directly funds ecosystem restoration.',
             items: [
                 {
@@ -355,7 +355,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'O coração pulsante do EGI. Uma economia projetada para regenerar o planeta: cada transação financia diretamente a restauração dos ecossistemas.',
             items: [
                 {
@@ -462,7 +462,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'El corazón palpitante de EGI. Una economía diseñada para regenerar el planeta: cada transacción financia directamente la restauración de los ecosistemas.',
             items: [
                 {
@@ -569,7 +569,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'Le cœur battant d\'EGI. Une économie conçue pour régénérer la planète : chaque transaction finance directement la restauration des écosystèmes.',
             items: [
                 {
@@ -676,7 +676,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             ],
         },
         epp_section: {
-            title: 'Environmental Protection Project (EPP)',
+            title: 'EPP - Environmental Protection Project',
             description: 'Das schlagende Herz von EGI. Eine Wirtschaft zur Regeneration des Planeten: Jede Transaktion finanziert direkt die Wiederherstellung von Ökosystemen.',
             items: [
                 {

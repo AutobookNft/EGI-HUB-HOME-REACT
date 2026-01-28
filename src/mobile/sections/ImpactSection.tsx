@@ -1,6 +1,5 @@
 import { homepageContent } from '../data/homepage';
 import { useI18n } from '@/i18n';
-import { SectionTitle } from '../ui/SectionTitle';
 import { useRevealOnView } from '@/hooks/useRevealOnView';
 import '../styles/motion.css';
 
@@ -16,7 +15,15 @@ export function ImpactSection() {
     return (
         <section className="py-24 px-6 relative">
             <div ref={ref} className={className}>
-                <SectionTitle title={eppData.title} eyebrow="Environment" />
+                {/* Custom Gradient Title */}
+                <div className="mb-12">
+                    <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted)] uppercase mb-2 block">
+                        Environment
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent leading-tight">
+                        {eppData.title}
+                    </h2>
+                </div>
 
                 {/* Main EPP Intro Card */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group mb-8 transition-transform duration-500 hover:scale-[1.02]">
@@ -48,24 +55,24 @@ export function ImpactSection() {
                     {eppData.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="relative h-80 rounded-3xl overflow-hidden shadow-xl group cursor-pointer"
+                            className="relative h-96 rounded-3xl overflow-hidden shadow-xl group cursor-pointer"
                         >
                             {/* Background Image */}
                             <img
                                 src={item.image}
                                 alt={item.title}
-                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
 
-                            {/* Dark Gradient Overlay for Text Readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                            {/* Stronger Bottom Gradient for Text Readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-                            {/* Content Overlay */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                <h3 className="text-2xl font-bold text-white mb-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            {/* Content Overlay - Always Visible */}
+                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
                                     {item.title}
                                 </h3>
-                                <p className="text-white/90 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <p className="text-white/95 text-sm leading-relaxed drop-shadow-md">
                                     {item.description}
                                 </p>
                             </div>
