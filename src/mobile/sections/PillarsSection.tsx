@@ -11,7 +11,7 @@ export function PillarsSection() {
     const { ref, className } = useRevealOnView();
 
     return (
-        <section className="py-24 px-6 relative overflow-hidden">
+        <section className="py-24 px-6 relative overflow-hidden" id="pillars-section">
             <div ref={ref} className={className}>
                 <SectionTitle title={content.pillars.title} />
 
