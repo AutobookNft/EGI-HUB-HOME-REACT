@@ -7,7 +7,7 @@ interface CardProps {
     linkText?: string;
     children?: ReactNode;
     className?: string;
-    glowColor?: 'equilibrium' | 'value' | 'trust' | 'none';
+    glowColor?: 'equilibrium' | 'value' | 'trust' | 'innovation' | 'none';
 }
 
 export function Card({
@@ -25,6 +25,7 @@ export function Card({
         equilibrium: 'hover:border-[var(--accent)] hover:shadow-lg hover:shadow-[var(--accent)]/10',
         value: 'hover:border-[var(--accent2)] hover:shadow-lg hover:shadow-[var(--accent2)]/10',
         trust: 'hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10',
+        innovation: 'hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/10',
         none: 'hover:border-[var(--text)]/20'
     };
 

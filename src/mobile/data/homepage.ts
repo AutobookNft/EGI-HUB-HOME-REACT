@@ -687,6 +687,11 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                 description: 'Manipuliert EGI, um Akte der öffentlichen Verwaltung zu zertifizieren und authentifizieren. Jedes Dokument wird ein On-Chain-zertifiziertes EGI.',
                 linkText: 'Entdecken Sie NATAN',
             },
+            egiPt: {
+                title: 'EGI-PT',
+                description: 'Plattform für freie Spenden und gebührenfreie Zirkulation einzigartiger digitaler EGI-Klone. Null Einnahmen, nur virales Marketing und Sichtbarkeit durch reine Klone.',
+                linkText: 'Entdecke EGI-PT',
+            },
         },
         pillars: {
             title: 'Unsere 3 Säulen',
