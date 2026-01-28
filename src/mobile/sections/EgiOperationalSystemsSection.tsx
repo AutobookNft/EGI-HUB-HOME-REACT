@@ -25,6 +25,7 @@ export function EgiOperationalSystemsSection() {
                     link="/platforms/florence-art"
                     linkText={content.systems.florenceArt.linkText}
                     glowColor="value" // Gold for Art
+                    className="blue-glass"
                 />
 
                 <Card
@@ -33,6 +34,7 @@ export function EgiOperationalSystemsSection() {
                     link="/platforms/natan"
                     linkText={content.systems.natan.linkText}
                     glowColor="trust" // Blue for PA
+                    className="blue-glass"
                 />
 
                 <Card
@@ -41,6 +43,7 @@ export function EgiOperationalSystemsSection() {
                     link="/platforms/egi-pt"
                     linkText={content.systems.egiPt.linkText}
                     glowColor="innovation" // Violet/Pink for Pure Trading
+                    className="blue-glass"
                 />
             </div>
         </section>

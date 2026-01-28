@@ -58,7 +58,28 @@ body {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+
 .card-interactive:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-elevated);
+}
+
+/* Strong Blue Glass Effect */
+.blue-glass {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.blue-glass:hover {
+    background: rgba(30, 41, 59, 0.5);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow:
+        0 12px 40px 0 rgba(31, 38, 135, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(56, 189, 248, 0.2);
 }
