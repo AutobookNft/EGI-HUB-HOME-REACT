@@ -18,11 +18,9 @@ export function HomePage() {
             {/* State 2: Transition & Dark Phase (Triggered by Scroll) */}
             <TransitionSection />
 
-            {/* State 2->3: Impact */}
-            <ImpactSection />
-
             {/* State 3: Return to Light (Structure) */}
             <EgiOperationalSystemsSection />
+            <ImpactSection />
             <PillarsSection />
             <ForWhoSection />
             <FinalCtaSection />
