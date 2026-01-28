@@ -15,12 +15,14 @@ export function HomePage() {
             <HeroSection />
             <EgiExamplesSection />
 
+            {/* EPP Core Section */}
+            <ImpactSection />
+
             {/* State 2: Transition & Dark Phase (Triggered by Scroll) */}
             <TransitionSection />
 
             {/* State 3: Return to Light (Structure) */}
             <EgiOperationalSystemsSection />
-            <ImpactSection />
             <PillarsSection />
             <ForWhoSection />
             <FinalCtaSection />

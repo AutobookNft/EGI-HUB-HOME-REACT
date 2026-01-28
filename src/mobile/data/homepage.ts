@@ -67,6 +67,11 @@ export interface HomepageContent {
     epp_section: {
         title: string;
         description: string;
+        items: Array<{
+            title: string;
+            description: string;
+            image: string;
+        }>;
     };
 }
 
@@ -138,6 +143,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'Il cuore pulsante di EGI. Un\'economia progettata per rigenerare il pianeta: ogni transazione finanzia direttamente il ripristino degli ecosistemi.',
+            items: [
+                {
+                    title: 'Aquatic Plastic Removal',
+                    description: 'Questa campagna si dedica alla pulizia delle acque del pianeta, rimuovendo la plastica da mari, oceani, laghi e corsi d\'acqua. Gli EGI supportano iniziative che affrontano la crescente minaccia dell\'inquinamento da plastica, contribuendo alla purificazione degli ecosistemi acquatici vitali per la biodiversità e la salute umana.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Appropriate Restoration Forestry',
+                    description: 'Questo progetto si concentra sul rimboschimento e la ricreazione di foreste e boschi, rispettando la biodiversità e l\'habitat naturale. Gli EGI finanziano sforzi per ripristinare questi preziosi ecosistemi, fondamentali per l\'equilibrio climatico e l\'habitat di innumerevoli specie.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Bee Population Enhancement',
+                    description: 'Gli EGI partecipano attivamente al sostegno della popolazione delle api, essenziali per la pollinizzazione e la biodiversità. Questa campagna mira a contrastare il declino delle api, sostenendo progetti che promuovono la loro salute e l\'accrescimento delle loro popolazioni.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'Per chi è',
@@ -228,6 +250,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'The beating heart of EGI. An economy designed to regenerate the planet: every transaction directly funds ecosystem restoration.',
+            items: [
+                {
+                    title: 'Aquatic Plastic Removal',
+                    description: 'Dedicated to cleaning the planet\'s waters by removing plastic from seas, oceans, lakes, and rivers. EGI supports initiatives tackling plastic pollution, purifying vital aquatic ecosystems.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Appropriate Restoration Forestry',
+                    description: 'Focused on reforestation and recreating forests while respecting biodiversity. EGI funds efforts to restore these precious ecosystems, fundamental for climate balance.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Bee Population Enhancement',
+                    description: 'Actively supporting bee populations, essential for pollination. This campaign combats bee decline by funding projects that promote their health and population growth.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'For Whom',
@@ -318,6 +357,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'O coração pulsante do EGI. Uma economia projetada para regenerar o planeta: cada transação financia diretamente a restauração dos ecossistemas.',
+            items: [
+                {
+                    title: 'Remoção de Plástico Aquático',
+                    description: 'Dedicada à limpeza das águas do planeta, removendo plásticos de mares, oceanos e rios. EGI apoia iniciativas vitais para a purificação dos ecossistemas aquáticos.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Reflorestamento Apropriado',
+                    description: 'Focada no reflorestamento respeitando a biodiversidade. EGI financia esforços para restaurar estes ecossistemas preciosos, fundamentais para o equilíbrio climático.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Aumento da População de Abelhas',
+                    description: 'Apoio ativo às populações de abelhas, essenciais para a polinização. Esta campanha combate o declínio das abelhas promovendo sua saúde e crescimento.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'Para quem',
@@ -408,6 +464,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'El corazón palpitante de EGI. Una economía diseñada para regenerar el planeta: cada transacción financia directamente la restauración de los ecosistemas.',
+            items: [
+                {
+                    title: 'Eliminación de Plástico Acuático',
+                    description: 'Dedicada a limpiar las aguas del planeta, eliminando plásticos de mares y ríos. EGI apoya iniciativas vitales para purificar los ecosistemas acuáticos.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Reforestación Apropiada',
+                    description: 'Centrada en la reforestación respetando la biodiversidad. EGI financia esfuerzos para restaurar estos ecosistemas preciosos, fundamentales para el clima.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Mejora de Población de Abejas',
+                    description: 'Apoyo activo a las poblaciones de abejas, esenciales para la polinización. Esta campaña combate el declive de las abejas promoviendo su salud.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'Para quién',
@@ -498,6 +571,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'Le cœur battant d\'EGI. Une économie conçue pour régénérer la planète : chaque transaction finance directement la restauration des écosystèmes.',
+            items: [
+                {
+                    title: 'Élimination du Plastique Aquatique',
+                    description: 'Dédiée au nettoyage des eaux, éliminant le plastique des mers et rivières. EGI soutient des initiatives vitales pour purifier les écosystèmes aquatiques.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Reforestation Appropriée',
+                    description: 'Axée sur la reforestation respectant la biodiversité. EGI finance les efforts pour restaurer ces écosystèmes précieux, fondamentaux pour le climat.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Amélioration de la Population d\'Abeilles',
+                    description: 'Soutien actif aux populations d\'abeilles, essentielles pour la pollinisation. Cette campagne combat le déclin des abeilles en promouvant leur santé.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'Pour qui',
@@ -588,6 +678,23 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         epp_section: {
             title: 'Environmental Protection Project (EPP)',
             description: 'Das schlagende Herz von EGI. Eine Wirtschaft zur Regeneration des Planeten: Jede Transaktion finanziert direkt die Wiederherstellung von Ökosystemen.',
+            items: [
+                {
+                    title: 'Entfernung von Wasserplastik',
+                    description: 'Gewidmet der Reinigung der Gewässer von Plastik. EGI unterstützt Initiativen zur Reinigung lebenswichtiger aquatischer Ökosysteme.',
+                    image: '/images/epp_campaign_aquatic.png',
+                },
+                {
+                    title: 'Angemessene Wiederaufforstung',
+                    description: 'Fokussiert auf Wiederaufforstung unter Respektierung der Biodiversität. EGI finanziert die Wiederherstellung dieser für das Klima wichtigen Ökosysteme.',
+                    image: '/images/epp_campaign_forest.png',
+                },
+                {
+                    title: 'Förderung der Bienenpopulation',
+                    description: 'Aktive Unterstützung der Bienenpopulationen, essenziell für die Bestäubung. Diese Kampagne bekämpft das Bienensterben.',
+                    image: '/images/epp_campaign_bees.png',
+                },
+            ],
         },
         forWho: {
             title: 'Für wen',
