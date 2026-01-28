@@ -55,7 +55,7 @@ export function ImpactSection() {
                     {eppData.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="relative h-96 rounded-3xl overflow-hidden shadow-xl group cursor-pointer"
+                            className="relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
                         >
                             {/* Background Image */}
                             <img
@@ -64,15 +64,15 @@ export function ImpactSection() {
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
 
-                            {/* Stronger Bottom Gradient for Text Readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                            {/* High Contrast Gradient Overlay (Deep Dark) */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 via-50% to-transparent opacity-95" />
 
                             {/* Content Overlay - Always Visible */}
-                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">
+                            <div className="relative z-10 p-8 pb-12">
+                                <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
                                     {item.title}
                                 </h3>
-                                <p className="text-white/95 text-sm leading-relaxed drop-shadow-md">
+                                <p className="text-gray-100 text-base leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] font-medium">
                                     {item.description}
                                 </p>
                             </div>
