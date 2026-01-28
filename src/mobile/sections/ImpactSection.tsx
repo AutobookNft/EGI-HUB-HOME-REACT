@@ -10,11 +10,11 @@ export function ImpactSection() {
     const content = homepageContent[locale];
     const { ref, className } = useRevealOnView();
 
-    // Use the 4th Pillar (EPP) as the source for this section to ensure consistency
-    const eppPillar = content.pillars.items[3];
+    // Use the dedicated EPP section data
+    const eppData = content.epp_section;
 
-    const title = eppPillar.title;
-    const text = eppPillar.description;
+    const title = eppData.title;
+    const text = eppData.description;
 
     return (
         <section className="py-24 px-6 relative">

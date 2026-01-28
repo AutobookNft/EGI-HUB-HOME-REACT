@@ -64,6 +64,10 @@ export interface HomepageContent {
         subheadline: string;
         description: string;
     };
+    epp_section: {
+        title: string;
+        description: string;
+    };
 }
 
 export const homepageContent: Record<SupportedLocale, HomepageContent> = {
@@ -115,7 +119,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'I Nostri 4 Pilastri',
+            title: 'I Nostri 3 Pilastri',
             items: [
                 {
                     title: 'Concretezza',
@@ -126,14 +130,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Bilanciamento tra economia e ambiente. Ogni transazione contribuisce alla protezione ambientale.',
                 },
                 {
-                    title: 'Accessibilità',
-                    description: 'Tecnologia per tutti. EGI rende la blockchain comprensibile e utilizzabile da chiunque.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'Il cuore pulsante di EGI. Un\'economia progettata per rigenerare il pianeta: ogni transazione finanzia direttamente il ripristino degli ecosistemi.',
+                    title: 'Accessibilità & Zero Cost',
+                    description: 'Tecnologia semplice per tutti. Inizia a certificare i tuoi asset senza costi iniziali.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'Il cuore pulsante di EGI. Un\'economia progettata per rigenerare il pianeta: ogni transazione finanzia direttamente il ripristino degli ecosistemi.',
         },
         forWho: {
             title: 'Per chi è',
@@ -205,7 +209,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'Our 4 Pillars',
+            title: 'Our 3 Pillars',
             items: [
                 {
                     title: 'Concreteness',
@@ -216,14 +220,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Balance between economy and environment. Every transaction contributes to environmental protection.',
                 },
                 {
-                    title: 'Accessibility',
-                    description: 'Technology for everyone. EGI makes blockchain understandable and usable by anyone.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'The beating heart of EGI. An economy designed to regenerate the planet: every transaction directly funds ecosystem restoration.',
+                    title: 'Accessibility & Zero Cost',
+                    description: 'Simple technology for everyone. Start certifying your assets with no upfront costs.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'The beating heart of EGI. An economy designed to regenerate the planet: every transaction directly funds ecosystem restoration.',
         },
         forWho: {
             title: 'For Whom',
@@ -295,7 +299,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'Os Nossos 4 Pilares',
+            title: 'Os Nossos 3 Pilares',
             items: [
                 {
                     title: 'Concretude',
@@ -306,14 +310,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Balanço entre economia e ambiente. Cada transação contribui para a proteção ambiental.',
                 },
                 {
-                    title: 'Acessibilidade',
-                    description: 'Tecnologia para todos. EGI torna a blockchain compreensível e utilizável por qualquer pessoa.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'O coração pulsante do EGI. Uma economia projetada para regenerar o planeta: cada transação financia diretamente a restauração dos ecossistemas.',
+                    title: 'Acessibilidade e Custo Zero',
+                    description: 'Tecnologia simples para todos. Comece a certificar seus ativos sem custos iniciais.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'O coração pulsante do EGI. Uma economia projetada para regenerar o planeta: cada transação financia diretamente a restauração dos ecossistemas.',
         },
         forWho: {
             title: 'Para quem',
@@ -385,7 +389,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'Nuestros 4 Pilares',
+            title: 'Nuestros 3 Pilares',
             items: [
                 {
                     title: 'Concreteza',
@@ -396,14 +400,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Balance entre economía y ambiente. Cada transacción contribuye a la protección ambiental.',
                 },
                 {
-                    title: 'Accesibilidad',
-                    description: 'Tecnología para todos. EGI hace que la blockchain sea comprensible y utilizable por cualquiera.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'El corazón palpitante de EGI. Una economía diseñada para regenerar el planeta: cada transacción financia directamente la restauración de los ecosistemas.',
+                    title: 'Accesibilidad y Costo Cero',
+                    description: 'Tecnología simple para todos. Comienza a certificar tus activos sin costos iniciales.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'El corazón palpitante de EGI. Una economía diseñada para regenerar el planeta: cada transacción financia directamente la restauración de los ecosistemas.',
         },
         forWho: {
             title: 'Para quién',
@@ -475,7 +479,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'Nos 4 Piliers',
+            title: 'Nos 3 Piliers',
             items: [
                 {
                     title: 'Concrétude',
@@ -486,14 +490,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Équilibre entre économie et environnement. Chaque transaction contribue à la protection de l\'environnement.',
                 },
                 {
-                    title: 'Accessibilité',
-                    description: 'Technologie pour tous. EGI rend la blockchain compréhensible et utilisable par tous.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'Le cœur battant d\'EGI. Une économie conçue pour régénérer la planète : chaque transaction finance directement la restauration des écosystèmes.',
+                    title: 'Accessibilité et Zéro Coût',
+                    description: 'Technologie simple pour tous. Commencez à certifier vos actifs sans frais initiaux.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'Le cœur battant d\'EGI. Une économie conçue pour régénérer la planète : chaque transaction finance directement la restauration des écosystèmes.',
         },
         forWho: {
             title: 'Pour qui',
@@ -565,7 +569,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
             },
         },
         pillars: {
-            title: 'Unsere 4 Säulen',
+            title: 'Unsere 3 Säulen',
             items: [
                 {
                     title: 'Konkretheit',
@@ -576,14 +580,14 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
                     description: 'Balance zwischen Wirtschaft und Umwelt. Jede Transaktion trägt zum Umweltschutz bei.',
                 },
                 {
-                    title: 'Zugänglichkeit',
-                    description: 'Technologie für alle. EGI macht Blockchain für jeden verständlich und nutzbar.',
-                },
-                {
-                    title: 'Environmental Protection Project (EPP)',
-                    description: 'Das schlagende Herz von EGI. Eine Wirtschaft zur Regeneration des Planeten: Jede Transaktion finanziert direkt die Wiederherstellung von Ökosystemen.',
+                    title: 'Zugänglichkeit & Null Kosten',
+                    description: 'Einfache Technologie für alle. Beginnen Sie ohne Vorlaufkosten, Ihre Vermögenswerte zu zertifizieren.',
                 },
             ],
+        },
+        epp_section: {
+            title: 'Environmental Protection Project (EPP)',
+            description: 'Das schlagende Herz von EGI. Eine Wirtschaft zur Regeneration des Planeten: Jede Transaktion finanziert direkt die Wiederherstellung von Ökosystemen.',
         },
         forWho: {
             title: 'Für wen',
