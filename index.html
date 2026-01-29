@@ -8,7 +8,8 @@
   <!-- Fonts (come originale) -->
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
     rel="stylesheet" />
 
   <!-- Import map per Three.js CDN (CRITICAL!) -->
@@ -30,24 +31,24 @@
 
 <body>
   <!-- Engine 3D riabilitato per desktop -->
-  <script type="module" src="/ecosystem_data.js?v=emergency_fix"></script>
+  <script type="module" src="/ecosystem_data.js?v=desktop_align_v1"></script>
   <script type="module" src="/engine.js?v=emergency_fix"></script>
 
   <!-- React UI overlay -->
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
-  
+
   <!-- SERVICE WORKER KILLER: Force unregister old SW to clear cache -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for(let registration of registrations) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
           console.log('🚨 Unregistering Service Worker:', registration);
           registration.unregister();
         }
-        if(registrations.length > 0) {
-            console.log('♻️ Service Workers killed. Reloading page...');
-            window.location.reload();
+        if (registrations.length > 0) {
+          console.log('♻️ Service Workers killed. Reloading page...');
+          window.location.reload();
         }
       });
     }

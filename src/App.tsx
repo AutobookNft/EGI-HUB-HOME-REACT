@@ -85,6 +85,7 @@ function App() {
         if (currentPath === '/oracode') return <OracodePage />;
         if (currentPath === '/corporate') return <CorporatePage />;
         if (currentPath === '/under-construction') return <UnderConstructionPage />;
+        if (currentPath === '/what-is') return <WhatIsEgiPage />;
 
         // Desktop-specific pages
         if (currentPath === '/platforms') return <PlatformsPage />;

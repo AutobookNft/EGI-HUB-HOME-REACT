@@ -18,7 +18,7 @@ const ecosystemData = {
             "System Status"
         ],
         egi_link: "Il punto di partenza.",
-        route: "https://egi-hub.13.53.205.215.sslip.io",
+        route: "/what-is",
         radius: 65 // Larger core
     },
 

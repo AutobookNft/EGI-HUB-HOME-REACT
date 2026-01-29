@@ -123,7 +123,7 @@ export const useEcosystemData = () => {
             console.log(`🛤️ [handleNodeClick] node.route:`, node.route);
 
             // ⭐ Hyperspace whitelist: internal routes that should trigger effect
-            const hyperspaceInternalRoutes = ['/ambiente', '/oracode', '/corporate', '/platforms', '/platforms/natan', '/under-construction'];
+            const hyperspaceInternalRoutes = ['/ambiente', '/oracode', '/corporate', '/platforms', '/platforms/natan', '/under-construction', '/what-is'];
 
             // 1. Internal Route -> Check if should trigger hyperspace
             if (node.route && node.route.startsWith('/')) {

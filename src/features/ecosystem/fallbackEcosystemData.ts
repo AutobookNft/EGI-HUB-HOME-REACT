@@ -11,7 +11,7 @@ export const createFallbackEcosystemData = (
         desc: 'Il cuore pulsante dell\'ecosistema.',
         bullets: ['Governance', 'Identity', 'System Status'],
         egi_link: 'Il punto di partenza.',
-        route: '/under-construction', // Under construction - EGI core page
+        route: '/what-is', // Updated: Links to Definition/Co-Creation Page
         radius: 65
     },
     egis: {

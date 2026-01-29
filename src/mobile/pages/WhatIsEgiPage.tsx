@@ -79,6 +79,17 @@ export function WhatIsEgiPage() {
             {/* Header / Hero */}
             <header className="bg-gradient-to-r from-[#1a1a1a] to-[#2c3e50] text-white pt-48 pb-16 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10 bg-[url('/img/pattern-renaissance.png')]"></div> {/* Placeholder pattern */}
+
+                {/* Desktop Navigation Back */}
+                <div className="absolute top-8 left-8 z-50 hidden md:block">
+                    <button
+                        onClick={() => window.history.back()}
+                        className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white hover:bg-white/20 transition-all font-renaissance"
+                    >
+                        <span>←</span> Torna all'Ecosistema
+                    </button>
+                </div>
+
                 <div className="relative z-10 max-w-4xl mx-auto">
                     <h1 className="font-renaissance text-4xl md:text-6xl text-oro-fiorentino mb-4">
                         {t('info_egi.section_definition_title')}
