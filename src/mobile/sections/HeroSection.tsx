@@ -38,14 +38,7 @@ export function HeroSection() {
                             part === 'EGI' ? (
                                 <span
                                     key={i}
-                                    style={{
-                                        background: 'linear-gradient(to right, #7c3aed, #d97706)',
-                                        WebkitBackgroundClip: 'text',
-                                        backgroundClip: 'text',
-                                        color: 'transparent',
-                                        display: 'inline-block'
-                                    }}
-                                    className="font-extrabold"
+                                    className="font-extrabold bg-gradient-to-r from-gray-400 to-emerald-500 bg-clip-text text-transparent inline-block"
                                 >
                                     EGI
                                 </span>

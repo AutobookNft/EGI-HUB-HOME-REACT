@@ -89,7 +89,7 @@ export const homepageContent: Record<SupportedLocale, HomepageContent> = {
         },
         hero: {
             badge: 'EGI Protocol',
-            headline: 'Un EGI trasforma qualcosa che già esiste in un bene che può generare valore nel tempo.',
+            headline: 'Un EGI amplifica ciò che già esiste, generando nuovo valore nel tempo.',
             subheadline: 'Se esiste, Egizzalo. Se lo Egizzi, vale.',
             cta_primary: 'Scopri come fare',
         },

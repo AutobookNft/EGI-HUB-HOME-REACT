@@ -101,6 +101,53 @@ export function WhatIsEgiPage() {
                     </p>
                 </section>
 
+                {/* Accessories Marquee */}
+                <section className="py-12 overflow-hidden">
+                    <div className="mb-4 text-center">
+                        <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">
+                            MODULI & ACCESSORI
+                        </span>
+                    </div>
+                    <InfiniteMarquee
+                        speed={40}
+                        direction="left"
+                        items={[
+                            { icon: ShieldCheck, text: "Certificati (CoA)" },
+                            { icon: Ticket, text: "Utility" },
+                            { icon: Fingerprint, text: "Proprietà" },
+                            { icon: Leaf, text: "Protocolli Ambientali (EPP)" },
+                            { icon: Bot, text: "Smart Contracts" },
+                            { icon: Banknote, text: "Royalties" },
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex items-center gap-2 bg-white/80 backdrop-blur px-5 py-2 rounded-full shadow-sm border border-gray-100 text-gray-600 mx-2">
+                                <item.icon size={16} className="text-oro-fiorentino" />
+                                <span className="font-medium text-sm whitespace-nowrap">{item.text}</span>
+                            </div>
+                        ))}
+                    />
+                </section>
+
+                {/* Co-Creation Principle */}
+                <section id="co-creazione" className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border-l-4 border-oro-fiorentino">
+                    <div className="flex flex-col md:flex-row items-center gap-8">
+                        <div className="flex-1 text-center md:text-left">
+                            <h2 className="font-renaissance text-3xl text-gray-800 mb-2">
+                                {t('info_egi.section_cocreation_title')}
+                            </h2>
+                            <p className="text-oro-fiorentino font-medium italic mb-4">
+                                {t('info_egi.section_cocreation_subtitle')}
+                            </p>
+                            <div className="space-y-4 text-gray-600 leading-relaxed">
+                                <p>{t('info_egi.section_cocreation_text_1')}</p>
+                                <p>{t('info_egi.section_cocreation_text_2')}</p>
+                            </div>
+                        </div>
+                        <div className="shrink-0 p-6 bg-oro-fiorentino/10 rounded-full text-oro-fiorentino">
+                            <HeartHandshake size={64} strokeWidth={1} />
+                        </div>
+                    </div>
+                </section>
+
                 {/* EGI Images Carousel */}
                 <section className="w-full">
                     <div className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory no-scrollbar px-2 -mx-2 items-center">

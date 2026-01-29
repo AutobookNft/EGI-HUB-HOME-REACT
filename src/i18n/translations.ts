@@ -305,7 +305,12 @@ const dictionaries = {
         'info_egi.section_definition_title': 'Cosa sono gli EGI?',
         'info_egi.section_definition_subtitle': 'Ecological Goods Invent: La Rivoluzione degli Asset Digitali',
         'info_egi.section_definition_text_1': 'Gli EGI non sono semplici NFT. Sono asset digitali evoluti che portano utilità concreta, certificazione verificabile e impatto ambientale misurabile nel mondo reale.',
-        'info_egi.section_definition_text_2': 'A differenza di un semplice NFT, che spesso rappresenta solo un link a un\'immagine, un EGI è un contratto legale vivo che collega indissolubilmente il proprietario, l\'asset e i suoi diritti, automatizzando royalties e certificazione.',
+        'info_egi.section_definition_text_2': 'Immagina di avvolgere la tua opera con un sottile strato di accessori digitali che la aiutano a incontrare la domanda del mercato. Un EGI non è solo un certificato, ma un "contenitore" attivo a cui puoi attaccare moduli vitali: Certificati (CoA), Utility, Proprietà e Protocolli Ambientali (EPP).',
+
+        'info_egi.section_cocreation_title': 'Il Principio di Co-Creazione',
+        'info_egi.section_cocreation_subtitle': '"Non basta creare. Occorre che qualcuno accolga."',
+        'info_egi.section_cocreation_text_1': 'In Florence EGI, l\'arte non è completa finché non incontra il suo destinatario. Chi per primo "minta" (genera) l\'EGI diventa il Co-Creatore: la causa efficiente che porta l\'opera all\'esistenza reale.',
+        'info_egi.section_cocreation_text_2': 'Il tuo nome rimane legato all\'opera per sempre. La blockchain conserva la tua firma indelebile accanto a quella dell\'artista. Anche se l\'opera verrà venduta mille volte, tu sarai sempre riconosciuto come colui che l\'ha resa viva.',
 
         'info_egi.section_components_title': 'I 3 Componenti',
         'info_egi.section_components_intro': 'Ogni EGI è composto da tre elementi fondamentali che ne definiscono unicità e valore.',
