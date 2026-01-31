@@ -1,10 +1,10 @@
-import { TopBar } from '@/components/layout/TopBar';
-import { Sidebar } from '@/components/layout/Sidebar';
-import { MissionControl } from '@/components/layout/MissionControl';
-import { DetailPanel } from '@/components/layout/DetailPanel';
-import { BottomBar } from '@/components/layout/BottomBar';
 import { Loader } from '@/components/ui/Loader';
 import { useEcosystemData } from './useEcosystemData';
+import { DesktopHomeSidebar } from '@/components/desktop/home/DesktopHomeSidebar';
+import { Sidebar } from '@/components/layout/Sidebar';
+import { DesktopEgiCube } from '@/components/desktop/DesktopEgiCube';
+
+import { TopBar } from '@/components/layout/TopBar';
 
 export const EcosystemView = () => {
     console.log(`📺 [EcosystemView] Rendering`);
@@ -16,14 +16,22 @@ export const EcosystemView = () => {
 
     return (
         <>
-            {/* React UI Overlay (z-index > 3D scene) */}
+            {/* Top Navigation Bar */}
             <TopBar />
+
+            {/* Left Navigation Sidebar */}
             <Sidebar />
-            <MissionControl />
-            <DetailPanel />
-            <BottomBar />
+
+            {/* EGI Transformation Cube (Center-left) */}
+            <DesktopEgiCube />
+
+            {/* New Desktop Sidebar (Content, shifted right) */}
+            <DesktopHomeSidebar />
 
             {/* 3D Scene renders via engine.js loaded in index.html */}
+            {/* The canvas is usually appended to body or a container by engine.js */}
+            {/* We don't need to render it here, just ensure UI allows it to be seen */}
         </>
     );
 };
+

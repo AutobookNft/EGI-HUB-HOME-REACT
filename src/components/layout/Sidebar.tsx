@@ -18,7 +18,7 @@ export const Sidebar = () => {
     const isActive = (path: string) => currentPath === path;
 
     return (
-        <div className="fixed left-0 top-[70px] bottom-[40px] w-20 glass-dark border-r border-light hidden md:flex flex-col items-center pt-8 gap-4 z-20">
+        <div className="fixed left-0 top-0 bottom-0 w-20 glass-dark border-r border-light hidden md:flex flex-col items-center pt-8 gap-4 z-20">
             {/* Navigation Buttons */}
             <NavButton
                 icon={<Home />}
