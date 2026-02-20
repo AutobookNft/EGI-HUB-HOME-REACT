@@ -4,6 +4,7 @@
  */
 
 import { EcosystemData, OrbitalConfig } from '../types/ecosystem';
+import config from '@/utils/config';
 
 export const platformsData: EcosystemData = {
     // --- CORE: PIATTAFORME ATTIVE ---
@@ -30,7 +31,7 @@ export const platformsData: EcosystemData = {
         color: 0xFFD700, // Gold
         desc: "La prima piattaforma al mondo per la certificazione 4D delle opere d'arte.",
         bullets: ["Certificazione 4D", "Marketplace NFT", "Royalties Perpetue"],
-        egi_link: "https://florenceegi.23.53.205.215.sslip.io",
+        egi_link: config.florenceUrl,
         route: "EXTERNAL",
         radius: 45 // 50% larger than standard 30
     },
@@ -42,7 +43,7 @@ export const platformsData: EcosystemData = {
         color: 0x00BFFF, // Deep Sky Blue
         desc: "Il centro di conoscenza per sviluppatori, partner e utenti.",
         bullets: ["Whitepaper", "API Docs", "Tutorials"],
-        egi_link: "https://egi-info.23.53.205.215.sslip.io",
+        egi_link: config.infoUrl,
         route: "EXTERNAL",
         radius: 45
     },
@@ -54,7 +55,7 @@ export const platformsData: EcosystemData = {
         color: 0xFF4500, // Orange Red
         desc: "Certificazione e tracciabilità documentale per la Pubblica Amministrazione.",
         bullets: ["Albo Pretorio", "Trasparenza", "Immutabilità"],
-        egi_link: "https://natan-loc.23.53.205.215.sslip.io",
+        egi_link: config.natanUrl,
         route: "EXTERNAL",
         radius: 45
     },

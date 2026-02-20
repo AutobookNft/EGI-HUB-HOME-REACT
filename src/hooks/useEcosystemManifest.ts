@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Manifest, Layer, Telemetry } from '@/contracts/ecosystemManifest';
 import { useI18n } from '@/i18n';
+import config from '@/utils/config';
 
 export type ManifestStatus = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -31,7 +32,7 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         title: 'HUB',
         subtitle: t('mobile.subtitle.hub'),
         description: t('mobile.description.hub'),
-        entryPath: 'https://egi-hub.13.53.205.215.sslip.io',
+        entryPath: config.hubUrl,
         level: 2,
         coordinates: t('mobile.coordinates.hub'),
         node: 'Entrata',
@@ -81,7 +82,7 @@ const buildFallbackLayers = (t: (key: string) => string): Layer[] => [
         title: 'INFO',
         subtitle: t('mobile.subtitle.info'),
         description: t('mobile.description.info'),
-        entryPath: 'https://egi-info.13.53.205.215.sslip.io',
+        entryPath: config.infoUrl,
         level: 7,
         coordinates: t('mobile.coordinates.info'),
         node: 'Info',

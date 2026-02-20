@@ -34,7 +34,7 @@ const ecosystemData = {
         desc: "Tutto ciò che è stato Egizzato: Arte, Beni, Documenti.",
         bullets: ["Marketplace", "NFT Collections", "My Assets"],
         egi_link: "Se esiste, egizzalo. Se lo egizzi, VALE.",
-        route: "https://egi.13.53.205.215.sslip.io",
+        route: "https://art.florenceegi.com",
         radius: 42 // EXACTLY 50% larger than original 28 (28 * 1.5 = 42)
     },
 

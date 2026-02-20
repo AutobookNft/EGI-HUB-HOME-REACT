@@ -5,6 +5,7 @@
  */
 
 import { EcosystemData, OrbitalConfig } from '@/types/ecosystem';
+import config from '@/utils/config';
 
 export const natanSystemData: EcosystemData = {
     // --- CORE: NATAN (Non-clickable, just visual hub) ---
@@ -31,8 +32,8 @@ export const natanSystemData: EcosystemData = {
         color: 0xFF6347, // Tomato
         desc: "Certificazione documentale per Albi Pretori e Trasparenza PA.",
         bullets: ["Albo Pretorio", "Trasparenza", "Immutabilità"],
-        egi_link: "https://natan-loc.13.53.205.215.sslip.io",
-        route: "https://natan-loc.13.53.205.215.sslip.io",
+        egi_link: config.natanUrl,
+        route: config.natanUrl,
         radius: 42 // Same as home satellites
     },
 

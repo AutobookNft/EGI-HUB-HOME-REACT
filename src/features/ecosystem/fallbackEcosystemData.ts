@@ -1,4 +1,5 @@
 import type { EcosystemData } from '@/types/ecosystem';
+import config from '@/utils/config';
 
 export const createFallbackEcosystemData = (
     _t: (key: string) => string
@@ -22,7 +23,7 @@ export const createFallbackEcosystemData = (
         desc: 'Tutto ciò che è stato Egizzato.',
         bullets: ['Marketplace', 'NFT Collections', 'My Assets'],
         egi_link: 'Se esiste, egizzalo.',
-        route: 'https://egi.13.53.205.215.sslip.io',
+        route: config.florenceUrl,
         radius: 42
     },
     project: {

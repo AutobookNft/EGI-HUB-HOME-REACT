@@ -5,6 +5,7 @@
  */
 
 import { EcosystemData, OrbitalConfig } from '@/types/ecosystem';
+import config from '@/utils/config';
 
 export const platformsSystemData: EcosystemData = {
     // --- CORE: HUB ---
@@ -19,8 +20,8 @@ export const platformsSystemData: EcosystemData = {
             "Multi-Tenant Architecture",
             "API Gateway"
         ],
-        egi_link: "https://egi-hub.13.53.205.215.sslip.io",
-        route: "https://egi-hub.13.53.205.215.sslip.io" // External link to HUB
+        egi_link: config.hubUrl,
+        route: config.hubUrl // External link to HUB
     },
 
     // --- SATELLITES ---
@@ -31,8 +32,8 @@ export const platformsSystemData: EcosystemData = {
         color: 0x00FF88, // Green
         desc: "La prima piattaforma al mondo per la certificazione 4D delle opere d'arte.",
         bullets: ["Certificazione 4D", "Marketplace NFT", "Royalties Perpetue"],
-        egi_link: "https://egi.13.53.205.215.sslip.io",
-        route: "https://egi.13.53.205.215.sslip.io",
+        egi_link: config.florenceUrl,
+        route: config.florenceUrl,
         radius: 42 // Same as home satellites
     },
 

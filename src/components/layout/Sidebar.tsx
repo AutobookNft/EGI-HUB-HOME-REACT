@@ -1,13 +1,14 @@
 import { Brain, Globe, Info, Home } from 'lucide-react';
 import { useUIStore } from '@/stores/useUIStore';
 import { useI18n } from '@/i18n';
+import config from '@/utils/config';
 
-// Online app URLs (sslip.io - IP: 13.53.205.215)
+// Online app URLs from config
 const APPS = {
-    HUB: 'https://egi-hub.13.53.205.215.sslip.io',
-    EGI: 'https://egi.13.53.205.215.sslip.io',
-    NATAN: 'https://natan-loc.13.53.205.215.sslip.io',
-    INFO: 'https://egi-info.13.53.205.215.sslip.io',
+    HUB: config.hubUrl,
+    EGI: config.florenceUrl,
+    NATAN: config.natanUrl,
+    INFO: config.infoUrl,
 };
 
 export const Sidebar = () => {
