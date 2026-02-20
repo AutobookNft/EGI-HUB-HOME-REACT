@@ -31,8 +31,8 @@ export const DesktopHomeSidebar = () => {
             <aside
                 ref={containerRef}
                 onScroll={handleScroll}
-                className="fixed right-0 top-0 bottom-0 w-[480px] z-30 overflow-y-auto bg-black/90 border-l border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-xl no-scrollbar"
-                style={{ background: '#05080ce6' }}
+                className="fixed right-0 top-0 bottom-0 z-30 overflow-y-auto bg-black/90 border-l border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-xl no-scrollbar"
+                style={{ background: '#05080ce6', width: '25vw', minWidth: '360px' }}
             >
                 <div className="flex flex-col min-h-full">
                     <DesktopHeroSection />

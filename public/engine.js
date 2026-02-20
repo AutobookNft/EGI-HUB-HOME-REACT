@@ -239,8 +239,9 @@ function constructEcosystem(newData, newOrbitConfig) {
       console.log(`📏 [constructEcosystem] Radius from data: ${d.radius}`);
 
       // Distribute planets in 2D circle
-      // FIXED RADIUS: All satellites equidistant from HUB
-      const orbitR = 150; // Reduced to fit all on screen
+      // FIXED RADIUS: All satellites equidistant from HUB (Scaled by React factor if present)
+      const scaleMult = newData.orbitScaleFactor || 1.0;
+      const orbitR = 150 * scaleMult; // Scaled orbit distance
       const angle = (idx / newOrbitConfig.length) * Math.PI * 2; // Even distribution
 
       // ECLIPTIC FLATTENING: Remove vertical sine wave
@@ -250,10 +251,10 @@ function constructEcosystem(newData, newOrbitConfig) {
       const x = Math.cos(angle) * orbitR;
       const y = Math.sin(angle) * orbitR; // Y varies (vertical circle)
 
-      // SCALE UP SATELLITE: Force all satellites to same size (42)
-      const nodeRadius = 42; // FORCED - ignore d.radius to ensure consistency
+      // SCALE UP SATELLITE: Use dynamic radius from data (scaled by React)
+      const nodeRadius = d.radius || 42; 
       console.log(
-        `📏 [constructEcosystem] FORCED nodeRadius: ${nodeRadius} for ${cfg.id}`
+        `📏 [constructEcosystem] nodeRadius: ${nodeRadius} for ${cfg.id}`
       );
 
       const node = createComplexNode(cfg.id, d, nodeRadius);

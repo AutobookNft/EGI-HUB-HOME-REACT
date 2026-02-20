@@ -156,21 +156,19 @@ export function DesktopEgiCube() {
         <div
             className="fixed z-25"
             style={{
-                left: 'calc(80px + 8%)',
-                top: 'calc(70px + 18vh)',
-                width: '400px',
-                height: '400px',
+                left: '12vw', // Relative position
+                top: '18vh', // Relative position
+                width: '18vw', // Always 18% of viewport width
+                height: '18vw', // Square aspect ratio
+                minWidth: '250px', // Prevent too small
+                minHeight: '250px',
                 pointerEvents: 'none'
             }}
         >
             <Canvas camera={{ position: [0, 1, 5], fov: 50 }}>
-                <color attach="background" args={['#050510']} />
-
                 <ambientLight intensity={1} />
                 <directionalLight position={[10, 10, 5]} intensity={1} color="white" />
                 <directionalLight position={[-10, 10, 5]} intensity={1} color="white" />
-
-                <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
                 <EgiCube />
 
