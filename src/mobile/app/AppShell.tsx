@@ -68,7 +68,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </header>
 
                 {/* Main Content */}
-                <main className="relative pt-24 pb-24">
+                <main className="relative pt-32 pb-24">
                     {children}
                 </main>
 
