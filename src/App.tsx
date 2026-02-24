@@ -39,7 +39,7 @@ function App() {
     const [isMobile, setIsMobile] = useState(() => {
         if (typeof window === 'undefined') return false;
         return window.matchMedia('(max-width: 768px)').matches ||
-            /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            /iPhone|iPad|iPod|Android|webOS|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
     });
 
     useEffect(() => {
@@ -47,7 +47,7 @@ function App() {
 
         const media = window.matchMedia('(max-width: 768px)');
         const handleChange = () => {
-            const uaMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const uaMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
             setIsMobile(media.matches || uaMobile);
         };
 
