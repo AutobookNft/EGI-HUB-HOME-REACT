@@ -11,11 +11,11 @@ export function AboutSection() {
     const paragraphs = content.about.body.split('\n\n');
 
     return (
-        <section className="px-6 pt-10 pb-8 relative overflow-hidden">
+        <section className="px-6 pt-16 pb-8 relative overflow-hidden">
             <div ref={ref} className={className}>
                 {/* Title block */}
                 <div className="mb-6">
-                    <span className="text-lg font-extrabold tracking-[0.15em] text-[var(--accent)] uppercase block mb-3" style={{ willChange: 'auto' }}>
+                    <span className="text-lg font-extrabold tracking-[0.15em] text-[var(--accent)] uppercase block mb-3">
                         FlorenceEGI
                     </span>
                     <h2 className="text-4xl font-bold tracking-tight text-[var(--text)] leading-none">
