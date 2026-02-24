@@ -5,6 +5,7 @@ import { useI18n } from '@/i18n';
 import { translations } from '@/i18n/translations';
 import { FlorenceEgiLogo } from '@/components/ui/FlorenceEgiLogo';
 import { HomeAtmosphere } from '../components/HomeAtmosphere';
+import { EcosystemBackButton } from '../components/EcosystemBackButton';
 
 export function AppShell({ children }: { children: React.ReactNode }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +43,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                         </Link>
 
                         {/* Actions */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
+                            {/* Back to ecosystem (visibile solo con ?ref=) */}
+                            <EcosystemBackButton />
                             {/* Lang Switcher (Mini) */}
                             <button
                                 onClick={() => {
