@@ -75,9 +75,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     {children}
                 </main>
 
-                {/* Drawer Menu */}
-                <div className={`fixed inset-0 z-40 bg-[var(--bg)]/95 backdrop-blur-xl transition-transform duration-500 ease-spring ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                    }`}>
+                {/* Drawer Menu — bg via inline style: Tailwind opacity modifier /N non funziona
+                     con CSS vars hex, il colore diventava trasparente lasciando vedere il dark bg */}
+                <div
+                    className={`fixed inset-0 z-40 transition-transform duration-500 ease-spring ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                    style={{ backgroundColor: 'var(--bg)' }}
+                >
                     <div className="h-full flex flex-col p-8 pt-44">
                         <nav className="flex flex-col gap-6">
 
