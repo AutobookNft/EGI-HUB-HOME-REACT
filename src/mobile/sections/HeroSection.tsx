@@ -2,7 +2,7 @@
 import { useI18n } from '@/i18n';
 import { homepageContent } from '../data/homepage';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
-import { EgiCssCard } from '../components/EgiCssCard';
+import { EgiTransformationAnimation } from '../components/EgiTransformationAnimation';
 import '../styles/motion.css';
 
 export function HeroSection() {
@@ -57,7 +57,7 @@ export function HeroSection() {
 
                 <div className="my-8 reveal is-in flex justify-center w-full min-h-[300px]" style={{ animationDelay: '0.4s' }}>
                     <div className="w-full flex justify-center">
-                        <EgiCssCard />
+                        <EgiTransformationAnimation />
                     </div>
                 </div>
             </div>

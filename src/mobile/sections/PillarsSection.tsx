@@ -2,7 +2,7 @@ import { useI18n } from '@/i18n';
 import { homepageContent } from '../data/homepage';
 import { useRevealOnView } from '@/hooks/useRevealOnView';
 import { SectionTitle } from '../ui/SectionTitle';
-import { ThreePillarsPyramid } from '../components/ThreePillarsPyramid';
+import { CssPillarsCube } from '../components/CssPillarsCube';
 import '../styles/motion.css';
 
 export function PillarsSection() {
@@ -15,8 +15,8 @@ export function PillarsSection() {
             <div ref={ref} className={className}>
                 <SectionTitle title={content.pillars.title} />
 
-                <div className="flex justify-center -mx-6 mt-8">
-                    <ThreePillarsPyramid />
+                <div className="flex justify-center relative mt-8" style={{ height: 260 }}>
+                    <CssPillarsCube />
                 </div>
 
                 <div className="mt-8 space-y-4 max-w-lg mx-auto">
