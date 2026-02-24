@@ -11,7 +11,7 @@ export function AboutSection() {
     const paragraphs = content.about.body.split('\n\n');
 
     return (
-        <section className="px-6 pt-6 pb-8 relative overflow-hidden">
+        <section className="px-6 pt-10 pb-8 relative overflow-hidden">
             <div ref={ref} className={className}>
                 {/* Title block */}
                 <div className="mb-6">
