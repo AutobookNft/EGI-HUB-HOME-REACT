@@ -122,7 +122,7 @@ export function CssPillarsCube() {
                                         </div>
                                         <div style={{
                                             fontSize: 9,
-                                            color: 'rgba(255,255,255,0.6)',
+                                            color: 'rgba(255,255,255,0.88)',
                                             lineHeight: 1.4,
                                             maxWidth: 150,
                                         }}>
@@ -138,7 +138,7 @@ export function CssPillarsCube() {
                                         <div style={{ fontSize: 22, fontWeight: 900, color, fontFamily: 'Rajdhani, sans-serif', letterSpacing: '0.1em' }}>
                                             EGI
                                         </div>
-                                        <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+                                        <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
                                             Certificazione di Valore
                                         </div>
                                     </>
