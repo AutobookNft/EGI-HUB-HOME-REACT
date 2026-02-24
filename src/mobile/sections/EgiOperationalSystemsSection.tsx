@@ -22,7 +22,7 @@ export function EgiOperationalSystemsSection() {
                 <Card
                     title={content.systems.florenceArt.title}
                     description={content.systems.florenceArt.description}
-                    link="/platforms/florence-art"
+                    link="https://art.florenceegi.com"
                     linkText={content.systems.florenceArt.linkText}
                     glowColor="value" // Gold for Art
                     className="blue-glass"
@@ -31,7 +31,7 @@ export function EgiOperationalSystemsSection() {
                 <Card
                     title={content.systems.natan.title}
                     description={content.systems.natan.description}
-                    link="/platforms/natan"
+                    link="https://natan-loc.florenceegi.com"
                     linkText={content.systems.natan.linkText}
                     glowColor="trust" // Blue for PA
                     className="blue-glass"
@@ -40,7 +40,7 @@ export function EgiOperationalSystemsSection() {
                 <Card
                     title={content.systems.egiPt.title}
                     description={content.systems.egiPt.description}
-                    link="/platforms/egi-pt"
+                    link="/under-construction"
                     linkText={content.systems.egiPt.linkText}
                     glowColor="innovation" // Violet/Pink for Pure Trading
                     className="blue-glass"

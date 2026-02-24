@@ -69,6 +69,7 @@ export function Card({
                 <div className="mt-4 pt-4 border-t border-[var(--border)]">
                     <a
                         href={link}
+                        {...(link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                         className="inline-flex items-center text-sm font-medium text-[var(--accent)] hover:text-[var(--text)] transition-colors"
                     >
                         {linkText}

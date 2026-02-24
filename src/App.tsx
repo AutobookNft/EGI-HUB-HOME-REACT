@@ -69,9 +69,10 @@ function App() {
                         {currentPath === '/ecosystem' && <UnderConstructionPage />}
                         {currentPath === '/what-is' && <WhatIsEgiPage />}
                         {currentPath === '/how-it-works' && <UnderConstructionPage />}
+                        {currentPath === '/under-construction' && <UnderConstructionPage />}
 
                         {/* Fallback for unknown mobile routes */}
-                        {!['/', '/corporate', '/platforms', '/ecosystem', '/what-is', '/how-it-works'].includes(currentPath) && <MobileHomePage />}
+                        {!['/', '/corporate', '/platforms', '/ecosystem', '/what-is', '/how-it-works', '/under-construction'].includes(currentPath) && <MobileHomePage />}
                     </AppShell>
                 </QueryClientProvider>
             </HelmetProvider>
