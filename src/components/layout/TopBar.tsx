@@ -10,7 +10,7 @@ export const TopBar = () => {
         <div className="fixed top-0 right-0 h-[70px] glass-dark border-b border-light flex items-center justify-between px-4 md:px-8 z-40" style={{ left: 'calc(80px + 25vw)' }}>
             {/* Brand */}
             <div className="flex items-center gap-3">
-                <FlorenceEgiLogo className="h-7 w-7 md:h-8 md:w-8 text-primary" />
+                <FlorenceEgiLogo className="h-9 w-9 md:h-10 md:w-10 text-primary" />
                 <div className="text-xl md:text-2xl font-bold tracking-[2px]" style={{ fontFamily: 'Rajdhani, sans-serif' }}>
                     FLORENCE <span className="text-primary">EGI</span>
                 </div>
