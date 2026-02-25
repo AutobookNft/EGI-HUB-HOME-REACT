@@ -12,6 +12,7 @@ import { PlatformsPage } from '@/pages/PlatformsPage';
 import { NatanSystemPage } from '@/pages/NatanSystemPage';
 import { HowItWorksPage } from '@/pages/HowItWorksPage';
 import { TeamPage } from '@/pages/TeamPage';
+import { EcosystemPage } from '@/pages/EcosystemPage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 // Mobile components
@@ -68,7 +69,7 @@ function App() {
                         {currentPath === '/' && <MobileHomePage />}
                         {currentPath === '/corporate' && <CorporatePage />}
                         {currentPath === '/platforms' && <UnderConstructionPage />} {/* Fallback for now */}
-                        {currentPath === '/ecosystem' && <UnderConstructionPage />}
+                        {currentPath === '/ecosystem' && <EcosystemPage />}
                         {currentPath === '/what-is' && <WhatIsEgiPage />}
                         {currentPath === '/how-it-works' && <HowItWorksPage />}
                         {currentPath === '/team' && <TeamPage />}
@@ -76,6 +77,7 @@ function App() {
 
                         {/* Fallback for unknown mobile routes */}
                         {!['/', '/corporate', '/platforms', '/ecosystem', '/what-is', '/how-it-works', '/team', '/under-construction'].includes(currentPath) && <MobileHomePage />}
+
                     </AppShell>
                 </QueryClientProvider>
             </HelmetProvider>
@@ -92,6 +94,7 @@ function App() {
         if (currentPath === '/what-is') return <WhatIsEgiPage />;
         if (currentPath === '/how-it-works') return <HowItWorksPage />;
         if (currentPath === '/team') return <TeamPage />;
+        if (currentPath === '/ecosystem') return <EcosystemPage />;
 
         // Desktop-specific pages
         if (currentPath === '/platforms') return <PlatformsPage />;

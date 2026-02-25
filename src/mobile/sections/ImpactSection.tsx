@@ -1,116 +1,77 @@
-import { useState, useRef } from 'react';
 import { homepageContent } from '../data/homepage';
 import { useI18n } from '@/i18n';
+import { useUIStore } from '@/stores/useUIStore';
 import { useRevealOnView } from '@/hooks/useRevealOnView';
+import { Droplets, Trees, Flower2, ArrowRight } from 'lucide-react';
 import '../styles/motion.css';
 
+const campaignIcons = [Droplets, Trees, Flower2];
+const campaignAccents = ['text-cyan-400', 'text-emerald-400', 'text-amber-400'];
+const campaignBorders = ['border-cyan-700/30', 'border-emerald-700/30', 'border-amber-700/30'];
+const campaignBadges = ['APR', 'ARF', 'BPE'];
 
 export function ImpactSection() {
-    const { locale } = useI18n();
+    const { locale, t } = useI18n();
+    const navigate = useUIStore((s) => s.navigate);
     const content = homepageContent[locale];
     const { ref, className } = useRevealOnView();
-
-    // Use the dedicated EPP section data
     const eppData = content.epp_section;
-
-    // Carousel Logic
-    const [activeIndex, setActiveIndex] = useState(0);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-    const handleScroll = () => {
-        if (scrollContainerRef.current) {
-            const { scrollLeft, clientWidth } = scrollContainerRef.current;
-            const index = Math.round(scrollLeft / clientWidth);
-            setActiveIndex(index);
-        }
-    };
 
     return (
         <section className="py-24 px-6 relative">
             <div ref={ref} className={className}>
-                {/* Custom Gradient Title */}
-                <div className="mb-12">
+                {/* Header */}
+                <div className="mb-8">
                     <span className="text-xs font-bold tracking-[0.2em] text-[var(--muted)] uppercase mb-2 block">
                         Environment
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent leading-tight">
                         {eppData.title}
                     </h2>
+                    <p className="text-sm text-[var(--muted)] mt-3 leading-relaxed max-w-lg">
+                        {eppData.description}
+                    </p>
                 </div>
 
-                {/* Main EPP Intro Card */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl group mb-8 transition-transform duration-500 hover:scale-[1.02]">
-                    {/* Blue-Green Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-teal-500 to-emerald-500 opacity-90 backdrop-blur-xl" />
-
-                    {/* Glass Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-50 pointer-events-none mix-blend-overlay" />
-
-                    <div className="relative z-10 p-8 flex flex-col items-center text-center">
-                        <div className="w-48 h-48 mb-6 relative">
-                            {/* 3D Crystal/Asset Display */}
-                            <div className="absolute inset-0 bg-blue-400/30 blur-3xl rounded-full animate-pulse" />
-                            <img
-                                src="/images/epp_glass_icon.png"
-                                alt="EPP Crystal"
-                                className="relative w-full h-full object-contain drop-shadow-[0_0_30px_rgba(56,189,248,0.6)] animate-float"
-                            />
-                        </div>
-
-                        <p className="text-xl font-medium leading-relaxed text-white drop-shadow-sm">
-                            {eppData.description}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Campaigns Carousel */}
-                <div className="w-full">
-                    <div
-                        ref={scrollContainerRef}
-                        onScroll={handleScroll}
-                        className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory no-scrollbar px-2 -mx-2"
-                    >
-                        {eppData.items.map((item, idx) => (
+                {/* 3 Campagne — card compatte stacked */}
+                <div className="flex flex-col gap-4 mb-8">
+                    {eppData.items.map((item, idx) => {
+                        const Icon = campaignIcons[idx];
+                        return (
                             <div
                                 key={idx}
-                                className="snap-center shrink-0 w-[75vw] relative min-h-[550px] rounded-3xl overflow-hidden shadow-xl group cursor-pointer flex flex-col justify-end"
+                                className={`bg-[var(--surface)] border ${campaignBorders[idx]} rounded-2xl p-5 flex gap-4 items-start`}
                             >
-                                {/* Background Image */}
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-
-                                {/* High Contrast Gradient Overlay (Deep Dark) */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 via-50% to-transparent opacity-95" />
-
-                                {/* Content Overlay - Always Visible */}
-                                <div className="relative z-10 p-8 pb-12">
-                                    <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight">
+                                <div className="shrink-0 mt-0.5">
+                                    <Icon size={20} className={campaignAccents[idx]} aria-hidden="true" />
+                                </div>
+                                <div className="min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className={`text-[10px] font-bold tracking-widest uppercase ${campaignAccents[idx]}`}>
+                                            {campaignBadges[idx]}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-sm font-bold text-[var(--text)] mb-1 leading-snug">
                                         {item.title}
                                     </h3>
-                                    <p className="text-gray-100 text-base leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] font-medium">
+                                    <p className="text-xs text-[var(--muted)] leading-relaxed line-clamp-2">
                                         {item.description}
                                     </p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-
-                    {/* Swipe Indicator (High Contrast + Active State) */}
-                    <div className="flex justify-center gap-3 mt-4">
-                        {eppData.items.map((_, idx) => (
-                            <div
-                                key={idx}
-                                className={`transition-all duration-300 rounded-full shadow-sm ${idx === activeIndex
-                                        ? 'w-8 h-2 bg-white'     // Active: Wide & White
-                                        : 'w-2 h-2 bg-gray-600'  // Inactive: Darker Grey (Visible)
-                                    }`}
-                            />
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
+
+                {/* Link to full EPP page */}
+                <button
+                    type="button"
+                    onClick={() => navigate('/ecosystem')}
+                    className="flex items-center gap-2 text-sm font-semibold text-emerald-500 hover:text-emerald-400 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-lg"
+                >
+                    {t('epp.cta.label') || 'Scopri di più'}
+                    <ArrowRight size={15} aria-hidden="true" />
+                </button>
             </div>
         </section>
     );
